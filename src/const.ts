@@ -1,5 +1,5 @@
-const OffersCount = {
-  offersCount: 12,
+const Settings = {
+  CitiesCount: 5,
 } as const;
 
-export {OffersCount};
+export {Settings};
