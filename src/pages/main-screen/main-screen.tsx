@@ -13,7 +13,7 @@ function MainScreen({citiesCount, authorizationStatus}: MainScreenProps): JSX.El
 
   let counter:number = 0;
 
-  const citiesCardArray: JSX.Element[] = Array.from({length: citiesCount}).map(() => <CitiesCard key={counter++} />);
+  const citiesCardArray: JSX.Element[] = Array.from({length: citiesCount});
 
   return (
     <div className="page page--gray page--main">
@@ -92,7 +92,7 @@ function MainScreen({citiesCount, authorizationStatus}: MainScreenProps): JSX.El
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {citiesCardArray}
+                {citiesCardArray.map(() => <CitiesCard key={counter++} />)}
               </div>
             </section>
             <div className="cities__right-section">
