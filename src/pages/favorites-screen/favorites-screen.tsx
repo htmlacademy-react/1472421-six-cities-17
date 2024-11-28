@@ -1,11 +1,22 @@
-import CitiesCard from '../../components/cities-card';
-import Footer from '../../components/footer';
-import Header from '../../components/header';
+import { Helmet } from 'react-helmet-async';
+import CitiesCard from '../../components/cities-card/cities-card';
+import Footer from '../../components/footer/footer';
+import Header from '../../components/header/header';
+import { AuthorizationStatus } from '../../const';
 
-function FavoritesScreen(): JSX.Element {
+type FavoritesScreenProps = {
+  authorizationStatus: AuthorizationStatus;
+}
+
+function FavoritesScreen({authorizationStatus}: FavoritesScreenProps): JSX.Element {
   return (
     <div className="page">
-      <Header />
+
+      <Helmet>
+        <title>6 cities. Favorites</title>
+      </Helmet>
+
+      <Header authorizationStatus = {authorizationStatus}/>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">

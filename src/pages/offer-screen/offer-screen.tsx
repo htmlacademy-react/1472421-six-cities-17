@@ -1,13 +1,21 @@
-import Header from '../../components/header';
-import MapComponent from '../../components/map';
-import OfferDetails from '../../components/offer-details';
-import OfferGallery from '../../components/offer-gallery';
+import { Helmet } from 'react-helmet-async';
+import Header from '../../components/header/header';
+import MapComponent from '../../components/map/map';
+import OfferDetails from './offer-details';
+import OfferGallery from './offer-gallery';
+import { AuthorizationStatus } from '../../const';
 
-function OfferScreen(): JSX.Element {
+type OfferProps = {
+  authorizationStatus: AuthorizationStatus;
+}
+
+function OfferScreen({authorizationStatus}: OfferProps): JSX.Element {
   return (
     <div className="page">
-
-      <Header />
+      <Helmet>
+        <title>6 cities. Offers</title>
+      </Helmet>
+      <Header authorizationStatus = {authorizationStatus}/>
 
       <main className="page__main page__main--offer">
         <section className="offer">
