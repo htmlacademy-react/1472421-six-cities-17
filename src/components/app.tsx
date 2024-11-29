@@ -10,9 +10,10 @@ import PrivateRoute from '../private-route';
 
 type AppProps = {
   citiesCount: number;
+  authorizationStatus: AuthorizationStatus;
 }
 
-function App({citiesCount}: AppProps): JSX.Element {
+function App({citiesCount, authorizationStatus}: AppProps): JSX.Element {
 
   return (
     <HelmetProvider>
@@ -20,23 +21,38 @@ function App({citiesCount}: AppProps): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element = {<MainScreen citiesCount={citiesCount} authorizationStatus = {AuthorizationStatus.NoAuth}/>}
+            element = {
+              <MainScreen
+                citiesCount={citiesCount}
+                authorizationStatus = {authorizationStatus}
+              />
+            }
           />
           <Route
             path={AppRoute.Login}
-            element = {<LoginScreen authorizationStatus = {AuthorizationStatus.NoAuth}/>}
+            element = {
+              <LoginScreen
+                authorizationStatus = {authorizationStatus}
+              />
+            }
           />
           <Route
             path={AppRoute.Favorites}
             element = {
-              <PrivateRoute authorizationStatus = {AuthorizationStatus.NoAuth}>
-                <FavoritesScreen authorizationStatus = {AuthorizationStatus.NoAuth}/>
+              <PrivateRoute authorizationStatus = {authorizationStatus}>
+                <FavoritesScreen
+                  authorizationStatus = {authorizationStatus}
+                />
               </PrivateRoute>
             }
           />
           <Route
             path={AppRoute.Offer}
-            element = {<OfferScreen authorizationStatus = {AuthorizationStatus.NoAuth}/>}
+            element = {
+              <OfferScreen
+                authorizationStatus = {authorizationStatus}
+              />
+            }
           />
           <Route
             path={AppRoute.Error}
