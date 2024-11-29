@@ -1,21 +1,26 @@
-import CitiesCard from '../../components/cities-card';
-import Header from '../../components/header';
-import MapComponent from '../../components/map';
+import { Helmet } from 'react-helmet-async';
+import CitiesCard from '../../components/cities-card/cities-card';
+import Header from '../../components/header/header';
+import MapComponent from '../../components/map/map';
+import { AuthorizationStatus } from '../../const';
 
 type MainScreenProps = {
   citiesCount: number;
+  authorizationStatus: AuthorizationStatus;
 }
 
-function MainScreen({citiesCount}: MainScreenProps): JSX.Element {
+function MainScreen({citiesCount, authorizationStatus}: MainScreenProps): JSX.Element {
 
   let counter:number = 0;
 
-  const citiesCardArray: JSX.Element[] = Array.from({length: citiesCount}).map(() => <CitiesCard key={counter++} />);
+  const citiesCardArray: JSX.Element[] = Array.from({length: citiesCount});
 
   return (
     <div className="page page--gray page--main">
-
-      <Header />
+      <Helmet>
+        <title>6 cities. Choose a city!</title>
+      </Helmet>
+      <Header authorizationStatus = {authorizationStatus}/>
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
@@ -87,7 +92,7 @@ function MainScreen({citiesCount}: MainScreenProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {citiesCardArray}
+                {citiesCardArray.map(() => <CitiesCard key={counter++} />)}
               </div>
             </section>
             <div className="cities__right-section">

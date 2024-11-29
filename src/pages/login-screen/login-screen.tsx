@@ -1,11 +1,19 @@
-import Header from '../../components/header';
-import LoginForm from '../../components/login-form';
+import { Helmet } from 'react-helmet-async';
+import Header from '../../components/header/header';
+import LoginForm from './login-form';
+import { AuthorizationStatus } from '../../const';
 
-function LoginScreen(): JSX.Element {
+type LoginScreenProps = {
+  authorizationStatus: AuthorizationStatus;
+}
+
+function LoginScreen({authorizationStatus}: LoginScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--login">
-
-      <Header />
+      <Helmet>
+        <title>6 cities. Log in!</title>
+      </Helmet>
+      <Header authorizationStatus={authorizationStatus}/>
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">
