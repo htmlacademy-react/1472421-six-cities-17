@@ -5,7 +5,7 @@ type HeaderNavUserProps ={
   authorizationStatus: AuthorizationStatus;
 }
 
-const isLoginUser = (status: AuthorizationStatus[keyof AuthorizationStatus]): boolean => status === AuthorizationStatus.Auth;
+const isLoginUser = (status: AuthorizationStatus): boolean => status === AuthorizationStatus.Auth;
 
 
 const getMarkupForAuth = (): JSX.Element => (
@@ -36,7 +36,7 @@ const getMarkupForNoAuth = (): JSX.Element => (
       <span className="header__login">Sign in</span>
     </Link>
   </li>
-)
+);
 
 function HeaderNavUser({authorizationStatus}: HeaderNavUserProps) {
   return (
