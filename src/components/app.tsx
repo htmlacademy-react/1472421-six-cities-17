@@ -7,13 +7,15 @@ import OfferScreen from '../pages/offer-screen/offer-screen';
 import ErrorScreen from '../pages/error-page/error-screen';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route';
+import { OffersType } from '../types/offer-types';
 
 type AppProps = {
   citiesCount: number;
   authorizationStatus: AuthorizationStatus;
+  offersMock: OffersType;
 }
 
-function App({citiesCount, authorizationStatus}: AppProps): JSX.Element {
+function App({citiesCount, authorizationStatus, offersMock}: AppProps): JSX.Element {
 
   return (
     <HelmetProvider>

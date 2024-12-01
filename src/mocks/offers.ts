@@ -1,36 +1,6 @@
-type offerCityType = {
-  name: string;
-  location: {
-    latitude: number;
-    longitude:number;
-    zoom: number;
-  };
-}
+import { OffersType } from '../types/offer-types';
 
-type locationCityType = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-}
-
-
-type offerType = {
-  id: string;
-  title: string;
-  type: string;
-  price: number;
-  city: offerCityType;
-  location: locationCityType;
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-  previewImage: string;
-}
-
-type offersType = offerType[];
-
-
-const offersMock: offersType = [
+export const offersMock: OffersType = [
   {
     'id': '6af6f711-c28d-4121-82cd-e0b462a27f00',
     'title': 'Beautiful & luxurious studio at great location',
@@ -124,5 +94,3 @@ const offersMock: offersType = [
     'previewImage': '../markup/img/apartment-01.jpg'
   }
 ];
-
-export default offersMock;
