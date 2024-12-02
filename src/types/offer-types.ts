@@ -14,7 +14,7 @@ type LocationCityType = {
 }
 
 
-type OfferType = {
+export type OfferType = {
   id: string;
   title: string;
   type: string;
@@ -27,4 +27,3 @@ type OfferType = {
   previewImage: string;
 }
 
-export type OffersType = OfferType[];

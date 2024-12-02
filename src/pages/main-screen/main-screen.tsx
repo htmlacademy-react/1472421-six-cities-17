@@ -1,25 +1,25 @@
 import { Helmet } from 'react-helmet-async';
-import CitiesCard from '../../components/cities-card/cities-card';
 import Header from '../../components/header/header';
 import MapComponent from '../../components/map/map';
 import { AuthorizationStatus } from '../../const';
+import { CitiesCardsList } from '../../components/cities-card/cities-cards-list';
+import { OfferType } from '../../types/offer-types';
 
 type MainScreenProps = {
   citiesCount: number;
   authorizationStatus: AuthorizationStatus;
+  offers: OfferType[]
 }
 
-function MainScreen({citiesCount, authorizationStatus}: MainScreenProps): JSX.Element {
+function MainScreen({citiesCount, authorizationStatus, offers}: MainScreenProps): JSX.Element {
 
-  let counter:number = 0;
-
-  const citiesCardArray: JSX.Element[] = Array.from({length: citiesCount});
 
   return (
     <div className="page page--gray page--main">
       <Helmet>
         <title>6 cities. Choose a city!</title>
       </Helmet>
+
       <Header authorizationStatus = {authorizationStatus}/>
 
       <main className="page__main page__main--index">
@@ -92,7 +92,7 @@ function MainScreen({citiesCount, authorizationStatus}: MainScreenProps): JSX.El
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {citiesCardArray.map(() => <CitiesCard key={counter++} />)}
+                <CitiesCardsList offers={offers}/>
               </div>
             </section>
             <div className="cities__right-section">

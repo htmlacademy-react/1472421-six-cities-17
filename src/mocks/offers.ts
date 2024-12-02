@@ -1,6 +1,6 @@
-import { OffersType } from '../types/offer-types';
+import { OfferType } from '../types/offer-types';
 
-export const offersMock: OffersType = [
+export const offersMock: OfferType[] = [
   {
     'id': '6af6f711-c28d-4121-82cd-e0b462a27f00',
     'title': 'Beautiful & luxurious studio at great location',
@@ -22,12 +22,12 @@ export const offersMock: OffersType = [
     'isFavorite': false,
     'isPremium': false,
     'rating': 4,
-    'previewImage': 'https://url-to-image/image.png'
+    'previewImage': '../markup/img/apartment-02.jpg'
   },
   {
     'id': 'gew-23-4121-f82cfd-e0b462a27f00',
-    'title': 'Beautiful & luxurious apartment at great location',
-    'type': 'apartment',
+    'title': 'Beautiful & luxurious room at great location',
+    'type': 'room',
     'price': 120,
     'city': {
       'name': 'New-York',
@@ -44,8 +44,8 @@ export const offersMock: OffersType = [
     },
     'isFavorite': true,
     'isPremium': true,
-    'rating': 4,
-    'previewImage': '../markup/img/apartment-01.jpg'
+    'rating': 5,
+    'previewImage': '../markup/img/apartment-03.jpg'
   },
   {
     'id': '214sq-23-4121-f82cfd-e0b462a27f00',
@@ -67,7 +67,7 @@ export const offersMock: OffersType = [
     },
     'isFavorite': true,
     'isPremium': true,
-    'rating': 4,
+    'rating': 2,
     'previewImage': '../markup/img/apartment-01.jpg'
   },
   {
@@ -90,7 +90,7 @@ export const offersMock: OffersType = [
     },
     'isFavorite': true,
     'isPremium': true,
-    'rating': 4,
+    'rating': 3,
     'previewImage': '../markup/img/apartment-01.jpg'
   }
 ];
