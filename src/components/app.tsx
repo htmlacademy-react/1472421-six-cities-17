@@ -55,6 +55,7 @@ function App({citiesCount, authorizationStatus, offersMock}: AppProps): JSX.Elem
             element = {
               <OfferScreen
                 authorizationStatus = {authorizationStatus}
+                offers={offersMock}
               />
             }
           />

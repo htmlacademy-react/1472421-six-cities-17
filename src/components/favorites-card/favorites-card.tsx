@@ -7,9 +7,7 @@ type FavoritesCardProps ={
 function FavoritesCard({offer}: FavoritesCardProps):JSX.Element {
   return(
     <article className="favorites__card place-card">
-      <div className="place-card__mark">
-        {offer.isPremium ? <span>Premium</span>: null}
-      </div>
+      {offer.isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img

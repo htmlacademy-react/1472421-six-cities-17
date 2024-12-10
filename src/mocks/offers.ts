@@ -26,11 +26,13 @@ export const offersMock: OfferType[] = [
     "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
     "bedrooms": 3,
     "goods": [
-    "Heating"
+      "Kitchen",
+      "Wi-Fi",
+      "Washing machine"
     ],
     "host": {
       "name": "Angelina",
-      "avatarUrl": "../markup/img/avatar-angelina.png",
+      "avatarUrl": "../markup/img/avatar-angelina.jpg",
       "isPro": false
     },
     "images": [
@@ -68,11 +70,13 @@ export const offersMock: OfferType[] = [
     "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
     "bedrooms": 3,
     "goods": [
-    "Heating"
+      "Baby seat",
+      "Heating",
+      "Towels"
     ],
     "host": {
       "name": "Angelina",
-      "avatarUrl": "../markup/img/avatar-angelina.png",
+      "avatarUrl": "../markup/img/avatar-angelina.jpg",
       "isPro": false
     },
     "images": [
@@ -110,11 +114,13 @@ export const offersMock: OfferType[] = [
     "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
     "bedrooms": 3,
     "goods": [
-    "Heating"
+      "Cabel TV",
+      "Coffee machine",
+      "Fridge"
     ],
     "host": {
       "name": "Max",
-      "avatarUrl": "../markup/img/avatar-max.png",
+      "avatarUrl": "../markup/img/avatar-max.jpg",
       "isPro": false
     },
     "images": [
@@ -152,11 +158,13 @@ export const offersMock: OfferType[] = [
     "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
     "bedrooms": 3,
     "goods": [
-    "Heating"
+      "Heating",
+      "Coffee machine",
+      "Kitchen"
     ],
     "host": {
       "name": "Max",
-      "avatarUrl": "../markup/img/avatar-max.png",
+      "avatarUrl": "../markup/img/avatar-max.jpg",
       "isPro": false
     },
     "images": [
