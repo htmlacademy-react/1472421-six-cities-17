@@ -30,7 +30,7 @@ export const offersMock: OfferType[] = [
     'type': 'room',
     'price': 120,
     'city': {
-      'name': 'New-York',
+      'name': 'Amsterdam',
       'location': {
         'latitude': 52.35514938496378,
         'longitude': 4.673877537499948,
@@ -51,9 +51,9 @@ export const offersMock: OfferType[] = [
     'id': '214sq-23-4121-f82cfd-e0b462a27f00',
     'title': 'Beautiful & luxurious apartment at great location',
     'type': 'apartment',
-    'price': 120,
+    'price': 99,
     'city': {
-      'name': 'New-York',
+      'name': 'Amsterdam',
       'location': {
         'latitude': 52.35514938496378,
         'longitude': 4.673877537499948,
@@ -74,9 +74,9 @@ export const offersMock: OfferType[] = [
     'id': 'ye-23-4122d1-f82cfd-e0b462a27f00',
     'title': 'Beautiful & luxurious apartment at great location',
     'type': 'apartment',
-    'price': 120,
+    'price': 140,
     'city': {
-      'name': 'New-York',
+      'name': 'Amsterdam',
       'location': {
         'latitude': 52.35514938496378,
         'longitude': 4.673877537499948,

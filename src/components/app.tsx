@@ -45,6 +45,7 @@ function App({citiesCount, authorizationStatus, offersMock}: AppProps): JSX.Elem
               <PrivateRoute authorizationStatus = {authorizationStatus}>
                 <FavoritesScreen
                   authorizationStatus = {authorizationStatus}
+                  offers={offersMock}
                 />
               </PrivateRoute>
             }

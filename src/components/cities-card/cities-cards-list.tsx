@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { OfferType } from "../../types/offer-types"
-import CitiesCard from "./cities-card";
+import { useState } from 'react';
+import { OfferType } from '../../types/offer-types';
+import CitiesCard from './cities-card';
 
-type CitiesCardsListType = {
+type CitiesCardsListProps = {
   offers: OfferType[];
 }
 
 
-export function CitiesCardsList({offers}: CitiesCardsListType): JSX.Element[] {
+function CitiesCardsList({offers}: CitiesCardsListProps): JSX.Element[] {
 
   /*Деструктуризируем хук useState, первая переменная хранит в себе id карточки предложения, на которую
     наведен курсор, вторая фунцию-установщик нового состояни(т.е. изменение id, который
@@ -25,3 +25,5 @@ export function CitiesCardsList({offers}: CitiesCardsListType): JSX.Element[] {
 
   return offers.map((offer) => <CitiesCard key={offer.id} offer={offer} onMouseOverHandler={onMouseOverHandler}/>)
 }
+
+export default CitiesCardsList;

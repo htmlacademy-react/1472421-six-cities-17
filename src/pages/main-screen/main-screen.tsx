@@ -2,8 +2,8 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import MapComponent from '../../components/map/map';
 import { AuthorizationStatus } from '../../const';
-import { CitiesCardsList } from '../../components/cities-card/cities-cards-list';
 import { OfferType } from '../../types/offer-types';
+import CitiesCardsList from '../../components/cities-card/cities-cards-list';
 
 type MainScreenProps = {
   citiesCount: number;
