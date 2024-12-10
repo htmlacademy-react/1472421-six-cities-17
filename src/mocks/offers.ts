@@ -22,7 +22,26 @@ export const offersMock: OfferType[] = [
     'isFavorite': false,
     'isPremium': false,
     'rating': 4,
-    'previewImage': '../markup/img/apartment-02.jpg'
+    'previewImage': '../markup/img/apartment-02.jpg',
+    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+    "bedrooms": 3,
+    "goods": [
+    "Heating"
+    ],
+    "host": {
+      "name": "Angelina",
+      "avatarUrl": "../markup/img/avatar-angelina.png",
+      "isPro": false
+    },
+    "images": [
+      "../markup/img/apartment-02.jpg",
+      "../markup/img/apartment-03.jpg",
+      "../markup/img/apartment-02.jpg",
+      "../markup/img/apartment-03.jpg",
+      "../markup/img/apartment-02.jpg",
+      "../markup/img/apartment-03.jpg",
+    ],
+    "maxAdults": 4
   },
   {
     'id': 'gew-23-4121-f82cfd-e0b462a27f00',
@@ -45,7 +64,26 @@ export const offersMock: OfferType[] = [
     'isFavorite': true,
     'isPremium': true,
     'rating': 5,
-    'previewImage': '../markup/img/apartment-03.jpg'
+    'previewImage': '../markup/img/apartment-03.jpg',
+    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+    "bedrooms": 3,
+    "goods": [
+    "Heating"
+    ],
+    "host": {
+      "name": "Angelina",
+      "avatarUrl": "../markup/img/avatar-angelina.png",
+      "isPro": false
+    },
+    "images": [
+      "../markup/img/apartment-02.jpg",
+      "../markup/img/apartment-03.jpg",
+      "../markup/img/apartment-02.jpg",
+      "../markup/img/apartment-03.jpg",
+      "../markup/img/apartment-02.jpg",
+      "../markup/img/apartment-03.jpg",
+    ],
+    "maxAdults": 4
   },
   {
     'id': '214sq-23-4121-f82cfd-e0b462a27f00',
@@ -68,7 +106,26 @@ export const offersMock: OfferType[] = [
     'isFavorite': true,
     'isPremium': true,
     'rating': 2,
-    'previewImage': '../markup/img/apartment-01.jpg'
+    'previewImage': '../markup/img/apartment-01.jpg',
+    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+    "bedrooms": 3,
+    "goods": [
+    "Heating"
+    ],
+    "host": {
+      "name": "Max",
+      "avatarUrl": "../markup/img/avatar-max.png",
+      "isPro": false
+    },
+    "images": [
+      "../markup/img/apartment-02.jpg",
+      "../markup/img/apartment-03.jpg",
+      "../markup/img/apartment-02.jpg",
+      "../markup/img/apartment-03.jpg",
+      "../markup/img/apartment-02.jpg",
+      "../markup/img/apartment-03.jpg",
+    ],
+    "maxAdults": 4
   },
   {
     'id': 'ye-23-4122d1-f82cfd-e0b462a27f00',
@@ -91,6 +148,25 @@ export const offersMock: OfferType[] = [
     'isFavorite': true,
     'isPremium': true,
     'rating': 3,
-    'previewImage': '../markup/img/apartment-01.jpg'
+    'previewImage': '../markup/img/apartment-01.jpg',
+    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+    "bedrooms": 3,
+    "goods": [
+    "Heating"
+    ],
+    "host": {
+      "name": "Max",
+      "avatarUrl": "../markup/img/avatar-max.png",
+      "isPro": false
+    },
+    "images": [
+      "../markup/img/apartment-02.jpg",
+      "../markup/img/apartment-03.jpg",
+      "../markup/img/apartment-02.jpg",
+      "../markup/img/apartment-03.jpg",
+      "../markup/img/apartment-02.jpg",
+      "../markup/img/apartment-03.jpg",
+    ],
+    "maxAdults": 4
   }
 ];

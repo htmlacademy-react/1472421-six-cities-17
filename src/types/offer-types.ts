@@ -13,6 +13,12 @@ type LocationCityType = {
   zoom: number;
 }
 
+type HostType = {
+  name: string;
+  avatarUrl: string;
+  isPro: Boolean;
+}
+
 
 export type OfferType = {
   id: string;
@@ -25,5 +31,11 @@ export type OfferType = {
   isPremium: boolean;
   rating: number;
   previewImage: string;
+  description: string;
+  bedrooms: number;
+  goods: string[];
+  host: HostType;
+  images: string[];
+  maxAdults: number;
 }
 
