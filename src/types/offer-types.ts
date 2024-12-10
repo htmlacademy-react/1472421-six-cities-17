@@ -1,5 +1,7 @@
+export type CityName = string | 'Paris' | 'Cologne' | 'Amsterdam' | 'Hamburg' | 'Brussels' | 'Dusseldorf';
+
 type OfferCityType = {
-  name: string;
+  name: CityName;
   location: {
     latitude: number;
     longitude:number;

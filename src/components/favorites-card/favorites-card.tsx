@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { OfferType } from "../../types/offer-types"
 
 type FavoritesCardProps ={
@@ -5,11 +6,14 @@ type FavoritesCardProps ={
 }
 
 function FavoritesCard({offer}: FavoritesCardProps):JSX.Element {
+
+  const cardOfferURL = `/offer/${offer.id}`;
+
   return(
     <article className="favorites__card place-card">
       {offer.isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="#">
+      <Link to={cardOfferURL}>
           <img
             className="place-card__image"
             src={offer.previewImage}
@@ -17,7 +21,7 @@ function FavoritesCard({offer}: FavoritesCardProps):JSX.Element {
             height={110}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
@@ -42,7 +46,7 @@ function FavoritesCard({offer}: FavoritesCardProps):JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer.title}</a>
+          <Link to={cardOfferURL}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

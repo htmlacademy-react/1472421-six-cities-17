@@ -95,7 +95,7 @@ export const offersMock: OfferType[] = [
     'type': 'apartment',
     'price': 99,
     'city': {
-      'name': 'Amsterdam',
+      'name': 'Cologne',
       'location': {
         'latitude': 52.35514938496378,
         'longitude': 4.673877537499948,
@@ -139,7 +139,7 @@ export const offersMock: OfferType[] = [
     'type': 'apartment',
     'price': 140,
     'city': {
-      'name': 'Amsterdam',
+      'name': 'Paris',
       'location': {
         'latitude': 52.35514938496378,
         'longitude': 4.673877537499948,

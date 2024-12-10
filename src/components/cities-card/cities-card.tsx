@@ -9,7 +9,7 @@ type CitiesCardProps = {
 
 function CitiesCard({offer, onMouseOverHandler}: CitiesCardProps): JSX.Element {
 
-  const cardOfferURL = `offer/${offer.id}`
+  const cardOfferURL = `offer/${offer.id}`;
 
   return(
     <article className="cities__card place-card" onMouseOver={() => onMouseOverHandler(offer.id)}>
