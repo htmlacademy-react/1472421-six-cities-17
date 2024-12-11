@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { OfferType } from "../../types/offer-types"
+import { Link } from 'react-router-dom';
+import { OfferType } from '../../types/offer-types';
 
 type FavoritesCardProps ={
   offer: OfferType;
@@ -13,7 +13,7 @@ function FavoritesCard({offer}: FavoritesCardProps):JSX.Element {
     <article className="favorites__card place-card">
       {offer.isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className="favorites__image-wrapper place-card__image-wrapper">
-      <Link to={cardOfferURL}>
+        <Link to={cardOfferURL}>
           <img
             className="place-card__image"
             src={offer.previewImage}
@@ -51,7 +51,7 @@ function FavoritesCard({offer}: FavoritesCardProps):JSX.Element {
         <p className="place-card__type">{offer.type}</p>
       </div>
     </article>
-  )
+  );
 }
 
 export default FavoritesCard;

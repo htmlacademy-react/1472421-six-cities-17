@@ -13,9 +13,9 @@ const getOffersGroup = (offers : OfferType[]): OffersGroupType => {
     }else {
       result[city] = [offer];
     }
-  })
+  });
 
   return result;
-}
+};
 
 export {getOffersGroup};

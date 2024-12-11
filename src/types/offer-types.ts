@@ -1,4 +1,4 @@
-export type CityName = string | 'Paris' | 'Cologne' | 'Amsterdam' | 'Hamburg' | 'Brussels' | 'Dusseldorf';
+export type CityName = string;
 
 type OfferCityType = {
   name: CityName;
@@ -18,7 +18,7 @@ type LocationCityType = {
 type HostType = {
   name: string;
   avatarUrl: string;
-  isPro: Boolean;
+  isPro: boolean;
 }
 
 
@@ -35,7 +35,10 @@ export type OfferType = {
   previewImage: string;
   description: string;
   bedrooms: number;
-  goods: string[];
+  goods: {
+    id: number;
+    name: string;
+  }[];
   host: HostType;
   images: string[];
   maxAdults: number;

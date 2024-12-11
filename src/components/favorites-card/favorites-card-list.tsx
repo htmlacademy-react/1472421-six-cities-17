@@ -6,7 +6,7 @@ type FavoritesCardListProps = {
 }
 
 function FavoritesCardList({offers}: FavoritesCardListProps): JSX.Element[] {
-  return offers.map((offer) => <FavoritesCard key={offer.id} offer={offer}/>)
+  return offers.map((offer) => <FavoritesCard key={offer.id} offer={offer}/>);
 }
 
 

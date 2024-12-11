@@ -71,3 +71,8 @@ function App({citiesCount, authorizationStatus, offersMock}: AppProps): JSX.Elem
 
 export default App;
 
+/*
+  - сделать форму управляемой
+  - заменить все теги а
+  - сделать один компонент карточки товара для favorites и main page
+*/

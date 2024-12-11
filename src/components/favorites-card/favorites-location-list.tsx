@@ -15,10 +15,10 @@ function FavoritesLocationList({offers}: FavoritesLocationListProps): JSX.Elemen
       {Object.keys(offersGroup).map((city) => {
         const groupByCity: OfferType[] = offersGroup[city];
 
-        return <FavoritesLocationItem key={city} offers={groupByCity} city={city}/>
+        return <FavoritesLocationItem key={city} offers={groupByCity} city={city}/>;
       })}
     </ul>
-  )
+  );
 }
 
 

@@ -44,7 +44,7 @@ function OfferDetails({offer}: OfferDetails): JSX.Element {
       <div className="offer__inside">
         <h2 className="offer__inside-title">What&apos;s inside</h2>
         <ul className="offer__inside-list">
-          {offer.goods.map((good) => <li className="offer__inside-item">{good}</li>)}
+          {offer.goods.map((good) => <li key={good.id} className="offer__inside-item">{good.name}</li>)}
         </ul>
       </div>
       <div className="offer__host">

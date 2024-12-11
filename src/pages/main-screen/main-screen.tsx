@@ -8,7 +8,7 @@ import CitiesCardsList from '../../components/cities-card/cities-cards-list';
 type MainScreenProps = {
   citiesCount: number;
   authorizationStatus: AuthorizationStatus;
-  offers: OfferType[]
+  offers: OfferType[];
 }
 
 function MainScreen({citiesCount, authorizationStatus, offers}: MainScreenProps): JSX.Element {

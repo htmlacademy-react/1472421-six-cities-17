@@ -14,7 +14,7 @@ function OfferGallery({offer}: OfferGalleryProps): JSX.Element {
       <div className="offer__gallery">
         {offer.images.map((image) => {
           idImage++;
-          return <OfferImage key={idImage} image={image}/>
+          return <OfferImage key={idImage} image={image}/>;
         })}
       </div>
     </div>

@@ -23,7 +23,7 @@ function CitiesCardsList({offers}: CitiesCardsListProps): JSX.Element[] {
 
   /* Передаем обработчик события в каждую карточку карточки предложения */
 
-  return offers.map((offer) => <CitiesCard key={offer.id} offer={offer} onMouseOverHandler={onMouseOverHandler}/>)
+  return offers.map((offer) => <CitiesCard key={offer.id} offer={offer} onMouseOverHandler={onMouseOverHandler}/>);
 }
 
 export default CitiesCardsList;

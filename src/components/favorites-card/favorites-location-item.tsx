@@ -20,7 +20,7 @@ function FavoritesLocationItem({offers, city}: FavoritesLocationItemProps): JSX.
         <FavoritesCardList offers={offers} />
       </div>
     </li>
-  )
+  );
 }
 
 
