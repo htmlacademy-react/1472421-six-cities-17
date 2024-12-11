@@ -13,7 +13,7 @@ function CitiesCardsList({offers}: CitiesCardsListProps): JSX.Element[] {
     наведен курсор, вторая фунцию-установщик нового состояни(т.е. изменение id, который
     храниться в currentOffer). Начальное стостояние переданное в useState - пустая строка*/
 
-  const [currentOffer, setCurrentOffer] = useState<string>('');
+  /* eslint-disable */ const [currentOffer, setCurrentOffer] = useState<string>('');
 
   /*Описываем обработчик события аведения курсора на карточку.
     Функция-обработчик принимает аргуметом offer.id типа string
