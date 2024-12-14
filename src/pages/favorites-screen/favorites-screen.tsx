@@ -1,14 +1,16 @@
 import { Helmet } from 'react-helmet-async';
-import CitiesCard from '../../components/cities-card/cities-card';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { AuthorizationStatus } from '../../const';
+import FavoritesLocationList from '../../components/favorites-card-list/favorites-location-list';
+import { OfferType } from '../../types/offer-types';
 
 type FavoritesScreenProps = {
   authorizationStatus: AuthorizationStatus;
+  offers: OfferType[];
 }
 
-function FavoritesScreen({authorizationStatus}: FavoritesScreenProps): JSX.Element {
+function FavoritesScreen({authorizationStatus, offers}: FavoritesScreenProps): JSX.Element {
   return (
     <div className="page">
 
@@ -21,33 +23,7 @@ function FavoritesScreen({authorizationStatus}: FavoritesScreenProps): JSX.Eleme
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Amsterdam</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <CitiesCard />
-                  <CitiesCard />
-                </div>
-              </li>
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Cologne</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <CitiesCard />
-                </div>
-              </li>
-            </ul>
+            <FavoritesLocationList offers={offers}/>
           </section>
         </div>
       </main>
