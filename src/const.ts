@@ -16,4 +16,21 @@ enum AppRoute {
   Error = '/*'
 }
 
-export {Settings, AppRoute, AuthorizationStatus};
+const FAVORITES_CLASS = {
+  card: 'favorites__card',
+  image: 'favorites__image-wrapper',
+  info: 'favorites__card-info place-card__info'
+};
+
+const CITIES_CLASS = {
+  card: 'cities__card',
+  image: 'cities__image-wrapper',
+  info: 'place-card__info'
+};
+
+enum NameCard {
+  Cities = 'cities',
+  Favorites = 'favorites',
+}
+
+export {Settings, AppRoute, AuthorizationStatus, FAVORITES_CLASS, CITIES_CLASS, NameCard};

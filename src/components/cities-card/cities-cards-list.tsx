@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { OfferType } from '../../types/offer-types';
-import CitiesCard from './cities-card';
+import { NameCard } from '../../const';
+import Card from '../card/card';
 
 type CitiesCardsListProps = {
   offers: OfferType[];
@@ -25,7 +26,14 @@ function CitiesCardsList({offers}: CitiesCardsListProps): JSX.Element[] {
 
   /* Передаем обработчик события в каждую карточку карточки предложения */
 
-  return offers.map((offer) => <CitiesCard key={offer.id} offer={offer} onMouseOverHandler={onMouseOverHandler}/>);
+  return offers.map((offer) => (
+    <Card
+      key={offer.id}
+      offer={offer}
+      onMouseOverHandler={onMouseOverHandler}
+      currentClass={NameCard.Cities}
+    />)
+  );
 }
 
 export default CitiesCardsList;

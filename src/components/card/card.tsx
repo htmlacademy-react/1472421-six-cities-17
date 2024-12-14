@@ -1,20 +1,25 @@
 import { Link } from 'react-router-dom';
 import { OfferType } from '../../types/offer-types';
+import { getClassSet } from '../../utils';
+import { NameCard } from '../../const';
 
-type CitiesCardProps = {
+type CardProps = {
   offer: OfferType;
   onMouseOverHandler: (offerId: string) => void;
+  currentClass: NameCard;
 }
 
 
-function CitiesCard({offer, onMouseOverHandler}: CitiesCardProps): JSX.Element {
+function Card({offer, onMouseOverHandler, currentClass}: CardProps): JSX.Element {
 
-  const cardOfferURL = `offer/${offer.id}`;
+  const cardOfferURL = `/offer/${offer.id}`;
+
+  const classSet = getClassSet(currentClass);
 
   return(
-    <article className="cities__card place-card" onMouseOver={() => onMouseOverHandler(offer.id)}>
+    <article className={`${classSet.card} place-card`} onMouseOver={() => onMouseOverHandler(offer.id)}>
       {offer.isPremium && <div className="place-card__mark"><span>Premium</span></div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${classSet.image} place-card__image-wrapper`}>
         <Link to={cardOfferURL}>
           <img
             className="place-card__image"
@@ -25,7 +30,7 @@ function CitiesCard({offer, onMouseOverHandler}: CitiesCardProps): JSX.Element {
           />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={classSet.info}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">€{offer.price}</b>
@@ -62,4 +67,4 @@ function CitiesCard({offer, onMouseOverHandler}: CitiesCardProps): JSX.Element {
   );
 }
 
-export default CitiesCard;
+export default Card;

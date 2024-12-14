@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { AuthorizationStatus } from '../../const';
-import FavoritesLocationList from '../../components/favorites-card/favorites-location-list';
+import FavoritesLocationList from '../../components/favorites-card-list/favorites-location-list';
 import { OfferType } from '../../types/offer-types';
 
 type FavoritesScreenProps = {

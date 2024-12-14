@@ -1,6 +1,7 @@
+import { CITIES_CLASS, FAVORITES_CLASS, NameCard } from './const';
 import { CityName, OfferType } from './types/offer-types';
+import { ClassSetType, OffersGroupType } from './types/utils-type';
 
-type OffersGroupType = Record<CityName, OfferType[]>;
 
 const getOffersGroup = (offers : OfferType[]): OffersGroupType => {
   const result: OffersGroupType = {};
@@ -18,4 +19,17 @@ const getOffersGroup = (offers : OfferType[]): OffersGroupType => {
   return result;
 };
 
-export {getOffersGroup};
+
+const getClassSet = (nameCard: NameCard) => {
+
+  if(nameCard === NameCard.Cities) {
+    const {card, image, info}: ClassSetType = CITIES_CLASS;
+    return {card, image, info};
+  }
+
+  const {card, image, info}: ClassSetType = FAVORITES_CLASS;
+  return {card, image, info};
+
+};
+
+export {getOffersGroup, getClassSet};
