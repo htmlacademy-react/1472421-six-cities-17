@@ -1,5 +1,5 @@
 import { CITIES_CLASS, FAVORITES_CLASS, NameCard } from './const';
-import { CityName, OfferType } from './types/offer-types';
+import { CityName, OfferLocation, OfferType } from './types/offer-types';
 import { ClassSetType, OffersGroupType } from './types/utils-type';
 
 
@@ -32,4 +32,18 @@ const getClassSet = (nameCard: NameCard) => {
 
 };
 
-export {getOffersGroup, getClassSet};
+const getOffersLocationByCity = (
+  offers : OfferType[],
+  city: CityName
+): OfferLocation[] => {
+
+  const offersByCity: OfferType[] = getOffersGroup(offers)[city];
+
+
+  return offersByCity.map((offer) => ({
+    id: offer.id,
+    location: offer.location
+  }))
+};
+
+export {getOffersGroup, getClassSet, getOffersLocationByCity};

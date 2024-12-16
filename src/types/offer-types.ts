@@ -1,12 +1,8 @@
 export type CityName = string;
 
-type OfferCityType = {
+export type CityType = {
   name: CityName;
-  location: {
-    latitude: number;
-    longitude:number;
-    zoom: number;
-  };
+  location: LocationCityType;
 }
 
 type LocationCityType = {
@@ -21,13 +17,18 @@ type HostType = {
   isPro: boolean;
 }
 
+export type OfferLocation = {
+  id: string;
+  location: LocationCityType;
+}
+
 
 export type OfferType = {
   id: string;
   title: string;
   type: string;
   price: number;
-  city: OfferCityType;
+  city: CityType;
   location: LocationCityType;
   isFavorite: boolean;
   isPremium: boolean;
