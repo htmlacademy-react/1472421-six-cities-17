@@ -5,10 +5,11 @@ import Card from '../card/card';
 
 type CitiesCardsListProps = {
   offers: OfferType[];
+  nameCard: NameCard;
 }
 
 
-function CitiesCardsList({offers}: CitiesCardsListProps): JSX.Element[] {
+function CardsList({offers, nameCard}: CitiesCardsListProps): JSX.Element[] {
 
   /*Деструктуризируем хук useState, первая переменная хранит в себе id карточки предложения, на которую
     наведен курсор, вторая фунцию-установщик нового состояни(т.е. изменение id, который
@@ -31,9 +32,9 @@ function CitiesCardsList({offers}: CitiesCardsListProps): JSX.Element[] {
       key={offer.id}
       offer={offer}
       onMouseOverHandler={onMouseOverHandler}
-      currentClass={NameCard.Cities}
+      currentClass={nameCard}
     />)
   );
 }
 
-export default CitiesCardsList;
+export default CardsList;

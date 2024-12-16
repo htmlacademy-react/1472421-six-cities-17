@@ -1,9 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import MapComponent from '../../components/map/map';
-import { AuthorizationStatus } from '../../const';
+import { AuthorizationStatus, NameCard } from '../../const';
 import { OfferType } from '../../types/offer-types';
-import CitiesCardsList from '../../components/cities-card/cities-cards-list';
+import CardsList from '../../components/cities-card/cities-cards-list';
 
 type MainScreenProps = {
   citiesCount: number;
@@ -92,7 +92,7 @@ function MainScreen({citiesCount, authorizationStatus, offers}: MainScreenProps)
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CitiesCardsList offers={offers}/>
+                <CardsList offers={offers} nameCard={NameCard.Cities}/>
               </div>
             </section>
             <div className="cities__right-section">
