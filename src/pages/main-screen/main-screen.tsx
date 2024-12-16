@@ -5,6 +5,7 @@ import { AuthorizationStatus, NameCard } from '../../const';
 import { OfferType } from '../../types/offer-types';
 import CardsList from '../../components/cities-card/cities-cards-list';
 import { getOffersLocationByCity } from '../../utils';
+import { useState } from 'react';
 
 type MainScreenProps = {
   citiesCount: number;
@@ -14,6 +15,9 @@ type MainScreenProps = {
 
 function MainScreen({citiesCount, authorizationStatus, offers}: MainScreenProps): JSX.Element {
 
+  const [currentOffer, setCurrentOffer] = useState<OfferType | undefined>(undefined);
+
+  const onOverOffer = (offerId: string | null): void => setCurrentOffer(offers.find((offer) => offer.id === offerId));
 
   return (
     <div className="page page--gray page--main">
@@ -93,12 +97,12 @@ function MainScreen({citiesCount, authorizationStatus, offers}: MainScreenProps)
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardsList offers={offers} nameCard={NameCard.Cities}/>
+                <CardsList offers={offers} nameCard={NameCard.Cities} onOverOffer={onOverOffer}/>
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" >
-                <MapComponent offersLocation={getOffersLocationByCity(offers, 'Amsterdam')} selectedOffer={undefined}/>
+                <MapComponent offersLocation={getOffersLocationByCity(offers, 'Amsterdam')} selectedOffer={currentOffer}/>
               </section>
             </div>
           </div>

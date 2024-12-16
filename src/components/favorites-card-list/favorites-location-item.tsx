@@ -19,7 +19,7 @@ function FavoritesLocationItem({offers, city}: FavoritesLocationItemProps): JSX.
         </div>
       </div>
       <div className="favorites__places">
-        <CardsList offers={offers} nameCard={NameCard.Favorites}/>
+        <CardsList offers={offers} nameCard={NameCard.Favorites} onOverOffer={() => {}}/>
       </div>
     </li>
   );
