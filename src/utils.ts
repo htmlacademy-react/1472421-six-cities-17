@@ -43,7 +43,7 @@ const getOffersLocationByCity = (
   return offersByCity.map((offer) => ({
     id: offer.id,
     location: offer.location
-  }))
+  }));
 };
 
 export {getOffersGroup, getClassSet, getOffersLocationByCity};

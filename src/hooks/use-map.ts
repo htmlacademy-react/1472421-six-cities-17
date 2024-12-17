@@ -23,7 +23,6 @@ export const useMap = (
     существует и карта не рендерится уже */
 
     if(refMap.current !== null && !isRenderedRef.current) {
-      console.log(city)
       /* Создаем экземпляр объекта Map leaflet */
 
       const cityMap = new Map(refMap.current, {
@@ -56,9 +55,9 @@ export const useMap = (
 
   /* Добавим зависимости: useEffect выполнит эффект только тогда, когда
   измениться refMap или city */
-  }, [refMap, city])
+  }, [refMap, city]);
 
   /* Хук возвращает объект map */
   return map;
-}
+};
 

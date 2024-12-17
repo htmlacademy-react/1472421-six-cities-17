@@ -46,8 +46,8 @@ function MapComponent({offersLocation, selectedOffer}: MapComponentProps): JSX.E
         /* для каждого созданного маркера определяем вид currentCustomIcon или defaultCustomIcon */
         marker.setIcon(
           selectedOffer !== undefined && offer.id === selectedOffer.id
-              ? currentCustomIcon
-              : defaultCustomIcon
+            ? currentCustomIcon
+            : defaultCustomIcon
 
         /* Добавляем маркеры на слой маркеров, созданных для созданной карты */
         ).addTo(markerLayer);
@@ -58,7 +58,7 @@ function MapComponent({offersLocation, selectedOffer}: MapComponentProps): JSX.E
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offersLocation, selectedOffer])
+  }, [map, offersLocation, selectedOffer]);
 
   return <div style={{height: '100%'}} ref={refMap}></div>;
 }
