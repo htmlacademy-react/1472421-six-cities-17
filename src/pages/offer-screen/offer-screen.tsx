@@ -10,13 +10,15 @@ import MapComponent from '../../components/map/map';
 import { getOffersLocationByCity } from '../../utils';
 import { useState } from 'react';
 import CardsList from '../../components/card/cards-list';
+import { UserComments } from '../../types/user-comments-type';
 
 type OfferProps = {
   authorizationStatus: AuthorizationStatus;
   offers: OfferType[];
+  userComments: UserComments[];
 }
 
-function OfferScreen({authorizationStatus, offers}: OfferProps): JSX.Element {
+function OfferScreen({authorizationStatus, offers, userComments}: OfferProps): JSX.Element {
 
   /* Вернет параметр адреса адресной строки для offer/:id (:id - параметр
   который будет генерироваться автоматически при клике на карточку предложения
@@ -50,7 +52,7 @@ function OfferScreen({authorizationStatus, offers}: OfferProps): JSX.Element {
 
               <OfferDetails offer={currentOffer}/>
 
-              <OfferReviews />
+              <OfferReviews userComments={userComments}/>
 
             </div>
           </div>

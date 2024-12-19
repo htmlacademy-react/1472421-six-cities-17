@@ -1,13 +1,19 @@
+import { UserComments } from '../../types/user-comments-type';
 import OfferReviewsItem from './offer-reviews-item';
 
-function OfferReviewsList(): JSX.Element {
+type OfferReviewsListProps = {
+  userComments: UserComments[];
+}
+
+
+function OfferReviewsList({userComments}: OfferReviewsListProps): JSX.Element {
   return(
     <>
       <h2 className="reviews__title">
-        Reviews · <span className="reviews__amount">1</span>
+        Reviews · <span className="reviews__amount">{userComments.length}</span>
       </h2>
       <ul className="reviews__list">
-        <OfferReviewsItem />
+        {userComments.map((comment) => <OfferReviewsItem key={comment.id} comment={comment}/>)}
       </ul>
     </>
   );

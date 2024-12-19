@@ -51,4 +51,11 @@ const getOffersLocationByCity = (
   }));
 };
 
-export {getOffersGroup, getClassSet, getOffersLocationByCity};
+const getFormattedDate = (date: string): string => {
+  const format = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric' });
+  const formattedDate = format.format(new Date(date));
+
+  return formattedDate;
+};
+
+export {getOffersGroup, getClassSet, getOffersLocationByCity, getFormattedDate};

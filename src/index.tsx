@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app';
 import { AuthorizationStatus, Settings } from './const';
 import { offersMock } from './mocks/offers';
+import { userComments } from './mocks/user-comments';
 
 
 const root = ReactDOM.createRoot(
@@ -15,6 +16,7 @@ root.render(
       citiesCount = {Settings.CitiesCount}
       authorizationStatus={AuthorizationStatus.Auth}
       offersMock={offersMock}
+      userComments={userComments}
     />
   </React.StrictMode>
 );

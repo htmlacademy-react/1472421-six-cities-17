@@ -1,10 +1,15 @@
+import { UserComments } from '../../types/user-comments-type';
 import OfferReviewsForm from './offer-reviews-form';
 import OfferReviewsList from './offer-reviews-list';
 
-function OfferReviews(): JSX.Element {
+type OfferReviewsProps = {
+  userComments: UserComments[];
+}
+
+function OfferReviews({userComments}: OfferReviewsProps): JSX.Element {
   return(
     <section className="offer__reviews reviews">
-      <OfferReviewsList />
+      <OfferReviewsList userComments={userComments}/>
       <OfferReviewsForm />
     </section>
   );
