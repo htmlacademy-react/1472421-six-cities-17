@@ -28,9 +28,16 @@ const CITIES_CLASS = {
   info: 'place-card__info'
 };
 
+const OFFERS_CLASS = {
+  card: 'near-places__card',
+  image: 'near-places__image-wrapper',
+  info: 'place-card__info'
+};
+
 enum NameCard {
   Cities = 'cities',
   Favorites = 'favorites',
+  Offers = 'offers'
 }
 
 const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
@@ -40,8 +47,10 @@ export {
   Settings,
   AppRoute,
   AuthorizationStatus,
-  FAVORITES_CLASS, CITIES_CLASS,
+  FAVORITES_CLASS,
+  CITIES_CLASS,
   NameCard,
   URL_MARKER_DEFAULT,
-  URL_MARKER_CURRENT
+  URL_MARKER_CURRENT,
+  OFFERS_CLASS
 };

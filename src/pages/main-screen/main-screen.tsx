@@ -3,7 +3,7 @@ import Header from '../../components/header/header';
 import MapComponent from '../../components/map/map';
 import { AuthorizationStatus, NameCard } from '../../const';
 import { OfferType } from '../../types/offer-types';
-import CardsList from '../../components/cities-card/cities-cards-list';
+import CardsList from '../../components/card/cards-list';
 import { getOffersLocationByCity } from '../../utils';
 import { useState } from 'react';
 
