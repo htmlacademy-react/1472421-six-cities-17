@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import MapComponent from '../../components/map/map';
 import OfferDetails from './offer-details';
 import OfferGallery from './offer-gallery';
 import { AppRoute, AuthorizationStatus } from '../../const';
@@ -47,7 +46,7 @@ function OfferScreen({authorizationStatus, offers}: OfferProps): JSX.Element {
 
             </div>
           </div>
-          <MapComponent />
+          {/* Map */}
         </section>
         <div className="container">
           <section className="near-places places">
