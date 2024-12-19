@@ -60,7 +60,7 @@ function MapComponent({offersLocation, selectedOffer}: MapComponentProps): JSX.E
     }
   }, [map, offersLocation, selectedOffer]);
 
-  return <div style={{height: '100%'}} ref={refMap}></div>;
+  return <div style={{height: '100%', width: '100%'}} ref={refMap}></div>;
 }
 
 export default MapComponent;
