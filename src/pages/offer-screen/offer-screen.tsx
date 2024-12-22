@@ -57,7 +57,11 @@ function OfferScreen({authorizationStatus, offers, userComments}: OfferProps): J
             </div>
           </div>
           <section className="offer__map map">
-            <MapComponent offersLocation={getOffersLocationByCity(offers.slice(0, 3), 'Amsterdam')} selectedOffer={selectedOfferForMap}/>
+            <MapComponent
+              offersLocation={getOffersLocationByCity(offers, 'Amsterdam')}
+              selectedOffer={selectedOfferForMap}
+              currentCity={'Amsterdam'}
+            />
           </section>
         </section>
         <div className="container">

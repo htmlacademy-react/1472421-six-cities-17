@@ -7,7 +7,7 @@ import { CityType } from '../types/offer-types';
 города центрирования или места для рендеринга */
 export const useMap = (
   refMap: MutableRefObject<HTMLElement | null> ,
-  city: CityType
+  city: CityType | undefined
 ): Map | null => {
 
   /* Заводим состояние объекта карта, созданного leaflet */
@@ -22,7 +22,7 @@ export const useMap = (
     /* Если компонент, в который будет рендерится карта
     существует и карта не рендерится уже */
 
-    if(refMap.current !== null && !isRenderedRef.current) {
+    if(refMap.current !== null && !isRenderedRef.current && city !== undefined) {
       /* Создаем экземпляр объекта Map leaflet */
 
       const cityMap = new Map(refMap.current, {

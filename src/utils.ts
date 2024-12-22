@@ -1,5 +1,6 @@
 import { CITIES_CLASS, FAVORITES_CLASS, NameCard, OFFERS_CLASS } from './const';
-import { CityName, OfferLocation, OfferType } from './types/offer-types';
+import { CITIES } from './mocks/city-location';
+import { CityName, CityType, OfferLocation, OfferType } from './types/offer-types';
 import { ClassSetType, OffersGroupType } from './types/utils-type';
 
 
@@ -58,4 +59,6 @@ const getFormattedDate = (date: string): string => {
   return formattedDate;
 };
 
-export {getOffersGroup, getClassSet, getOffersLocationByCity, getFormattedDate};
+const getLocationByCityName = (cityName: CityName): CityType | undefined => CITIES.find((city) => city.name === cityName);
+
+export {getOffersGroup, getClassSet, getOffersLocationByCity, getFormattedDate, getLocationByCityName};

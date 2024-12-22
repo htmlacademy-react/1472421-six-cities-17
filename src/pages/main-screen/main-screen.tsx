@@ -102,7 +102,11 @@ function MainScreen({citiesCount, authorizationStatus, offers}: MainScreenProps)
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" >
-                <MapComponent offersLocation={getOffersLocationByCity(offers, 'Amsterdam')} selectedOffer={currentOffer}/>
+                <MapComponent
+                  offersLocation={getOffersLocationByCity(offers, 'Amsterdam')}
+                  selectedOffer={currentOffer}
+                  currentCity={'Amsterdam'}
+                />
               </section>
             </div>
           </div>
