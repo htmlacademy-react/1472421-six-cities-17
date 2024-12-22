@@ -1,15 +1,15 @@
 import { OfferType } from '../../types/offer-types';
 import { NameCard } from '../../const';
-import Card from '../card/card';
+import Card from './card';
 
-type CitiesCardsListProps = {
+type CardsListProps = {
   offers: OfferType[];
   nameCard: NameCard;
-  onOverOffer: ((offerId: string) => void);
+  onOverOffer?: ((offerId: string) => void);
 }
 
 
-function CardsList({offers, nameCard, onOverOffer}: CitiesCardsListProps): JSX.Element[] {
+function CardsList({offers, nameCard, onOverOffer}: CardsListProps): JSX.Element[] {
 
   /*Деструктуризируем хук useState, первая переменная хранит в себе id карточки предложения, на которую
     наведен курсор, вторая фунцию-установщик нового состояни(т.е. изменение id, который
@@ -24,7 +24,7 @@ function CardsList({offers, nameCard, onOverOffer}: CitiesCardsListProps): JSX.E
     и возвращает тип void(спец. тип, обозначающий, что функция не вернет ничего.) */
 
   const onMouseOverHandler = (offerId: string): void => {
-    onOverOffer(offerId);
+    onOverOffer?.(offerId);
   };
 
 

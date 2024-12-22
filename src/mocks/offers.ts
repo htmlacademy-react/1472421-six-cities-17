@@ -22,7 +22,7 @@ export const offersMock: OfferType[] = [
     'isFavorite': false,
     'isPremium': false,
     'rating': 4,
-    'previewImage': '../markup/img/apartment-02.jpg',
+    'previewImage': '../markup/img/apartment-01.jpg',
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'bedrooms': 3,
     'goods': [
@@ -45,11 +45,11 @@ export const offersMock: OfferType[] = [
       'isPro': false
     },
     'images': [
-      '../markup/img/apartment-02.jpg',
       '../markup/img/apartment-03.jpg',
-      '../markup/img/apartment-02.jpg',
       '../markup/img/apartment-03.jpg',
-      '../markup/img/apartment-02.jpg',
+      '../markup/img/apartment-03.jpg',
+      '../markup/img/apartment-03.jpg',
+      '../markup/img/apartment-03.jpg',
       '../markup/img/apartment-03.jpg',
     ],
     'maxAdults': 4
@@ -75,7 +75,7 @@ export const offersMock: OfferType[] = [
     'isFavorite': true,
     'isPremium': true,
     'rating': 5,
-    'previewImage': '../markup/img/apartment-03.jpg',
+    'previewImage': '../markup/img/apartment-02.jpg',
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'bedrooms': 3,
     'goods': [
@@ -99,11 +99,11 @@ export const offersMock: OfferType[] = [
     },
     'images': [
       '../markup/img/apartment-02.jpg',
-      '../markup/img/apartment-03.jpg',
       '../markup/img/apartment-02.jpg',
-      '../markup/img/apartment-03.jpg',
       '../markup/img/apartment-02.jpg',
-      '../markup/img/apartment-03.jpg',
+      '../markup/img/apartment-02.jpg',
+      '../markup/img/apartment-02.jpg',
+      '../markup/img/apartment-02.jpg',
     ],
     'maxAdults': 4
   },
@@ -128,7 +128,7 @@ export const offersMock: OfferType[] = [
     'isFavorite': true,
     'isPremium': true,
     'rating': 2,
-    'previewImage': '../markup/img/apartment-01.jpg',
+    'previewImage': '../markup/img/apartment-03.jpg',
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'bedrooms': 3,
     'goods': [
@@ -151,66 +151,13 @@ export const offersMock: OfferType[] = [
       'isPro': false
     },
     'images': [
-      '../markup/img/apartment-02.jpg',
-      '../markup/img/apartment-03.jpg',
-      '../markup/img/apartment-02.jpg',
-      '../markup/img/apartment-03.jpg',
-      '../markup/img/apartment-02.jpg',
-      '../markup/img/apartment-03.jpg',
+      '../markup/img/apartment-01.jpg',
+      '../markup/img/apartment-01.jpg',
+      '../markup/img/apartment-01.jpg',
+      '../markup/img/apartment-01.jpg',
+      '../markup/img/apartment-01.jpg',
+      '../markup/img/apartment-01.jpg',
     ],
     'maxAdults': 4
   },
-  {
-    'id': 'ye-23-4122d1-f82cfd-e0b462a27f00',
-    'title': 'Beautiful & luxurious apartment at great location',
-    'type': 'apartment',
-    'price': 140,
-    'city': {
-      'name': 'Amsterdam',
-      'location': {
-        'latitude': 52.377956,
-        'longitude':  4.897070,
-        'zoom': 8
-      }
-    },
-    'location': {
-      'latitude': 52.3809553943508,
-      'longitude': 4.939309666406198,
-      'zoom': 8
-    },
-    'isFavorite': true,
-    'isPremium': true,
-    'rating': 3,
-    'previewImage': '../markup/img/apartment-01.jpg',
-    'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    'bedrooms': 3,
-    'goods': [
-      {
-        id: 1,
-        name: 'Baby seat',
-      },
-      {
-        id: 2,
-        name: 'Heating',
-      },
-      {
-        id: 3,
-        name: 'Towels'
-      }
-    ],
-    'host': {
-      'name': 'Max',
-      'avatarUrl': '../markup/img/avatar-max.jpg',
-      'isPro': false
-    },
-    'images': [
-      '../markup/img/apartment-02.jpg',
-      '../markup/img/apartment-03.jpg',
-      '../markup/img/apartment-02.jpg',
-      '../markup/img/apartment-03.jpg',
-      '../markup/img/apartment-02.jpg',
-      '../markup/img/apartment-03.jpg',
-    ],
-    'maxAdults': 4
-  }
 ];

@@ -1,6 +1,6 @@
 import { NameCard } from '../../const';
 import { CityName, OfferType } from '../../types/offer-types';
-import CardsList from '../cities-card/cities-cards-list';
+import CardsList from '../../components/card/cards-list';
 
 
 type FavoritesLocationItemProps = {
@@ -19,7 +19,7 @@ function FavoritesLocationItem({offers, city}: FavoritesLocationItemProps): JSX.
         </div>
       </div>
       <div className="favorites__places">
-        <CardsList offers={offers} nameCard={NameCard.Favorites} onOverOffer={() => {}}/>
+        <CardsList offers={offers} nameCard={NameCard.Favorites} />
       </div>
     </li>
   );

@@ -1,4 +1,4 @@
-import { CITIES_CLASS, FAVORITES_CLASS, NameCard } from './const';
+import { CITIES_CLASS, FAVORITES_CLASS, NameCard, OFFERS_CLASS } from './const';
 import { CityName, OfferLocation, OfferType } from './types/offer-types';
 import { ClassSetType, OffersGroupType } from './types/utils-type';
 
@@ -21,15 +21,20 @@ const getOffersGroup = (offers : OfferType[]): OffersGroupType => {
 
 
 const getClassSet = (nameCard: NameCard) => {
-
-  if(nameCard === NameCard.Cities) {
-    const {card, image, info}: ClassSetType = CITIES_CLASS;
-    return {card, image, info};
+  switch(nameCard) {
+    case NameCard.Cities: {
+      const {card, image, info}: ClassSetType = CITIES_CLASS;
+      return {card, image, info};
+    }
+    case NameCard.Favorites: {
+      const {card, image, info}: ClassSetType = FAVORITES_CLASS;
+      return {card, image, info};
+    }
+    case NameCard.Offers: {
+      const {card, image, info}: ClassSetType = OFFERS_CLASS;
+      return {card, image, info};
+    }
   }
-
-  const {card, image, info}: ClassSetType = FAVORITES_CLASS;
-  return {card, image, info};
-
 };
 
 const getOffersLocationByCity = (
@@ -46,4 +51,11 @@ const getOffersLocationByCity = (
   }));
 };
 
-export {getOffersGroup, getClassSet, getOffersLocationByCity};
+const getFormattedDate = (date: string): string => {
+  const format = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric' });
+  const formattedDate = format.format(new Date(date));
+
+  return formattedDate;
+};
+
+export {getOffersGroup, getClassSet, getOffersLocationByCity, getFormattedDate};
