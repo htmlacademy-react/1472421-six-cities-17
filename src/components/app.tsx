@@ -7,17 +7,17 @@ import OfferScreen from '../pages/offer-screen/offer-screen';
 import ErrorScreen from '../pages/error-page/error-screen';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route';
-import { OfferType } from '../types/offer-types';
+import { CityType, OfferType } from '../types/offer-types';
 import { UserComments } from '../types/user-comments-type';
 
 type AppProps = {
-  citiesCount: number;
+  cities: CityType[];
   authorizationStatus: AuthorizationStatus;
   offersMock: OfferType[];
   userComments: UserComments[];
 }
 
-function App({citiesCount, authorizationStatus, offersMock, userComments}: AppProps): JSX.Element {
+function App({cities, authorizationStatus, offersMock, userComments}: AppProps): JSX.Element {
 
   return (
     <HelmetProvider>
@@ -27,7 +27,7 @@ function App({citiesCount, authorizationStatus, offersMock, userComments}: AppPr
             path={AppRoute.Main}
             element = {
               <MainScreen
-                citiesCount={citiesCount}
+                cities={cities}
                 authorizationStatus = {authorizationStatus}
                 offers={offersMock}
               />
