@@ -7,18 +7,18 @@ import { OfferType } from '../../types/offer-types';
 import {useParams } from 'react-router-dom';
 import OfferReviews from './offer-reviews';
 import MapComponent from '../../components/map/map';
-import { getOffersLocationByCity } from '../../utils';
+import { getOffersLocation } from '../../utils';
 import { useState } from 'react';
 import CardsList from '../../components/card/cards-list';
 import { UserComments } from '../../types/user-comments-type';
+import { useAppSelector } from '../../hooks/state/state-hooks';
 
 type OfferProps = {
   authorizationStatus: AuthorizationStatus;
-  offers: OfferType[];
   userComments: UserComments[];
 }
 
-function OfferScreen({authorizationStatus, offers, userComments}: OfferProps): JSX.Element {
+function OfferScreen({authorizationStatus, userComments}: OfferProps): JSX.Element {
 
   /* Вернет параметр адреса адресной строки для offer/:id (:id - параметр
   который будет генерироваться автоматически при клике на карточку предложения
@@ -28,6 +28,12 @@ function OfferScreen({authorizationStatus, offers, userComments}: OfferProps): J
   const {id} = useParams();
 
   const [selectedOfferForMap, setSelectedOfferForMap] = useState<OfferType | undefined>(undefined);
+
+  const currentCity = useAppSelector((state) => state.city);
+
+  const offers = useAppSelector((state) => state.offers);
+
+  const offersByCity = offers.filter((offer) => offer.city.name === currentCity);
 
   const onOverOffer = (offerId: string | null): void => setSelectedOfferForMap(offers.find((offer) => offer.id === offerId));
 
@@ -58,9 +64,9 @@ function OfferScreen({authorizationStatus, offers, userComments}: OfferProps): J
           </div>
           <section className="offer__map map">
             <MapComponent
-              offersLocation={getOffersLocationByCity(offers, 'Amsterdam')}
+              offersLocation={getOffersLocation(offersByCity)}
               selectedOffer={selectedOfferForMap}
-              currentCity={'Amsterdam'}
+              currentCity={currentCity}
             />
           </section>
         </section>
@@ -70,7 +76,7 @@ function OfferScreen({authorizationStatus, offers, userComments}: OfferProps): J
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              <CardsList offers={offers.slice(0, 3)} nameCard={NameCard.Offers} onOverOffer={onOverOffer}/>
+              <CardsList offers={offersByCity} nameCard={NameCard.Offers} onOverOffer={onOverOffer}/>
             </div>
           </section>
         </div>

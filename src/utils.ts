@@ -20,6 +20,8 @@ const getOffersGroup = (offers : OfferType[]): OffersGroupType => {
   return result;
 };
 
+const getOffersByCity = (offers : OfferType[], cityName: CityName): OfferType[] => getOffersGroup(offers)[cityName];
+
 
 const getClassSet = (nameCard: NameCard) => {
   switch(nameCard) {
@@ -38,6 +40,7 @@ const getClassSet = (nameCard: NameCard) => {
   }
 };
 
+/* Удалить, когда будет не нужно */
 const getOffersLocationByCity = (
   offers : OfferType[],
   city: CityName
@@ -52,6 +55,11 @@ const getOffersLocationByCity = (
   }));
 };
 
+const getOffersLocation = (offers : OfferType[]): OfferLocation[] => offers.map((offer) => ({
+  id: offer.id,
+  location: offer.location
+}));
+
 const getFormattedDate = (date: string): string => {
   const format = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric' });
   const formattedDate = format.format(new Date(date));
@@ -61,4 +69,4 @@ const getFormattedDate = (date: string): string => {
 
 const getLocationByCityName = (cityName: CityName): CityType | undefined => CITIES.find((city) => city.name === cityName);
 
-export {getOffersGroup, getClassSet, getOffersLocationByCity, getFormattedDate, getLocationByCityName};
+export {getOffersGroup, getClassSet, getOffersLocationByCity, getFormattedDate, getLocationByCityName, getOffersByCity, getOffersLocation};

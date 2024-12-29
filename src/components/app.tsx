@@ -7,17 +7,16 @@ import OfferScreen from '../pages/offer-screen/offer-screen';
 import ErrorScreen from '../pages/error-page/error-screen';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route';
-import { CityType, OfferType } from '../types/offer-types';
+import { CityType } from '../types/offer-types';
 import { UserComments } from '../types/user-comments-type';
 
 type AppProps = {
   cities: CityType[];
   authorizationStatus: AuthorizationStatus;
-  offersMock: OfferType[];
   userComments: UserComments[];
 }
 
-function App({cities, authorizationStatus, offersMock, userComments}: AppProps): JSX.Element {
+function App({cities, authorizationStatus, userComments}: AppProps): JSX.Element {
 
   return (
     <HelmetProvider>
@@ -29,7 +28,6 @@ function App({cities, authorizationStatus, offersMock, userComments}: AppProps):
               <MainScreen
                 cities={cities}
                 authorizationStatus = {authorizationStatus}
-                offers={offersMock}
               />
             }
           />
@@ -47,7 +45,6 @@ function App({cities, authorizationStatus, offersMock, userComments}: AppProps):
               <PrivateRoute authorizationStatus = {authorizationStatus}>
                 <FavoritesScreen
                   authorizationStatus = {authorizationStatus}
-                  offers={offersMock}
                 />
               </PrivateRoute>
             }
@@ -57,7 +54,6 @@ function App({cities, authorizationStatus, offersMock, userComments}: AppProps):
             element = {
               <OfferScreen
                 authorizationStatus = {authorizationStatus}
-                offers={offersMock}
                 userComments={userComments}
               />
             }
@@ -75,5 +71,5 @@ function App({cities, authorizationStatus, offersMock, userComments}: AppProps):
 export default App;
 
 /*
-  - заменить все теги а
+  - настроить переход в offer-screen из offer-screen для другого offer(под картой)
 */

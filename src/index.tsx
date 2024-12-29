@@ -7,11 +7,14 @@ import { userComments } from './mocks/user-comments';
 import { Provider } from 'react-redux';
 import { store } from './storage/index-redux';
 import { CITIES } from './mocks/city-location';
+import { loadOffers } from './storage/actions';
 
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+store.dispatch(loadOffers(offersMock));
 
 root.render(
   <React.StrictMode>
@@ -19,7 +22,6 @@ root.render(
       <App
         cities = {CITIES}
         authorizationStatus={AuthorizationStatus.Auth}
-        offersMock={offersMock}
         userComments={userComments}
       />
     </Provider>

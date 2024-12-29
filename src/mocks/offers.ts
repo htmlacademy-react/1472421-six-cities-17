@@ -121,8 +121,8 @@ export const offersMock: OfferType[] = [
       }
     },
     'location': {
-      'latitude': 52.3909553943508,
-      'longitude': 4.929309666406198,
+      'latitude': 48.477956,
+      'longitude':  2.297070,
       'zoom': 8
     },
     'isFavorite': true,
