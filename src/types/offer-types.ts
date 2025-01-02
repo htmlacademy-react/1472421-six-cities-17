@@ -1,4 +1,4 @@
-export type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam'| 'Hamburg'| 'Dusseldorf';
+export type CityName = string;
 
 export type CityType = {
   name: CityName;

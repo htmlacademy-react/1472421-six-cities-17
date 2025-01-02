@@ -28,7 +28,7 @@ export const useMap = (
         lng: city.location.longitude
       });
     }
-  }, [city, map])
+  }, [city, map]);
 
   useEffect(() => {
 

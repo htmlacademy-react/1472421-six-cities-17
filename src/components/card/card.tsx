@@ -7,7 +7,7 @@ type CardProps = {
   offer: OfferType;
   onMouseOverHandler: (offerId: string) => void;
   currentClass: NameCard;
-  onMouseOutHandler: () => void
+  onMouseOutHandler: () => void;
 }
 
 
