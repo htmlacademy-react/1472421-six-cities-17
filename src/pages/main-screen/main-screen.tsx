@@ -2,22 +2,32 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import MapComponent from '../../components/map/map';
 import { AuthorizationStatus, NameCard } from '../../const';
-import { OfferType } from '../../types/offer-types';
+import { CityType, OfferType } from '../../types/offer-types';
 import CardsList from '../../components/card/cards-list';
-import { getOffersLocationByCity } from '../../utils';
+import { getOffersLocation } from '../../utils';
 import { useState } from 'react';
+import { useAppSelector } from '../../hooks/state/state-hooks';
+import CitiesList from './city-name-list';
 
 type MainScreenProps = {
-  citiesCount: number;
+  cities: CityType[];
   authorizationStatus: AuthorizationStatus;
-  offers: OfferType[];
 }
 
-function MainScreen({citiesCount, authorizationStatus, offers}: MainScreenProps): JSX.Element {
+function MainScreen({cities, authorizationStatus}: MainScreenProps): JSX.Element {
 
   const [currentOffer, setCurrentOffer] = useState<OfferType | undefined>(undefined);
 
+  const currentCity = useAppSelector((state) => state.city);
+
+  const offers = useAppSelector((state) => state.offers);
+
+  const offersByCity = offers.filter((offer) => offer.city.name === currentCity);
+
   const onOverOffer = (offerId: string | null): void => setCurrentOffer(offers.find((offer) => offer.id === offerId));
+  /* При убирании курсора с карточки offer текущий offer
+  становиться undefinedб для того, что бы убрать выделение маркера на карте */
+  const onOutOffer = (): void => setCurrentOffer(undefined);
 
   return (
     <div className="page page--gray page--main">
@@ -31,45 +41,14 @@ function MainScreen({citiesCount, authorizationStatus, offers}: MainScreenProps)
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
+            <CitiesList cities={cities}/>
           </section>
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{citiesCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offersByCity.length} places to stay in {currentCity}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -97,12 +76,21 @@ function MainScreen({citiesCount, authorizationStatus, offers}: MainScreenProps)
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardsList offers={offers} nameCard={NameCard.Cities} onOverOffer={onOverOffer}/>
+                <CardsList
+                  offers={offersByCity}
+                  nameCard={NameCard.Cities}
+                  onOverOffer={onOverOffer}
+                  onOutOffer={onOutOffer}
+                />
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" >
-                <MapComponent offersLocation={getOffersLocationByCity(offers, 'Amsterdam')} selectedOffer={currentOffer}/>
+                <MapComponent
+                  offersLocation={getOffersLocation(offersByCity)}
+                  selectedOffer={currentOffer}
+                  currentCity={currentCity}
+                />
               </section>
             </div>
           </div>

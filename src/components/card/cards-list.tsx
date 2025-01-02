@@ -6,10 +6,11 @@ type CardsListProps = {
   offers: OfferType[];
   nameCard: NameCard;
   onOverOffer?: ((offerId: string) => void);
+  onOutOffer?: (() => void);
 }
 
 
-function CardsList({offers, nameCard, onOverOffer}: CardsListProps): JSX.Element[] {
+function CardsList({offers, nameCard, onOverOffer, onOutOffer}: CardsListProps): JSX.Element[] {
 
   /*Деструктуризируем хук useState, первая переменная хранит в себе id карточки предложения, на которую
     наведен курсор, вторая фунцию-установщик нового состояни(т.е. изменение id, который
@@ -27,6 +28,8 @@ function CardsList({offers, nameCard, onOverOffer}: CardsListProps): JSX.Element
     onOverOffer?.(offerId);
   };
 
+  const onMouseOutHandler = (): void => onOutOffer?.();
+
 
   /* Передаем обработчик события в каждую карточку карточки предложения */
 
@@ -36,6 +39,7 @@ function CardsList({offers, nameCard, onOverOffer}: CardsListProps): JSX.Element
       offer={offer}
       onMouseOverHandler={onMouseOverHandler}
       currentClass={nameCard}
+      onMouseOutHandler={onMouseOutHandler}
     />)
   );
 }

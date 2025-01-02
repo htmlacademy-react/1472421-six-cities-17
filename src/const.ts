@@ -1,7 +1,3 @@
-enum Settings {
-  CitiesCount = 5,
-}
-
 enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
@@ -44,7 +40,6 @@ const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensive/java
 const URL_MARKER_CURRENT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
 
 export {
-  Settings,
   AppRoute,
   AuthorizationStatus,
   FAVORITES_CLASS,

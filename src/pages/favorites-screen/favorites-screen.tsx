@@ -3,14 +3,16 @@ import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { AuthorizationStatus } from '../../const';
 import FavoritesLocationList from './favorites-location-list';
-import { OfferType } from '../../types/offer-types';
+import { useAppSelector } from '../../hooks/state/state-hooks';
 
 type FavoritesScreenProps = {
   authorizationStatus: AuthorizationStatus;
-  offers: OfferType[];
 }
 
-function FavoritesScreen({authorizationStatus, offers}: FavoritesScreenProps): JSX.Element {
+function FavoritesScreen({authorizationStatus}: FavoritesScreenProps): JSX.Element {
+
+  const offers = useAppSelector((state) => state.offers);
+
   return (
     <div className="page">
 

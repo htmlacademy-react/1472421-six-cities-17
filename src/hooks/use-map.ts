@@ -7,7 +7,7 @@ import { CityType } from '../types/offer-types';
 города центрирования или места для рендеринга */
 export const useMap = (
   refMap: MutableRefObject<HTMLElement | null> ,
-  city: CityType
+  city: CityType | undefined
 ): Map | null => {
 
   /* Заводим состояние объекта карта, созданного leaflet */
@@ -17,12 +17,25 @@ export const useMap = (
   или нет */
   const isRenderedRef = useRef<boolean>(false);
 
+  /* хук useEffect позволяет центрировать карту
+  объекта map, в случае, если изменится город или сам объект map,
+  за счет установки этиъ параметров в качестве зависимостей
+  для хука useEffect */
+  useEffect(() => {
+    if(map && city !== undefined){
+      map.panTo({
+        lat: city.location.latitude,
+        lng: city.location.longitude
+      });
+    }
+  }, [city, map]);
+
   useEffect(() => {
 
     /* Если компонент, в который будет рендерится карта
     существует и карта не рендерится уже */
 
-    if(refMap.current !== null && !isRenderedRef.current) {
+    if(refMap.current !== null && !isRenderedRef.current && city !== undefined) {
       /* Создаем экземпляр объекта Map leaflet */
 
       const cityMap = new Map(refMap.current, {
