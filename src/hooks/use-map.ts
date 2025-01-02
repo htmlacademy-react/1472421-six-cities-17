@@ -17,6 +17,19 @@ export const useMap = (
   или нет */
   const isRenderedRef = useRef<boolean>(false);
 
+  /* хук useEffect позволяет центрировать карту
+  объекта map, в случае, если изменится город или сам объект map,
+  за счет установки этиъ параметров в качестве зависимостей
+  для хука useEffect */
+  useEffect(() => {
+    if(map && city !== undefined){
+      map.panTo({
+        lat: city.location.latitude,
+        lng: city.location.longitude
+      });
+    }
+  }, [city, map])
+
   useEffect(() => {
 
     /* Если компонент, в который будет рендерится карта

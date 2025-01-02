@@ -25,6 +25,9 @@ function MainScreen({cities, authorizationStatus}: MainScreenProps): JSX.Element
   const offersByCity = offers.filter((offer) => offer.city.name === currentCity);
 
   const onOverOffer = (offerId: string | null): void => setCurrentOffer(offers.find((offer) => offer.id === offerId));
+  /* При убирании курсора с карточки offer текущий offer
+  становиться undefinedб для того, что бы убрать выделение маркера на карте */
+  const onOutOffer = (): void => setCurrentOffer(undefined);
 
   return (
     <div className="page page--gray page--main">
@@ -73,7 +76,12 @@ function MainScreen({cities, authorizationStatus}: MainScreenProps): JSX.Element
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardsList offers={offersByCity} nameCard={NameCard.Cities} onOverOffer={onOverOffer}/>
+                <CardsList
+                  offers={offersByCity}
+                  nameCard={NameCard.Cities}
+                  onOverOffer={onOverOffer}
+                  onOutOffer={onOutOffer}
+                />
               </div>
             </section>
             <div className="cities__right-section">

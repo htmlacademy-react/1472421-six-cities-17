@@ -7,17 +7,18 @@ type CardProps = {
   offer: OfferType;
   onMouseOverHandler: (offerId: string) => void;
   currentClass: NameCard;
+  onMouseOutHandler: () => void
 }
 
 
-function Card({offer, onMouseOverHandler, currentClass}: CardProps): JSX.Element {
+function Card({offer, onMouseOverHandler, currentClass, onMouseOutHandler}: CardProps): JSX.Element {
 
   const cardOfferURL = `/offer/${offer.id}`;
 
   const classSet = getClassSet(currentClass);
 
   return(
-    <article className={`${classSet.card} place-card`} onMouseOver={() => onMouseOverHandler(offer.id)}>
+    <article className={`${classSet.card} place-card`} onMouseOver={() => onMouseOverHandler(offer.id)} onMouseOut={onMouseOutHandler}>
       {offer.isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className={`${classSet.image} place-card__image-wrapper`}>
         <Link to={cardOfferURL}>

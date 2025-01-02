@@ -1,10 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCity, loadOffers } from './actions';
-import { OfferType } from '../types/offer-types';
+import { CityName, OfferType } from '../types/offer-types';
 
 
 const initialState = {
-  city: 'Paris',
+  city: 'Paris' as CityName,
   offers: [] as OfferType[],
 };
 

@@ -5,7 +5,7 @@ import { ClassSetType, OffersGroupType } from './types/utils-type';
 
 
 const getOffersGroup = (offers : OfferType[]): OffersGroupType => {
-  const result: OffersGroupType = {};
+  const result: OffersGroupType = {} as OffersGroupType;
 
   offers.forEach((offer) => {
     const city: CityName = offer.city.name;
