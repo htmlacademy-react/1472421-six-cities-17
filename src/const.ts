@@ -12,6 +12,13 @@ enum AppRoute {
   Error = '/*'
 }
 
+enum SortingParams {
+  popular = 'Popular',
+  cheaper = 'Price: low to high',
+  expensively = 'Price: high to low',
+  byRating = 'Top rated first'
+}
+
 const FAVORITES_CLASS = {
   card: 'favorites__card',
   image: 'favorites__image-wrapper',
@@ -47,5 +54,6 @@ export {
   NameCard,
   URL_MARKER_DEFAULT,
   URL_MARKER_CURRENT,
-  OFFERS_CLASS
+  OFFERS_CLASS,
+  SortingParams
 };

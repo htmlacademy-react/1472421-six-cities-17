@@ -5,22 +5,14 @@ import Card from './card';
 type CardsListProps = {
   offers: OfferType[];
   nameCard: NameCard;
-  onOverOffer?: ((offerId: string) => void);
-  onOutOffer?: (() => void);
+  onOverOffer?: (offerId: string) => void;
+  onOutOffer?: () => void;
 }
 
 
 function CardsList({offers, nameCard, onOverOffer, onOutOffer}: CardsListProps): JSX.Element[] {
 
-  /*Деструктуризируем хук useState, первая переменная хранит в себе id карточки предложения, на которую
-    наведен курсор, вторая фунцию-установщик нового состояни(т.е. изменение id, который
-    храниться в currentOffer). Начальное стостояние переданное в useState - пустая строка*/
-
-  /* eslint-disable */
-  /* const [currentOffer, setCurrentOffer] = useState<string>(''); */
-  /* eslint-enable */
-
-  /*Описываем обработчик события аведения курсора на карточку.
+  /*Описываем обработчик события наведения курсора на карточку.
     Функция-обработчик принимает аргуметом offer.id типа string
     и возвращает тип void(спец. тип, обозначающий, что функция не вернет ничего.) */
 
