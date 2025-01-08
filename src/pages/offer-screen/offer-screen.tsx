@@ -63,11 +63,12 @@ function OfferScreen({authorizationStatus, userComments}: OfferProps): JSX.Eleme
             </div>
           </div>
           <section className="offer__map map">
-            {offersByCity.length !== 0 ? <MapComponent
-              offersLocation={getOffersLocation(offersByCity)}
-              selectedOffer={selectedOfferForMap}
-              currentCity={currentCity}
-            /> : null}
+            {offersByCity.length !== 0 ?
+              <MapComponent
+                offersLocation={getOffersLocation(offersByCity)}
+                selectedOffer={selectedOfferForMap}
+                currentCity={currentCity}
+              /> : null}
           </section>
         </section>
         <div className="container">
