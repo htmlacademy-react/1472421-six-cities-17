@@ -12,6 +12,7 @@ import { useState } from 'react';
 import CardsList from '../../components/card/cards-list';
 import { UserComments } from '../../types/user-comments-type';
 import { useAppSelector } from '../../hooks/state/state-hooks';
+import { getCurrentCity, getOffersByCity } from '../../storage/selectors';
 
 type OfferProps = {
   authorizationStatus: AuthorizationStatus;
@@ -29,15 +30,14 @@ function OfferScreen({authorizationStatus, userComments}: OfferProps): JSX.Eleme
 
   const [selectedOfferForMap, setSelectedOfferForMap] = useState<OfferType | undefined>(undefined);
 
-  const currentCity = useAppSelector((state) => state.city);
+  const currentCity = useAppSelector(getCurrentCity);
 
-  const offers = useAppSelector((state) => state.offers);
+  const offersByCity = useAppSelector(getOffersByCity);
 
-  const offersByCity = offers.filter((offer) => offer.city.name === currentCity);
+  const onOverOffer = (offerId: string | null): void => setSelectedOfferForMap(offersByCity.find((offer) => offer.id === offerId));
+  const onOutOffer = (): void => setSelectedOfferForMap(undefined);
 
-  const onOverOffer = (offerId: string | null): void => setSelectedOfferForMap(offers.find((offer) => offer.id === offerId));
-
-  const currentOffer = offers.find((offer) => offer.id === id) as OfferType;
+  const currentOffer = offersByCity.find((offer) => offer.id === id) as OfferType;
 
   return (
     <div className="page">
@@ -63,11 +63,11 @@ function OfferScreen({authorizationStatus, userComments}: OfferProps): JSX.Eleme
             </div>
           </div>
           <section className="offer__map map">
-            <MapComponent
+            {offersByCity.length !== 0 ? <MapComponent
               offersLocation={getOffersLocation(offersByCity)}
               selectedOffer={selectedOfferForMap}
               currentCity={currentCity}
-            />
+            /> : null}
           </section>
         </section>
         <div className="container">
@@ -76,7 +76,7 @@ function OfferScreen({authorizationStatus, userComments}: OfferProps): JSX.Eleme
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              <CardsList offers={offersByCity} nameCard={NameCard.Offers} onOverOffer={onOverOffer}/>
+              <CardsList offers={offersByCity} nameCard={NameCard.Offers} onOverOffer={onOverOffer} onOutOffer={onOutOffer}/>
             </div>
           </section>
         </div>

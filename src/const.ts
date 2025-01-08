@@ -43,8 +43,8 @@ enum NameCard {
   Offers = 'offers'
 }
 
-const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
-const URL_MARKER_CURRENT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+const URL_MARKER_DEFAULT = '../public/img/pin.svg';
+const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
 
 export {
   AppRoute,
