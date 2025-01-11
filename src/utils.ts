@@ -1,4 +1,4 @@
-import { CITIES_CLASS, FAVORITES_CLASS, NameCard, OFFERS_CLASS } from './const';
+import { CITIES_CLASS, FAVORITES_CLASS, NameCard, OFFERS_CLASS, SortingParams } from './const';
 import { CITIES } from './mocks/city-location';
 import { CityName, CityType, OfferLocation, OfferType } from './types/offer-types';
 import { ClassSetType, OffersGroupType } from './types/utils-type';
@@ -69,4 +69,32 @@ const getFormattedDate = (date: string): string => {
 
 const getLocationByCityName = (cityName: CityName): CityType | undefined => CITIES.find((city) => city.name === cityName);
 
-export {getOffersGroup, getClassSet, getOffersLocationByCity, getFormattedDate, getLocationByCityName, getOffersByCity, getOffersLocation};
+
+const sortOffers = (offers: OfferType[], sortParam: string): OfferType[] => {
+
+  const sortedOffers = [...offers];
+
+  switch(sortParam){
+    case SortingParams.popular:
+      return offers;
+    case SortingParams.expensively:
+      return sortedOffers.sort((offerA, offerB) => offerB.price - offerA.price);
+    case SortingParams.cheaper:
+      return sortedOffers.sort((offerA, offerB) => offerA.price - offerB.price);
+    case SortingParams.byRating:
+      return sortedOffers.sort((offerA, offerB) => offerB.rating - offerA.rating);
+    default:
+      return offers;
+  }
+};
+
+export {
+  getOffersGroup,
+  getClassSet,
+  getOffersLocationByCity,
+  getFormattedDate,
+  getLocationByCityName,
+  getOffersByCity,
+  getOffersLocation,
+  sortOffers
+};

@@ -12,6 +12,13 @@ enum AppRoute {
   Error = '/*'
 }
 
+enum SortingParams {
+  popular = 'Popular',
+  cheaper = 'Price: low to high',
+  expensively = 'Price: high to low',
+  byRating = 'Top rated first'
+}
+
 const FAVORITES_CLASS = {
   card: 'favorites__card',
   image: 'favorites__image-wrapper',
@@ -36,8 +43,8 @@ enum NameCard {
   Offers = 'offers'
 }
 
-const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
-const URL_MARKER_CURRENT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+const URL_MARKER_DEFAULT = '../public/img/pin.svg';
+const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
 
 export {
   AppRoute,
@@ -47,5 +54,6 @@ export {
   NameCard,
   URL_MARKER_DEFAULT,
   URL_MARKER_CURRENT,
-  OFFERS_CLASS
+  OFFERS_CLASS,
+  SortingParams
 };

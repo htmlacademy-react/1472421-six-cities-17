@@ -3,7 +3,6 @@ import { useMap } from '../../hooks/use-map';
 import { CityName, OfferLocation, OfferType } from '../../types/offer-types';
 import { Marker, layerGroup, Icon } from 'leaflet';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
-import 'leaflet/dist/leaflet.css';
 import { getLocationByCityName } from '../../utils';
 
 type MapComponentProps = {
@@ -14,13 +13,13 @@ type MapComponentProps = {
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
+  iconSize: [28, 40],
   iconAnchor: [20, 40]
 });
 
 const currentCustomIcon = new Icon({
   iconUrl: URL_MARKER_CURRENT,
-  iconSize: [40, 40],
+  iconSize: [28, 40],
   iconAnchor: [20, 40]
 });
 
@@ -65,7 +64,7 @@ function MapComponent({offersLocation, selectedOffer, currentCity}: MapComponent
     }
   }, [map, offersLocation, selectedOffer]);
 
-  return <div style={{height: '100%', width: '100%'}} ref={refMap}></div>;
+  return <div style={{height: '100%'}} ref={refMap}></div>;
 }
 
 export default MapComponent;

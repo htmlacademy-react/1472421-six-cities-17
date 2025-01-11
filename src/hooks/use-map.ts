@@ -1,6 +1,7 @@
 import { TileLayer, Map } from 'leaflet';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { CityType } from '../types/offer-types';
+import 'leaflet/dist/leaflet.css';
 
 
 /* Хук создает объект карты leaflet и пересоздает этот объект при изменении
