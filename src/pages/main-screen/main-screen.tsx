@@ -6,8 +6,8 @@ import { useState } from 'react';
 import { useAppSelector } from '../../hooks/state/state-hooks';
 import CitiesList from './city-name-list';
 import OfferSection from './offer-section';
-import { getCurrentCity, getOffersByCity } from '../../storage/selectors';
-import { sortOffers } from '../../utils';
+import { getCurrentCity, getSortedOffers } from '../../storage/selectors';
+
 
 type MainScreenProps = {
   cities: CityType[];
@@ -20,13 +20,9 @@ function MainScreen({cities, authorizationStatus}: MainScreenProps): JSX.Element
 
   const currentCity = useAppSelector(getCurrentCity);
 
-  const offersByCity = useAppSelector(getOffersByCity);
+  const sortedOffers = useAppSelector(getSortedOffers);
 
-  const sortParams = useAppSelector((state) => state.sortParam);
-
-  const sortedOffers = sortOffers(offersByCity, sortParams);
-
-  const onOverOffer = (offerId: string | null): void => setCurrentOffer(offersByCity.find((offer) => offer.id === offerId));
+  const onOverOffer = (offerId: string | null): void => setCurrentOffer(sortedOffers.find((offer) => offer.id === offerId));
 
   /* При убирании курсора с карточки offer текущий offer
   становиться undefinedб для того, что бы убрать выделение маркера на карте */

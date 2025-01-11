@@ -1,5 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { State } from '../types/state';
+import { sortOffers } from '../utils';
 
 const getCurrentCity = (state: State) => state.city;
 
@@ -12,10 +13,16 @@ const getOffersByCity = createSelector(
   (currentCity, offers) => offers.filter((offer) => offer.city.name === currentCity)
 );
 
+const getSortedOffers = createSelector(
+  [getOffersByCity, getSortParam],
+  (offersByCity, sortParam) => sortOffers(offersByCity, sortParam)
+);
+
 
 export {
   getCurrentCity,
   getOffers,
   getSortParam,
-  getOffersByCity
+  getOffersByCity,
+  getSortedOffers
 };
