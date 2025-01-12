@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, changeSortParam, loadOffers, requireAuthorization } from './actions';
+import { changeCity, changeSortParam, loadOffers, requireAuthorization } from './actions/actions';
 import { CityName, OfferType } from '../types/offer-types';
 import { AuthorizationStatus, SortingParams } from '../const';
 

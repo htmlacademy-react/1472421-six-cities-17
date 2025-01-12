@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { SortingParams } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
 import { getSortParam } from '../../storage/selectors';
-import { changeSortParam } from '../../storage/actions';
+import { changeSortParam } from '../../storage/actions/actions';
 
 
 function SortOffersForm(): JSX.Element {
