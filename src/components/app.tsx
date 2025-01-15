@@ -8,7 +8,7 @@ import ErrorScreen from '../pages/error-page/error-screen';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route';
 import { CityType } from '../types/offer-types';
-import { UserComments } from '../types/user-comments-type';
+import { UserComments } from '../types/user-type';
 
 type AppProps = {
   cities: CityType[];

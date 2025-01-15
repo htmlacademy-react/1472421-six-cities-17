@@ -1,4 +1,4 @@
-import { UserComments } from '../types/user-comments-type';
+import { UserComments } from '../types/user-type';
 
 export const userComments: UserComments[] = [
   {

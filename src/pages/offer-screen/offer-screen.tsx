@@ -10,7 +10,7 @@ import MapComponent from '../../components/map/map';
 import { getOffersLocation } from '../../utils';
 import { useState } from 'react';
 import CardsList from '../../components/card/cards-list';
-import { UserComments } from '../../types/user-comments-type';
+import { UserComments } from '../../types/user-type';
 import { useAppSelector } from '../../hooks/state/state-hooks';
 import { getCurrentCity, getOffersByCity } from '../../storage/selectors';
 

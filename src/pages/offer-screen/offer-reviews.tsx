@@ -1,4 +1,4 @@
-import { UserComments } from '../../types/user-comments-type';
+import { UserComments } from '../../types/user-type';
 import OfferReviewsForm from './offer-reviews-form';
 import OfferReviewsList from './offer-reviews-list';
 
