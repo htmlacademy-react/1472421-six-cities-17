@@ -43,6 +43,13 @@ enum NameCard {
   Offers = 'offers'
 }
 
+enum APIRoute {
+  Offers = '/offers',
+  Favorite = '/favorite',
+  Login = '/login',
+  Logout = '/logout'
+}
+
 const URL_MARKER_DEFAULT = '../public/img/pin.svg';
 const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
 
@@ -55,5 +62,6 @@ export {
   URL_MARKER_DEFAULT,
   URL_MARKER_CURRENT,
   OFFERS_CLASS,
-  SortingParams
+  SortingParams,
+  APIRoute
 };

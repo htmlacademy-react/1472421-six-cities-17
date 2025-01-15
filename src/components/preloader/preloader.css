@@ -1,0 +1,39 @@
+.preloader-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.preloader {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 8px solid rgb(54, 169, 245);
+  position: relative;
+  animation: rotation 1s linear infinite;
+}
+
+
+.preloader::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 10px solid;
+  border-color: #ffffff transparent transparent transparent;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
