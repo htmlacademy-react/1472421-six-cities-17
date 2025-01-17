@@ -5,7 +5,7 @@ import { AuthorizationStatus } from './const';
 import { userComments } from './mocks/user-comments';
 import { Provider } from 'react-redux';
 import { store } from './storage/index-redux';
-import { CITIES } from './mocks/city-location';
+import { CITIES } from './consts/city-location';
 import { checkAuthAction, fetchOffersAction } from './storage/actions/api-actions';
 import ErrorMessage from './components/error-message/error-message';
 

@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import OfferDetails from './offer-details';
 import OfferGallery from './offer-gallery';
-import { AuthorizationStatus, NameCard } from '../../const';
+import { NameCard } from '../../const';
 import { OfferType } from '../../types/offer-types';
 import {useParams } from 'react-router-dom';
 import OfferReviews from './offer-reviews';
@@ -15,11 +15,10 @@ import { useAppSelector } from '../../hooks/state/state-hooks';
 import { getCurrentCity, getOffersByCity } from '../../storage/selectors';
 
 type OfferProps = {
-  authorizationStatus: AuthorizationStatus;
   userComments: UserComments[];
 }
 
-function OfferScreen({authorizationStatus, userComments}: OfferProps): JSX.Element {
+function OfferScreen({userComments}: OfferProps): JSX.Element {
 
   /* Вернет параметр адреса адресной строки для offer/:id (:id - параметр
   который будет генерироваться автоматически при клике на карточку предложения
@@ -46,7 +45,7 @@ function OfferScreen({authorizationStatus, userComments}: OfferProps): JSX.Eleme
         <title>6 cities. Offers</title>
       </Helmet>
 
-      <Header authorizationStatus = {authorizationStatus}/>
+      <Header />
 
       <main className="page__main page__main--offer">
         <section className="offer">

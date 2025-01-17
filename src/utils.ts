@@ -1,5 +1,5 @@
 import { CITIES_CLASS, FAVORITES_CLASS, NameCard, OFFERS_CLASS, SortingParams } from './const';
-import { CITIES } from './mocks/city-location';
+import { CITIES } from './consts/city-location';
 import { CityName, CityType, OfferLocation, OfferType } from './types/offer-types';
 import { ClassSetType, OffersGroupType } from './types/utils-type';
 

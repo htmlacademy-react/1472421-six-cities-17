@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import HeaderNavUser from './header-nav-user';
+import { useAppSelector } from '../../hooks/state/state-hooks';
+import { getAuthorizationStatus } from '../../storage/selectors';
 
 type HeaderProps = {
-  authorizationStatus: AuthorizationStatus;
+  isLoginPage? : boolean;
 }
 
-function Header({authorizationStatus}: HeaderProps) {
+function Header({isLoginPage}: HeaderProps) {
+
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   return(
     <header className="header">
       <div className="container">
@@ -23,7 +28,7 @@ function Header({authorizationStatus}: HeaderProps) {
             </Link>
           </div>
           <nav className="header__nav">
-            <HeaderNavUser authorizationStatus = {authorizationStatus}/>
+            {!isLoginPage && <HeaderNavUser authorizationStatus = {authorizationStatus}/>}
           </nav>
         </div>
       </div>

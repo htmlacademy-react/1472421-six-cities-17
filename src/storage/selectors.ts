@@ -22,6 +22,8 @@ const getError = (state: State) => state.error;
 
 const getLoadingStatus = (state: State) => state.isLoading;
 
+const getAuthorizationStatus = (state: State) => state.authorizationStatus;
+
 
 
 export {
@@ -31,5 +33,6 @@ export {
   getOffersByCity,
   getSortedOffers,
   getError,
-  getLoadingStatus
+  getLoadingStatus,
+  getAuthorizationStatus
 };

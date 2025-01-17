@@ -1,19 +1,19 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import LoginForm from './login-form';
-import { AuthorizationStatus } from '../../const';
+
 
 type LoginScreenProps = {
-  authorizationStatus: AuthorizationStatus;
+
 }
 
-function LoginScreen({authorizationStatus}: LoginScreenProps): JSX.Element {
+function LoginScreen({}: LoginScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--login">
       <Helmet>
         <title>6 cities. Log in!</title>
       </Helmet>
-      <Header authorizationStatus={authorizationStatus}/>
+      <Header isLoginPage={true}/>
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">

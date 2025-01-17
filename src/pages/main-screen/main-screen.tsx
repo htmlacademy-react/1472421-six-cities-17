@@ -11,10 +11,9 @@ import { getCurrentCity, getSortedOffers } from '../../storage/selectors';
 
 type MainScreenProps = {
   cities: CityType[];
-  authorizationStatus: AuthorizationStatus;
 }
 
-function MainScreen({cities, authorizationStatus}: MainScreenProps): JSX.Element {
+function MainScreen({cities}: MainScreenProps): JSX.Element {
 
   const [currentOffer, setCurrentOffer] = useState<OfferType | undefined>(undefined);
 
@@ -36,7 +35,7 @@ function MainScreen({cities, authorizationStatus}: MainScreenProps): JSX.Element
         <title>6 cities. Choose a city!</title>
       </Helmet>
 
-      <Header authorizationStatus = {authorizationStatus}/>
+      <Header />
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
