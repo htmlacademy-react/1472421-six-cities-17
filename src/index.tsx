@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app';
-import { AuthorizationStatus } from './const';
 import { userComments } from './mocks/user-comments';
 import { Provider } from 'react-redux';
 import { store } from './storage/index-redux';
@@ -23,7 +22,6 @@ root.render(
       <ErrorMessage />
       <App
         cities = {CITIES}
-        authorizationStatus={AuthorizationStatus.Auth}
         userComments={userComments}
       />
     </Provider>
