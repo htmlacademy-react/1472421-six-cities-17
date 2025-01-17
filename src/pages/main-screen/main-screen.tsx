@@ -7,7 +7,6 @@ import { useAppSelector } from '../../hooks/state/state-hooks';
 import CitiesList from './city-name-list';
 import OfferSection from './offer-section';
 import { getCurrentCity, getSortedOffers } from '../../storage/selectors';
-import Preloader from '../../components/preloader/preloader';
 
 
 type MainScreenProps = {
@@ -23,7 +22,6 @@ function MainScreen({cities, authorizationStatus}: MainScreenProps): JSX.Element
 
   const sortedOffers = useAppSelector(getSortedOffers);
 
-  const isLoading = useAppSelector((state) => state.isLoading);
 
   const onOverOffer = (offerId: string | null): void => setCurrentOffer(sortedOffers.find((offer) => offer.id === offerId));
 
@@ -31,9 +29,6 @@ function MainScreen({cities, authorizationStatus}: MainScreenProps): JSX.Element
   становиться undefinedб для того, что бы убрать выделение маркера на карте */
   const onOutOffer = (): void => setCurrentOffer(undefined);
 
-  if(isLoading) {
-    return <Preloader />;
-  }
 
   return (
     <div className="page page--gray page--main">

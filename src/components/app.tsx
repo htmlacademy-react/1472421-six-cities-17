@@ -9,6 +9,9 @@ import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route';
 import { CityType } from '../types/offer-types';
 import { UserComments } from '../types/user-type';
+import Preloader from './preloader/preloader';
+import { useAppSelector } from '../hooks/state/state-hooks';
+import { getLoadingStatus } from '../storage/selectors';
 
 type AppProps = {
   cities: CityType[];
@@ -17,6 +20,12 @@ type AppProps = {
 }
 
 function App({cities, authorizationStatus, userComments}: AppProps): JSX.Element {
+
+  const isLoading = useAppSelector(getLoadingStatus);
+
+  if(isLoading) {
+    return <Preloader />;
+  }
 
   return (
     <HelmetProvider>
