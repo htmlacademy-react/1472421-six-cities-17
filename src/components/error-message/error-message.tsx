@@ -6,8 +6,6 @@ function ErrorMessage(): JSX.Element | null {
 
   const errorMessage = useAppSelector(getError);
 
-
-
   return (errorMessage)
     ? <div className='error-message'>{errorMessage}</div>
     : null;

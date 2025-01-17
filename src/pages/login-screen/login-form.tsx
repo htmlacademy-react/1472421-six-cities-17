@@ -9,7 +9,7 @@ function LoginForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<{login: string, password: string}>({
+  const [formData, setFormData] = useState<{login: string; password: string}>({
     login: '',
     password: ''
   });
@@ -20,8 +20,7 @@ function LoginForm(): JSX.Element {
     const {name, value} = evt.target;
 
     setFormData({...formData, [name]: value});
-    console.log(formData)
-  }
+  };
 
   /* При нажатии на кнопку Sign in
   диспатчится асинхронное действие loginAction, являющееся функцией.

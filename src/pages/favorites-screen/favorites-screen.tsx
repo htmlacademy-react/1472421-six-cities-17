@@ -4,9 +4,6 @@ import Header from '../../components/header/header';
 import FavoritesLocationList from './favorites-location-list';
 import { useAppSelector } from '../../hooks/state/state-hooks';
 
-type FavoritesScreenProps = {
-
-}
 
 function FavoritesScreen(): JSX.Element {
 

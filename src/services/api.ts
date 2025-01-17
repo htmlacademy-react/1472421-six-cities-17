@@ -13,7 +13,7 @@ const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.NOT_FOUND]: true
 };
 
-const shouldDisplayError = (response: AxiosResponse) => !StatusCodeMapping[response.data];
+const shouldDisplayError = (response: AxiosResponse) => !StatusCodeMapping[response.status];
 
 export const createAPI = (): AxiosInstance => {
 
@@ -57,7 +57,7 @@ export const createAPI = (): AxiosInstance => {
       отловить ошибку с помощью конструкции try catch*/
       throw error;
     }
-  )
+  );
 
   return api;
 };

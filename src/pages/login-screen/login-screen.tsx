@@ -3,17 +3,13 @@ import Header from '../../components/header/header';
 import LoginForm from './login-form';
 
 
-type LoginScreenProps = {
-
-}
-
-function LoginScreen({}: LoginScreenProps): JSX.Element {
+function LoginScreen(): JSX.Element {
   return (
     <div className="page page--gray page--login">
       <Helmet>
         <title>6 cities. Log in!</title>
       </Helmet>
-      <Header isLoginPage={true}/>
+      <Header isLoginPage/>
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">

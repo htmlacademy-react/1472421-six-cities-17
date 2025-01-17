@@ -25,7 +25,6 @@ const getLoadingStatus = (state: State) => state.isLoading;
 const getAuthorizationStatus = (state: State) => state.authorizationStatus;
 
 
-
 export {
   getCurrentCity,
   getOffers,

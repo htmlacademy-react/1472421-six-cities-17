@@ -89,7 +89,7 @@ export const clearError = createAsyncThunk<void, undefined, {
 }>(
   'app/clearError',
   () => {
-    setTimeout(() => store.dispatch(setError(null)), TIMEOUT_SHOW_ERROR)
+    setTimeout(() => store.dispatch(setError(null)), TIMEOUT_SHOW_ERROR);
   }
 );
 
