@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import { AuthorizationStatus } from '../../const';
 import { CityType, OfferType } from '../../types/offer-types';
 import { useState } from 'react';
 import { useAppSelector } from '../../hooks/state/state-hooks';
