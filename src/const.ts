@@ -52,6 +52,8 @@ enum APIRoute {
 
 const URL_MARKER_DEFAULT = '../public/img/pin.svg';
 const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
+const TIMEOUT_SHOW_ERROR = 2000;
+
 
 export {
   AppRoute,
@@ -63,5 +65,6 @@ export {
   URL_MARKER_CURRENT,
   OFFERS_CLASS,
   SortingParams,
-  APIRoute
+  APIRoute,
+  TIMEOUT_SHOW_ERROR
 };

@@ -1,21 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import { AuthorizationStatus } from '../../const';
 import { CityType, OfferType } from '../../types/offer-types';
 import { useState } from 'react';
 import { useAppSelector } from '../../hooks/state/state-hooks';
 import CitiesList from './city-name-list';
 import OfferSection from './offer-section';
 import { getCurrentCity, getSortedOffers } from '../../storage/selectors';
-import Preloader from '../../components/preloader/preloader';
 
 
 type MainScreenProps = {
   cities: CityType[];
-  authorizationStatus: AuthorizationStatus;
 }
 
-function MainScreen({cities, authorizationStatus}: MainScreenProps): JSX.Element {
+function MainScreen({cities}: MainScreenProps): JSX.Element {
 
   const [currentOffer, setCurrentOffer] = useState<OfferType | undefined>(undefined);
 
@@ -23,7 +20,6 @@ function MainScreen({cities, authorizationStatus}: MainScreenProps): JSX.Element
 
   const sortedOffers = useAppSelector(getSortedOffers);
 
-  const isLoading = useAppSelector((state) => state.isLoading);
 
   const onOverOffer = (offerId: string | null): void => setCurrentOffer(sortedOffers.find((offer) => offer.id === offerId));
 
@@ -31,9 +27,6 @@ function MainScreen({cities, authorizationStatus}: MainScreenProps): JSX.Element
   становиться undefinedб для того, что бы убрать выделение маркера на карте */
   const onOutOffer = (): void => setCurrentOffer(undefined);
 
-  if(isLoading) {
-    return <Preloader />;
-  }
 
   return (
     <div className="page page--gray page--main">
@@ -41,7 +34,7 @@ function MainScreen({cities, authorizationStatus}: MainScreenProps): JSX.Element
         <title>6 cities. Choose a city!</title>
       </Helmet>
 
-      <Header authorizationStatus = {authorizationStatus}/>
+      <Header />
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>

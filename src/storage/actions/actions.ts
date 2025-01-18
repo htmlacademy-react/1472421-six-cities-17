@@ -9,6 +9,8 @@ export const loadOffers = createAction<OfferType[]>('loadOffers');
 
 export const changeSortParam = createAction<SortingParams>('changeSortParam');
 
-export const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
+export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
-export const checkLoading = createAction<boolean>('checkLoading');
+export const checkLoading = createAction<boolean>('user/checkLoading');
+
+export const setError = createAction<string | null>('app/setError');

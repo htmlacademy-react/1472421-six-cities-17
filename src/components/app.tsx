@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainScreen from '../pages/main-screen/main-screen';
-import { AppRoute, AuthorizationStatus } from '../const';
+import { AppRoute } from '../const';
 import LoginScreen from '../pages/login-screen/login-screen';
 import FavoritesScreen from '../pages/favorites-screen/favorites-screen';
 import OfferScreen from '../pages/offer-screen/offer-screen';
@@ -8,15 +8,23 @@ import ErrorScreen from '../pages/error-page/error-screen';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route';
 import { CityType } from '../types/offer-types';
-import { UserComments } from '../types/user-comments-type';
+import { UserComments } from '../types/user-type';
+import Preloader from './preloader/preloader';
+import { useAppSelector } from '../hooks/state/state-hooks';
+import { getLoadingStatus } from '../storage/selectors';
 
 type AppProps = {
   cities: CityType[];
-  authorizationStatus: AuthorizationStatus;
   userComments: UserComments[];
 }
 
-function App({cities, authorizationStatus, userComments}: AppProps): JSX.Element {
+function App({cities, userComments}: AppProps): JSX.Element {
+
+  const isLoading = useAppSelector(getLoadingStatus);
+
+  if(isLoading) {
+    return <Preloader />;
+  }
 
   return (
     <HelmetProvider>
@@ -27,25 +35,20 @@ function App({cities, authorizationStatus, userComments}: AppProps): JSX.Element
             element = {
               <MainScreen
                 cities={cities}
-                authorizationStatus = {authorizationStatus}
               />
             }
           />
           <Route
             path={AppRoute.Login}
             element = {
-              <LoginScreen
-                authorizationStatus = {authorizationStatus}
-              />
+              <LoginScreen />
             }
           />
           <Route
             path={AppRoute.Favorites}
             element = {
-              <PrivateRoute authorizationStatus = {authorizationStatus}>
-                <FavoritesScreen
-                  authorizationStatus = {authorizationStatus}
-                />
+              <PrivateRoute >
+                <FavoritesScreen />
               </PrivateRoute>
             }
           />
@@ -53,7 +56,6 @@ function App({cities, authorizationStatus, userComments}: AppProps): JSX.Element
             path={AppRoute.Offer}
             element = {
               <OfferScreen
-                authorizationStatus = {authorizationStatus}
                 userComments={userComments}
               />
             }

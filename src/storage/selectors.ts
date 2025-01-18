@@ -18,11 +18,20 @@ const getSortedOffers = createSelector(
   (offersByCity, sortParam) => sortOffers(offersByCity, sortParam)
 );
 
+const getError = (state: State) => state.error;
+
+const getLoadingStatus = (state: State) => state.isLoading;
+
+const getAuthorizationStatus = (state: State) => state.authorizationStatus;
+
 
 export {
   getCurrentCity,
   getOffers,
   getSortParam,
   getOffersByCity,
-  getSortedOffers
+  getSortedOffers,
+  getError,
+  getLoadingStatus,
+  getAuthorizationStatus
 };
