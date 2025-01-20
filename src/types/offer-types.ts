@@ -34,14 +34,22 @@ export type OfferType = {
   isPremium: boolean;
   rating: number;
   previewImage: string;
+}
+
+export type OfferTypeById = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  city: CityType;
+  location: LocationCityType;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
   description: string;
   bedrooms: number;
-  goods: {
-    id: number;
-    name: string;
-  }[];
+  goods:string[];
   host: HostType;
   images: string[];
   maxAdults: number;
 }
-

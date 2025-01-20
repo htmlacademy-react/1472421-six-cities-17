@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../../types/state';
 import { AxiosInstance } from 'axios';
-import { OfferType } from '../../types/offer-types';
+import { OfferType, OfferTypeById } from '../../types/offer-types';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../../const';
-import { checkLoading, loadOffers, requireAuthorization, setError } from './actions';
+import { checkLoading, checkLoadingOffer, loadOfferById, loadOffers, requireAuthorization, setError } from './actions';
 import { AuthDataType, User } from '../../types/user-type';
 import { dropToken, saveToken } from '../../services/token';
 import { store } from '../index-redux';
@@ -15,7 +15,7 @@ export const fetchOffersAction = createAsyncThunk<void, undefined,{
   state: State;
   extra: AxiosInstance;
 }>(
-  'loadOffers',
+  'offers/loadOffers',
   async (_arg, {dispatch, extra: api}) => {
 
     dispatch(checkLoading(true));
@@ -93,3 +93,20 @@ export const clearError = createAsyncThunk<void, undefined, {
   }
 );
 
+/* Получение предложения по ID */
+export const fetchOfferByIdAction = createAsyncThunk<void, string,{
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'offers/loadOfferById',
+  async (id, {dispatch, extra: api}) => {
+
+    dispatch(checkLoadingOffer(true));
+
+    const {data} = await api.get<OfferTypeById>(`${APIRoute.Offers}/${id}`);
+
+    dispatch(checkLoadingOffer(false));
+    dispatch(loadOfferById(data));
+  },
+);

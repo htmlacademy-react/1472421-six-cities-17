@@ -33,7 +33,12 @@ function LoginForm(): JSX.Element {
     evt.preventDefault();
 
     if(formData.login !== '' || formData.password !== ''){
-      dispatch(loginAction(formData));
+      dispatch(loginAction(formData))
+        .then((response) => {
+          if(response.meta.requestStatus === 'fulfilled'){
+            navigate(AppRoute.Main);
+          }
+        });
     }
   };
 
@@ -73,7 +78,6 @@ function LoginForm(): JSX.Element {
         <button
           className="login__submit form__submit button"
           type="submit"
-          onClick={() => navigate(AppRoute.Main)}
         >
           Sign in
         </button>

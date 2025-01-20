@@ -3,16 +3,18 @@ import Header from '../../components/header/header';
 import OfferDetails from './offer-details';
 import OfferGallery from './offer-gallery';
 import { NameCard } from '../../const';
-import { OfferType } from '../../types/offer-types';
+import { OfferType, OfferTypeById } from '../../types/offer-types';
 import {useParams } from 'react-router-dom';
 import OfferReviews from './offer-reviews';
 import MapComponent from '../../components/map/map';
 import { getOffersLocation } from '../../utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardsList from '../../components/card/cards-list';
 import { UserComments } from '../../types/user-type';
-import { useAppSelector } from '../../hooks/state/state-hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
 import { getCurrentCity, getOffersByCity } from '../../storage/selectors';
+import { loadOfferById } from '../../storage/actions/actions';
+import { fetchOfferByIdAction } from '../../storage/actions/api-actions';
 
 type OfferProps = {
   userComments: UserComments[];
@@ -26,6 +28,7 @@ function OfferScreen({userComments}: OfferProps): JSX.Element {
   служебного компонента Link приложение перенаправит пользователя на вновь сформированный
   адрес offer/id - где id - соответствует полю id конкретного предложения) */
   const {id} = useParams();
+  const dispatch = useAppDispatch();
 
   const [selectedOfferForMap, setSelectedOfferForMap] = useState<OfferType | undefined>(undefined);
 
@@ -35,8 +38,19 @@ function OfferScreen({userComments}: OfferProps): JSX.Element {
 
   const onOverOffer = (offerId: string | null): void => setSelectedOfferForMap(offersByCity.find((offer) => offer.id === offerId));
   const onOutOffer = (): void => setSelectedOfferForMap(undefined);
+  let currentOffer: OfferTypeById | null = null;
 
-  const currentOffer = offersByCity.find((offer) => offer.id === id) as OfferType;
+
+  useEffect(() => {
+    if(id) {
+      dispatch(fetchOfferByIdAction(id));
+    }
+    return () => {
+      dispatch(loadOfferById(null));
+    };
+  }, [dispatch, id]);
+
+  currentOffer = useAppSelector((state) => state.offerById);
 
   return (
     <div className="page">
@@ -50,12 +64,12 @@ function OfferScreen({userComments}: OfferProps): JSX.Element {
       <main className="page__main page__main--offer">
         <section className="offer">
 
-          <OfferGallery offer={currentOffer}/>
+          {currentOffer !== null && <OfferGallery offer={currentOffer}/>}
 
           <div className="offer__container container">
             <div className="offer__wrapper">
 
-              <OfferDetails offer={currentOffer}/>
+              {currentOffer !== null && <OfferDetails offer={currentOffer}/>}
 
               <OfferReviews userComments={userComments}/>
 
