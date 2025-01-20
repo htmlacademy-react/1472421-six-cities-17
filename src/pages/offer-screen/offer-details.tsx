@@ -66,9 +66,6 @@ function OfferDetails({offer}: OfferDetails): JSX.Element {
           <p className="offer__text">
             {offer.description}
           </p>
-          <p className="offer__text">
-            {offer.description}
-          </p>
         </div>
       </div>
     </>

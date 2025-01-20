@@ -8,20 +8,16 @@ import {useParams } from 'react-router-dom';
 import OfferReviews from './offer-reviews';
 import MapComponent from '../../components/map/map';
 import { getOffersLocation } from '../../utils';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import CardsList from '../../components/card/cards-list';
-import { UserComments } from '../../types/user-type';
 import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
-import { getCurrentCity, getOffersByCity } from '../../storage/selectors';
+import { getCurrentCity } from '../../storage/selectors';
 import { loadOfferById } from '../../storage/actions/actions';
-import { fetchOfferByIdAction } from '../../storage/actions/api-actions';
+import { fetchNearbyCommentAction, fetchOfferByIdAction, fetchUsersCommentsAction } from '../../storage/actions/api-actions';
 import ErrorScreen from '../error-page/error-screen';
 
-type OfferProps = {
-  userComments: UserComments[];
-}
 
-function OfferScreen({userComments}: OfferProps): JSX.Element {
+function OfferScreen(): JSX.Element {
 
   /* Вернет параметр адреса адресной строки для offer/:id (:id - параметр
   который будет генерироваться автоматически при клике на карточку предложения
@@ -31,25 +27,24 @@ function OfferScreen({userComments}: OfferProps): JSX.Element {
   const {id} = useParams();
   const dispatch = useAppDispatch();
 
-  const [selectedOfferForMap, setSelectedOfferForMap] = useState<OfferType | undefined>(undefined);
 
   const currentCity = useAppSelector(getCurrentCity);
 
-  const offersByCity = useAppSelector(getOffersByCity);
-
-  const onOverOffer = (offerId: string | null): void => setSelectedOfferForMap(offersByCity.find((offer) => offer.id === offerId));
-  const onOutOffer = (): void => setSelectedOfferForMap(undefined);
-
-
+  /* При каждом изменении id или dispatch
+  будет срабатывать useEffect и если id есть,
+  тогда диспатчиться действие, которое вызовет асинх. функцию
+  получения offer`а gпо id, а при успехе
+  диспатчится действие получения коментариев и offer`ов
+  неподалеку */
   useEffect(() => {
     if(id) {
       dispatch(fetchOfferByIdAction(id))
-        /* .then((response) => {
+        .then((response) => {
           if(response.meta.requestStatus = 'fulfilled'){
-            dispatch(fetchOfferCommentAction(id));
-            dispatch()
+            dispatch(fetchUsersCommentsAction(id));
+            dispatch(fetchNearbyCommentAction(id));
           }
-        }) */;
+        });
     }
     return () => {
       dispatch(loadOfferById(null));
@@ -57,7 +52,7 @@ function OfferScreen({userComments}: OfferProps): JSX.Element {
   }, [dispatch, id]);
 
   const currentOffer: OfferTypeById | null = useAppSelector((state) => state.offerById);
-
+  const nearbyOffers: OfferType[] = useAppSelector((state) => state.nearbyOffers.slice(0, 3));
 
   if(currentOffer === null){
     return <ErrorScreen />
@@ -82,15 +77,14 @@ function OfferScreen({userComments}: OfferProps): JSX.Element {
 
               {currentOffer !== null && <OfferDetails offer={currentOffer}/>}
 
-              <OfferReviews userComments={userComments}/>
+              <OfferReviews />
 
             </div>
           </div>
           <section className="offer__map map">
-            {offersByCity.length !== 0 ?
+            {nearbyOffers.length !== 0 ?
               <MapComponent
-                offersLocation={getOffersLocation(offersByCity)}
-                selectedOffer={selectedOfferForMap}
+                offersLocation={getOffersLocation(nearbyOffers)}
                 currentCity={currentCity}
               /> : null}
           </section>
@@ -101,7 +95,7 @@ function OfferScreen({userComments}: OfferProps): JSX.Element {
               Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              <CardsList offers={offersByCity} nameCard={NameCard.Offers} onOverOffer={onOverOffer} onOutOffer={onOutOffer}/>
+              <CardsList offers={nearbyOffers} nameCard={NameCard.Offers} />
             </div>
           </section>
         </div>

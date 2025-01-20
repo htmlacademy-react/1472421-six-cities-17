@@ -47,7 +47,9 @@ enum APIRoute {
   Offers = '/offers',
   Favorite = '/favorite',
   Login = '/login',
-  Logout = '/logout'
+  Logout = '/logout',
+  Comments = '/comments',
+  Nearby = 'nearby'
 }
 
 const URL_MARKER_DEFAULT = '../public/img/pin.svg';

@@ -1,7 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, changeSortParam, checkLoading, checkLoadingOffer, loadOfferById, loadOffers, requireAuthorization, setError } from './actions/actions';
+import { changeCity, changeSortParam, checkLoading, checkLoadingOffer, loadNearbyOffers, loadOfferById, loadOffers, loadUsersComments, requireAuthorization } from './actions/actions';
 import { CityName, OfferType, OfferTypeById } from '../types/offer-types';
 import { AuthorizationStatus, SortingParams } from '../const';
+import { UserComments } from '../types/user-type';
 
 
 const initialState = {
@@ -10,9 +11,10 @@ const initialState = {
   sortParam: SortingParams.popular,
   authorizationStatus: AuthorizationStatus.Unknown,
   isLoading: false,
-  error: null as string | null,
   isLoadingOffer: false,
-  offerById: null as OfferTypeById | null
+  offerById: null as OfferTypeById | null,
+  usersComments: [] as UserComments[],
+  nearbyOffers: [] as OfferType[],
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -32,14 +34,17 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(checkLoading, (state, action) => {
       state.isLoading = action.payload;
     })
-    .addCase(setError, (state, action) => {
-      state.error = action.payload;
-    })
     .addCase(checkLoadingOffer, (state, action) => {
       state.isLoadingOffer = action.payload;
     })
     .addCase(loadOfferById, (state, action) => {
       state.offerById = action.payload;
+    })
+    .addCase(loadUsersComments, (state, action) => {
+      state.usersComments = action.payload;
+    })
+    .addCase(loadNearbyOffers, (state, action) => {
+      state.nearbyOffers = action.payload;
     });
 });
 

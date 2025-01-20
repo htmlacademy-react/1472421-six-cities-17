@@ -8,7 +8,6 @@ import ErrorScreen from '../pages/error-page/error-screen';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route';
 import { CityType } from '../types/offer-types';
-import { UserComments } from '../types/user-type';
 import Preloader from './preloader/preloader';
 import { useAppSelector } from '../hooks/state/state-hooks';
 import { getLoadingStatus } from '../storage/selectors';
@@ -17,10 +16,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 type AppProps = {
   cities: CityType[];
-  userComments: UserComments[];
 }
 
-function App({cities, userComments}: AppProps): JSX.Element {
+function App({cities}: AppProps): JSX.Element {
 
   const isLoading = useAppSelector(getLoadingStatus);
 
@@ -58,9 +56,7 @@ function App({cities, userComments}: AppProps): JSX.Element {
         <Route
           path={AppRoute.Offer}
           element = {
-            <OfferScreen
-              userComments={userComments}
-            />
+            <OfferScreen />
           }
         />
         <Route
@@ -77,10 +73,13 @@ export default App;
 
 /*
   - настроить переход в offer-screen из offer-screen для другого offer(под картой)
-  - завести домены для всех названий action
   - добавить подгрузку коментариев и информации оffer
   - перейти на createSlice
   - отрефакторить карту, добавив еще 1 маркер - маркер активного оффера
   оранжевый, лишнюю функциональность убрать
   - добавить поля для каждой ошибки в state
+  - отредактировать страницу оффера в соответствии с ТЗ
+  - сделать прелоадер коментов и предложений неподалеку
+  - добавить возможность отправлять коментарии
+  - добавить функции для всех селекторов
 */

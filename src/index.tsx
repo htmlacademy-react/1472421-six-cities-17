@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app';
-import { userComments } from './mocks/user-comments';
 import { Provider } from 'react-redux';
 import { store } from './storage/index-redux';
 import { CITIES } from './consts/city-location';
@@ -20,7 +19,6 @@ root.render(
     <Provider store={store}>
       <App
         cities = {CITIES}
-        userComments={userComments}
       />
     </Provider>
   </React.StrictMode>

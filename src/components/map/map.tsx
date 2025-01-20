@@ -7,7 +7,7 @@ import { getLocationByCityName } from '../../utils';
 
 type MapComponentProps = {
   offersLocation: OfferLocation[];
-  selectedOffer: OfferType | undefined;
+  selectedOffer?: OfferType | undefined;
   currentCity: CityName;
 }
 
