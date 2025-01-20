@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
 import { getCurrentCity, getOffersByCity } from '../../storage/selectors';
 import { loadOfferById } from '../../storage/actions/actions';
 import { fetchOfferByIdAction } from '../../storage/actions/api-actions';
+import ErrorScreen from '../error-page/error-screen';
 
 type OfferProps = {
   userComments: UserComments[];
@@ -38,19 +39,29 @@ function OfferScreen({userComments}: OfferProps): JSX.Element {
 
   const onOverOffer = (offerId: string | null): void => setSelectedOfferForMap(offersByCity.find((offer) => offer.id === offerId));
   const onOutOffer = (): void => setSelectedOfferForMap(undefined);
-  let currentOffer: OfferTypeById | null = null;
 
 
   useEffect(() => {
     if(id) {
-      dispatch(fetchOfferByIdAction(id));
+      dispatch(fetchOfferByIdAction(id))
+        /* .then((response) => {
+          if(response.meta.requestStatus = 'fulfilled'){
+            dispatch(fetchOfferCommentAction(id));
+            dispatch()
+          }
+        }) */;
     }
     return () => {
       dispatch(loadOfferById(null));
     };
   }, [dispatch, id]);
 
-  currentOffer = useAppSelector((state) => state.offerById);
+  const currentOffer: OfferTypeById | null = useAppSelector((state) => state.offerById);
+
+
+  if(currentOffer === null){
+    return <ErrorScreen />
+  }
 
   return (
     <div className="page">

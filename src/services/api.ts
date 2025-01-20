@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { getToken } from './token';
 import { StatusCodes } from 'http-status-codes';
+import { toast } from 'react-toastify';
 import { processErrorHandle } from '../storage/processErrorHandle';
 
 const BACKEND_URL = 'https://16.design.htmlacademy.pro/six-cities';
@@ -13,7 +14,7 @@ const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.NOT_FOUND]: true
 };
 
-const shouldDisplayError = (response: AxiosResponse) => !StatusCodeMapping[response.status];
+const shouldDisplayError = (response: AxiosResponse) => StatusCodeMapping[response.status];
 
 export const createAPI = (): AxiosInstance => {
 
@@ -51,6 +52,7 @@ export const createAPI = (): AxiosInstance => {
     (error: AxiosError<{message: string}>) => {
       if(error.response && shouldDisplayError(error.response)){
         processErrorHandle(error.response.data.message);
+        toast.warn(error.response.data.message);
       }
 
       /* Использование ключевого слова trow, поможет

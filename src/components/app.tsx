@@ -12,6 +12,8 @@ import { UserComments } from '../types/user-type';
 import Preloader from './preloader/preloader';
 import { useAppSelector } from '../hooks/state/state-hooks';
 import { getLoadingStatus } from '../storage/selectors';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type AppProps = {
   cities: CityType[];
@@ -29,42 +31,43 @@ function App({cities, userComments}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <Routes>
-          <Route
-            path={AppRoute.Main}
-            element = {
-              <MainScreen
-                cities={cities}
-              />
-            }
-          />
-          <Route
-            path={AppRoute.Login}
-            element = {
-              <LoginScreen />
-            }
-          />
-          <Route
-            path={AppRoute.Favorites}
-            element = {
-              <PrivateRoute >
-                <FavoritesScreen />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path={AppRoute.Offer}
-            element = {
-              <OfferScreen
-                userComments={userComments}
-              />
-            }
-          />
-          <Route
-            path={AppRoute.Error}
-            element = {<ErrorScreen />}
-          />
-        </Routes>
+      <ToastContainer />
+      <Routes>
+        <Route
+          path={AppRoute.Main}
+          element = {
+            <MainScreen
+              cities={cities}
+            />
+          }
+        />
+        <Route
+          path={AppRoute.Login}
+          element = {
+            <LoginScreen />
+          }
+        />
+        <Route
+          path={AppRoute.Favorites}
+          element = {
+            <PrivateRoute >
+              <FavoritesScreen />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={AppRoute.Offer}
+          element = {
+            <OfferScreen
+              userComments={userComments}
+            />
+          }
+        />
+        <Route
+          path={AppRoute.Error}
+          element = {<ErrorScreen />}
+        />
+      </Routes>
       </BrowserRouter>
     </HelmetProvider>
   );
@@ -79,4 +82,5 @@ export default App;
   - перейти на createSlice
   - отрефакторить карту, добавив еще 1 маркер - маркер активного оффера
   оранжевый, лишнюю функциональность убрать
+  - добавить поля для каждой ошибки в state
 */
