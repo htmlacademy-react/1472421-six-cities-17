@@ -11,7 +11,7 @@ import { getOffersLocation } from '../../utils';
 import { useEffect } from 'react';
 import CardsList from '../../components/card/cards-list';
 import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
-import { getCurrentCity } from '../../storage/selectors';
+import { getCurrentCity, getNearbyOffers, getOfferById } from '../../storage/selectors';
 import { loadOfferById } from '../../storage/actions/actions';
 import { fetchNearbyCommentAction, fetchOfferByIdAction, fetchUsersCommentsAction } from '../../storage/actions/api-actions';
 import ErrorScreen from '../error-page/error-screen';
@@ -51,8 +51,8 @@ function OfferScreen(): JSX.Element {
     };
   }, [dispatch, id]);
 
-  const currentOffer: OfferTypeById | null = useAppSelector((state) => state.offerById);
-  const nearbyOffers: OfferType[] = useAppSelector((state) => state.nearbyOffers.slice(0, 3));
+  const currentOffer: OfferTypeById | null = useAppSelector(getOfferById);
+  const nearbyOffers: OfferType[] = useAppSelector(getNearbyOffers);
 
   if(currentOffer === null || id === undefined){
     return <ErrorScreen />
@@ -70,12 +70,12 @@ function OfferScreen(): JSX.Element {
       <main className="page__main page__main--offer">
         <section className="offer">
 
-          {currentOffer !== null && <OfferGallery offer={currentOffer}/>}
+          <OfferGallery offer={currentOffer}/>
 
           <div className="offer__container container">
             <div className="offer__wrapper">
 
-              {currentOffer !== null && <OfferDetails offer={currentOffer}/>}
+              <OfferDetails offer={currentOffer}/>
 
               <OfferReviews offerId={id}/>
 
@@ -86,6 +86,7 @@ function OfferScreen(): JSX.Element {
               <MapComponent
                 offersLocation={getOffersLocation(nearbyOffers)}
                 currentCity={currentCity}
+                currentOfferLocation={{id: currentOffer.id, location: currentOffer.location}}
               /> : null}
           </section>
         </section>

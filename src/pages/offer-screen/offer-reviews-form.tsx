@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { AuthorizationStatus, MAX_CHARACTERS_FOR_COMMENT, MIN_CHARACTERS_FOR_COMMENT } from '../../const';
-import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
-import { getAuthorizationStatus } from '../../storage/selectors';
+import { MAX_CHARACTERS_FOR_COMMENT, MIN_CHARACTERS_FOR_COMMENT } from '../../const';
+import { useAppDispatch } from '../../hooks/state/state-hooks';
 import { postComment } from '../../storage/actions/api-actions';
 import { FormDataType } from '../../types/user-type';
 
@@ -17,7 +16,6 @@ const initialState: FormDataType = {
 function OfferReviewsForm({offerId}: OfferReviewsFormProps): JSX.Element {
 
   const [formData, setFormData] = useState<FormDataType>(initialState);
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
 
   /* обработчик принимает два аргумента
@@ -42,12 +40,8 @@ function OfferReviewsForm({offerId}: OfferReviewsFormProps): JSX.Element {
   /* При отправке формы очищает её и дизейблит кнопку */
   const submitFormDataHandler = (evt: FormEvent<HTMLFormElement>):void => {
     evt.preventDefault();
-    const comment = formData.comment;
-    const rating = +formData.rating;
-    if(authorizationStatus === AuthorizationStatus.Auth){
-      dispatch(postComment({id: offerId, rating, comment}))
-        .then((response) => console.log(response.payload));
-    }
+
+    dispatch(postComment({id: offerId, rating: +formData.rating, comment: formData.comment}));
   };
 
 

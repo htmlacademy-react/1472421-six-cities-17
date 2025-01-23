@@ -9,6 +9,7 @@ type MapComponentProps = {
   offersLocation: OfferLocation[];
   selectedOffer?: OfferType | undefined;
   currentCity: CityName;
+  currentOfferLocation?: OfferLocation
 }
 
 const defaultCustomIcon = new Icon({
@@ -23,7 +24,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function MapComponent({offersLocation, selectedOffer, currentCity}: MapComponentProps): JSX.Element {
+function MapComponent({offersLocation, selectedOffer, currentCity, currentOfferLocation}: MapComponentProps): JSX.Element {
   const refMap = useRef(null);
 
   /* Хук возвращает объект map из библиотеки leaflet
@@ -56,6 +57,16 @@ function MapComponent({offersLocation, selectedOffer, currentCity}: MapComponent
         /* Добавляем маркеры на слой маркеров, созданных для созданной карты */
         ).addTo(markerLayer);
       });
+
+      if(currentOfferLocation){
+        const currentOfferMarker = new Marker({
+          lat: currentOfferLocation.location.latitude,
+          lng: currentOfferLocation.location.longitude,
+        });
+
+        currentOfferMarker.setIcon(currentCustomIcon).addTo(markerLayer);
+
+      }
 
       /* Описываем отмену эффекта - удаление слоя маркеров */
       return () => {

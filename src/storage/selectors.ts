@@ -23,6 +23,9 @@ const getLoadingStatus = (state: State) => state.isLoading;
 
 const getAuthorizationStatus = (state: State) => state.authorizationStatus;
 
+const getNearbyOffers = (state: State) => state.nearbyOffers.slice(0,3);
+
+const getOfferById = (state: State) => state.offerById;
 
 export {
   getCurrentCity,
@@ -31,5 +34,7 @@ export {
   getOffersByCity,
   getSortedOffers,
   getLoadingStatus,
-  getAuthorizationStatus
+  getAuthorizationStatus,
+  getNearbyOffers,
+  getOfferById
 };
