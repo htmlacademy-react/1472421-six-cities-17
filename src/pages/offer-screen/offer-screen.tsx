@@ -5,7 +5,7 @@ import OfferGallery from './offer-gallery';
 import { NameCard } from '../../const';
 import { OfferType, OfferTypeById } from '../../types/offer-types';
 import {useParams } from 'react-router-dom';
-import OfferReviews from './offer-reviews';
+import OfferReviews from './reviews/offer-reviews';
 import MapComponent from '../../components/map/map';
 import { getOffersLocation } from '../../utils';
 import { useEffect } from 'react';
@@ -40,7 +40,7 @@ function OfferScreen(): JSX.Element {
     if(id) {
       dispatch(fetchOfferByIdAction(id))
         .then((response) => {
-          if(response.meta.requestStatus = 'fulfilled'){
+          if(response.meta.requestStatus === 'fulfilled'){
             dispatch(fetchUsersCommentsAction(id));
             dispatch(fetchNearbyCommentAction(id));
           }
@@ -55,7 +55,7 @@ function OfferScreen(): JSX.Element {
   const nearbyOffers: OfferType[] = useAppSelector(getNearbyOffers);
 
   if(currentOffer === null || id === undefined){
-    return <ErrorScreen />
+    return <ErrorScreen />;
   }
 
   return (

@@ -9,7 +9,7 @@ type MapComponentProps = {
   offersLocation: OfferLocation[];
   selectedOffer?: OfferType | undefined;
   currentCity: CityName;
-  currentOfferLocation?: OfferLocation
+  currentOfferLocation?: OfferLocation;
 }
 
 const defaultCustomIcon = new Icon({
@@ -73,7 +73,7 @@ function MapComponent({offersLocation, selectedOffer, currentCity, currentOfferL
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offersLocation, selectedOffer]);
+  }, [map, offersLocation, selectedOffer, currentOfferLocation]);
 
   return <div style={{height: '100%'}} ref={refMap}></div>;
 }

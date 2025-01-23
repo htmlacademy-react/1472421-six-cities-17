@@ -1,47 +1,49 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { MAX_CHARACTERS_FOR_COMMENT, MIN_CHARACTERS_FOR_COMMENT } from '../../const';
-import { useAppDispatch } from '../../hooks/state/state-hooks';
-import { postComment } from '../../storage/actions/api-actions';
-import { FormDataType } from '../../types/user-type';
+import { MAX_CHARACTERS_FOR_COMMENT, MIN_CHARACTERS_FOR_COMMENT } from '../../../const';
+import { useAppDispatch } from '../../../hooks/state/state-hooks';
+import { postComment } from '../../../storage/actions/api-actions';
+import { FormDataType } from '../../../types/user-type';
+
 
 type OfferReviewsFormProps = {
   offerId: string;
 }
 
 const initialState: FormDataType = {
-  rating: 0,
+  rating: -1,
   comment: ''
 };
 
 function OfferReviewsForm({offerId}: OfferReviewsFormProps): JSX.Element {
 
-  const [formData, setFormData] = useState<FormDataType>(initialState);
+  const [comment, setComment] = useState<string>(initialState.comment);
+  const [rating, setRating] = useState<number>(initialState.rating);
   const dispatch = useAppDispatch();
 
-  /* обработчик принимает два аргумента
-    1 - объект события с типом changeEvent для инпута или для поля ввода текста
-    2 - имя ключа объекта formData */
-  const changeFormDataHandler = (
-    evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>,
-    inputName: keyof FormDataType
-  ) => {
-    setFormData((prevData) => (
-      {
-        ...prevData,
-        [inputName]: evt.target.value
-      }
-    ));
-  };
 
-  const isValidForm = formData.comment.length >= MIN_CHARACTERS_FOR_COMMENT
-    &&  formData.comment.length <= MAX_CHARACTERS_FOR_COMMENT
-    && formData.rating
+  const changeRatingHandler = (evt: ChangeEvent<HTMLInputElement>) => setRating(+evt.target.value);
+
+  const changeCommentHandler = (evt: ChangeEvent<HTMLTextAreaElement>) => setComment(evt.target.value);
+
+
+  const isValidForm = (comment.length >= MIN_CHARACTERS_FOR_COMMENT)
+    && (comment.length <= MAX_CHARACTERS_FOR_COMMENT)
+    && (rating > 0);
+
 
   /* При отправке формы очищает её и дизейблит кнопку */
   const submitFormDataHandler = (evt: FormEvent<HTMLFormElement>):void => {
     evt.preventDefault();
 
-    dispatch(postComment({id: offerId, rating: +formData.rating, comment: formData.comment}));
+    if(isValidForm){
+      dispatch(postComment({id: offerId, rating, comment}))
+        .then((response) => {
+          if(response.meta.requestStatus === 'fulfilled'){
+            setComment(initialState.comment);
+            setRating(initialState.rating);
+          }
+        });
+    }
   };
 
 
@@ -57,8 +59,8 @@ function OfferReviewsForm({offerId}: OfferReviewsFormProps): JSX.Element {
           defaultValue={5}
           id="5-stars"
           type="radio"
-          checked={5 === formData.rating}
-          onChange={(evt) => changeFormDataHandler(evt, 'rating')}
+          checked={5 === rating}
+          onChange={changeRatingHandler}
         />
         <label
           htmlFor="5-stars"
@@ -75,8 +77,8 @@ function OfferReviewsForm({offerId}: OfferReviewsFormProps): JSX.Element {
           defaultValue={4}
           id="4-stars"
           type="radio"
-          checked={4 === formData.rating}
-          onChange={(evt) => changeFormDataHandler(evt, 'rating')}
+          checked={4 === rating}
+          onChange={changeRatingHandler}
         />
         <label
           htmlFor="4-stars"
@@ -93,8 +95,8 @@ function OfferReviewsForm({offerId}: OfferReviewsFormProps): JSX.Element {
           defaultValue={3}
           id="3-stars"
           type="radio"
-          checked={3 === formData.rating}
-          onChange={(evt) => changeFormDataHandler(evt, 'rating')}
+          checked={3 === rating}
+          onChange={changeRatingHandler}
         />
         <label
           htmlFor="3-stars"
@@ -111,8 +113,8 @@ function OfferReviewsForm({offerId}: OfferReviewsFormProps): JSX.Element {
           defaultValue={2}
           id="2-stars"
           type="radio"
-          checked={2 === formData.rating}
-          onChange={(evt) => changeFormDataHandler(evt, 'rating')}
+          checked={2 === rating}
+          onChange={changeRatingHandler}
         />
         <label
           htmlFor="2-stars"
@@ -129,8 +131,8 @@ function OfferReviewsForm({offerId}: OfferReviewsFormProps): JSX.Element {
           defaultValue={1}
           id="1-star"
           type="radio"
-          checked={1 === formData.rating}
-          onChange={(evt) => changeFormDataHandler(evt, 'rating')}
+          checked={1 === rating}
+          onChange={changeRatingHandler}
         />
         <label
           htmlFor="1-star"
@@ -147,8 +149,8 @@ function OfferReviewsForm({offerId}: OfferReviewsFormProps): JSX.Element {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={formData.comment}
-        onChange={(evt) => changeFormDataHandler(evt, 'comment')}
+        value={comment}
+        onChange={changeCommentHandler}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">

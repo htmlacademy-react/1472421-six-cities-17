@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, changeSortParam, checkLoading, checkLoadingOffer, loadNearbyOffers, loadOfferById, loadOffers, loadUsersComments, pushComment, requireAuthorization } from './actions/actions';
+import { changeCity, changeSortParam, checkLoading, checkLoadingOffer, loadNearbyOffers, loadOfferById, loadOffers, loadUsersComments, pushComment, requireAuthorization, setUserLogin } from './actions/actions';
 import { CityName, OfferType, OfferTypeById } from '../types/offer-types';
 import { AuthorizationStatus, SortingParams } from '../const';
 import { UserComments } from '../types/user-type';
@@ -15,6 +15,7 @@ const initialState = {
   offerById: null as OfferTypeById | null,
   usersComments: [] as UserComments[],
   nearbyOffers: [] as OfferType[],
+  userLogin: ''
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -48,6 +49,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(pushComment, (state, action) => {
       state.usersComments.push(action.payload);
+    })
+    .addCase(setUserLogin,(state, action) => {
+      state.userLogin = action.payload;
     });
 });
 

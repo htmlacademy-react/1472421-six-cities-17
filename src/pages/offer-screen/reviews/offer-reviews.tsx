@@ -1,6 +1,6 @@
-import { AuthorizationStatus } from '../../const';
-import { useAppSelector } from '../../hooks/state/state-hooks';
-import { getAuthorizationStatus } from '../../storage/selectors';
+import { AuthorizationStatus } from '../../../const';
+import { useAppSelector } from '../../../hooks/state/state-hooks';
+import { getAuthorizationStatus } from '../../../storage/selectors';
 import OfferReviewsForm from './offer-reviews-form';
 import OfferReviewsList from './offer-reviews-list';
 

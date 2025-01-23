@@ -1,5 +1,5 @@
-import { UserComments } from '../../types/user-type';
-import { getFormattedDate } from '../../utils';
+import { UserComments } from '../../../types/user-type';
+import { getFormattedDate } from '../../../utils';
 
 type OfferReviewsItemProp = {
   comment: UserComments;

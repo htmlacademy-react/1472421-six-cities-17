@@ -115,9 +115,9 @@ export const fetchUsersCommentsAction = createAsyncThunk<void, string, {
 
 
 export const fetchNearbyCommentAction = createAsyncThunk<void, string, {
-  dispatch: AppDispatch,
-  state: State,
-  extra: AxiosInstance
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
 }>(
   'offers/loadNearbyOffers',
   async (id, {dispatch, extra: api}) => {
@@ -136,6 +136,8 @@ export const postComment = createAsyncThunk<void, PostUserCommentType, {
 }>(
   'offers/postComment',
   async ({id, rating, comment}, {dispatch, extra: api}) => {
+
+
     const {data} = await api.post<UserComments>(`${APIRoute.Comments}/${id}`, {rating, comment});
 
     dispatch(pushComment(data));

@@ -27,6 +27,8 @@ const getNearbyOffers = (state: State) => state.nearbyOffers.slice(0,3);
 
 const getOfferById = (state: State) => state.offerById;
 
+const getUserLogin = (state: State) => state.userLogin;
+
 export {
   getCurrentCity,
   getOffers,
@@ -36,5 +38,6 @@ export {
   getLoadingStatus,
   getAuthorizationStatus,
   getNearbyOffers,
-  getOfferById
+  getOfferById,
+  getUserLogin
 };

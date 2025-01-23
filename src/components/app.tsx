@@ -29,41 +29,37 @@ function App({cities}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
-      <ToastContainer />
-      <Routes>
-        <Route
-          path={AppRoute.Main}
-          element = {
-            <MainScreen
-              cities={cities}
-            />
-          }
-        />
-        <Route
-          path={AppRoute.Login}
-          element = {
-            <LoginScreen />
-          }
-        />
-        <Route
-          path={AppRoute.Favorites}
-          element = {
-            <PrivateRoute >
-              <FavoritesScreen />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={AppRoute.Offer}
-          element = {
-            <OfferScreen />
-          }
-        />
-        <Route
-          path={AppRoute.Error}
-          element = {<ErrorScreen />}
-        />
-      </Routes>
+        <ToastContainer />
+        <Routes>
+          <Route
+            path={AppRoute.Main}
+            element = {<MainScreen cities={cities}/>}
+          />
+          <Route
+            path={AppRoute.Login}
+            element = {
+              <LoginScreen />
+            }
+          />
+          <Route
+            path={AppRoute.Favorites}
+            element = {
+              <PrivateRoute >
+                <FavoritesScreen />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={AppRoute.Offer}
+            element = {
+              <OfferScreen />
+            }
+          />
+          <Route
+            path={AppRoute.Error}
+            element = {<ErrorScreen />}
+          />
+        </Routes>
       </BrowserRouter>
     </HelmetProvider>
   );
@@ -74,9 +70,6 @@ export default App;
 /*
   - перейти на createSlice
   - добавить поля для каждой ошибки в state
-  - отредактировать страницу оффера в соответствии с ТЗ!!!
-  - сделать прелоадер коментов и предложений неподалеку(почему ингда 404)
-  - отрефакторить возможность отправлять коментарии в соответствии с ТЗ!!
   - добавить функции для всех селекторов
   - добавить отображение почты пользователя при логировании
 */

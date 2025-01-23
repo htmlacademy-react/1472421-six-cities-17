@@ -3,6 +3,7 @@ import { useAppDispatch } from '../../hooks/state/state-hooks';
 import { loginAction } from '../../storage/actions/api-actions';
 import { AppRoute } from '../../const';
 import { useNavigate } from 'react-router-dom';
+import { setUserLogin } from '../../storage/actions/actions';
 
 function LoginForm(): JSX.Element {
 
@@ -37,6 +38,7 @@ function LoginForm(): JSX.Element {
         .then((response) => {
           if(response.meta.requestStatus === 'fulfilled'){
             navigate(AppRoute.Main);
+            dispatch(setUserLogin(formData.login));
           }
         });
     }
@@ -60,7 +62,6 @@ function LoginForm(): JSX.Element {
             placeholder="Email"
             onChange={onChangeHandler}
             value={formData.login}
-            pattern='\w{1,}[@]\w{1,}\.\w{1,}'
             required
           />
         </div>
@@ -73,7 +74,6 @@ function LoginForm(): JSX.Element {
             placeholder="Password"
             onChange={onChangeHandler}
             value={formData.password}
-            /* pattern='(?=^.{2,}$)(?=.*\d)(?=.*[a-zA-Z])' */
             required
           />
         </div>

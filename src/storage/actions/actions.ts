@@ -23,3 +23,5 @@ export const loadUsersComments = createAction<UserComments[]>('offers/loadUsersC
 export const loadNearbyOffers = createAction<OfferType[]>('offers/loadNearbyOffers');
 
 export const pushComment = createAction<UserComments>('offers/postComment');
+
+export const setUserLogin = createAction<string>('user/setUserLogin');

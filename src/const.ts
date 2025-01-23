@@ -52,8 +52,8 @@ enum APIRoute {
   Nearby = 'nearby'
 }
 
-const URL_MARKER_DEFAULT = '../public/img/pin.svg';
-const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
+const URL_MARKER_DEFAULT = '../img/pin.svg';
+const URL_MARKER_CURRENT = '../img/pin-active.svg';
 const TIMEOUT_SHOW_ERROR = 2000;
 const MIN_CHARACTERS_FOR_COMMENT = 50;
 const MAX_CHARACTERS_FOR_COMMENT = 300;
