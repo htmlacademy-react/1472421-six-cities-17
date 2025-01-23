@@ -3,8 +3,8 @@ import { AppDispatch, State } from '../../types/state';
 import { AxiosInstance } from 'axios';
 import { OfferType, OfferTypeById } from '../../types/offer-types';
 import { APIRoute, AuthorizationStatus } from '../../const';
-import { checkLoading, checkLoadingOffer, loadNearbyOffers, loadOfferById, loadOffers, loadUsersComments, requireAuthorization } from './actions';
-import { AuthDataType, User, UserComments } from '../../types/user-type';
+import { checkLoading, checkLoadingOffer, loadNearbyOffers, loadOfferById, loadOffers, loadUsersComments, pushComment, requireAuthorization } from './actions';
+import { AuthDataType, PostUserCommentType, User, UserComments } from '../../types/user-type';
 import { dropToken, saveToken } from '../../services/token';
 
 
@@ -126,4 +126,18 @@ export const fetchNearbyCommentAction = createAsyncThunk<void, string, {
 
     dispatch(loadNearbyOffers(data));
   }
+);
+
+
+export const postComment = createAsyncThunk<void, PostUserCommentType, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'offers/postComment',
+  async ({id, rating, comment}, {dispatch, extra: api}) => {
+    const {data} = await api.post<UserComments>(`${APIRoute.Comments}/${id}`, {rating, comment});
+
+    dispatch(pushComment(data));
+  },
 );

@@ -12,6 +12,17 @@ export type UserComments = {
   rating: number;
 }
 
+export type FormDataType = {
+  rating: number;
+  comment: string;
+}
+
+export type PostUserCommentType = {
+  id: string;
+  rating: number;
+  comment: string;
+}
+
 
 export type User = {
   name: string;

@@ -60,6 +60,7 @@ function LoginForm(): JSX.Element {
             placeholder="Email"
             onChange={onChangeHandler}
             value={formData.login}
+            pattern='\w{1,}[@]\w{1,}\.\w{1,}'
             required
           />
         </div>
@@ -72,6 +73,7 @@ function LoginForm(): JSX.Element {
             placeholder="Password"
             onChange={onChangeHandler}
             value={formData.password}
+            /* pattern='(?=^.{2,}$)(?=.*\d)(?=.*[a-zA-Z])' */
             required
           />
         </div>

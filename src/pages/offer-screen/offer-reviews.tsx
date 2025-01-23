@@ -2,15 +2,19 @@ import { useAppSelector } from '../../hooks/state/state-hooks';
 import OfferReviewsForm from './offer-reviews-form';
 import OfferReviewsList from './offer-reviews-list';
 
+type OfferReviewsProps = {
+  offerId: string;
+}
 
-function OfferReviews(): JSX.Element {
+
+function OfferReviews({offerId}: OfferReviewsProps): JSX.Element {
 
   const userComments = useAppSelector((state) => state.usersComments);
 
   return(
     <section className="offer__reviews reviews">
       <OfferReviewsList userComments={userComments}/>
-      <OfferReviewsForm />
+      <OfferReviewsForm offerId={offerId}/>
     </section>
   );
 }

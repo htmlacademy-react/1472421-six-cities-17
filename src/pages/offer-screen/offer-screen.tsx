@@ -24,7 +24,7 @@ function OfferScreen(): JSX.Element {
   на главном экране, т.к. при клике на карточу с помощью
   служебного компонента Link приложение перенаправит пользователя на вновь сформированный
   адрес offer/id - где id - соответствует полю id конкретного предложения) */
-  const {id} = useParams();
+  const {id} = useParams<string>();
   const dispatch = useAppDispatch();
 
 
@@ -54,7 +54,7 @@ function OfferScreen(): JSX.Element {
   const currentOffer: OfferTypeById | null = useAppSelector((state) => state.offerById);
   const nearbyOffers: OfferType[] = useAppSelector((state) => state.nearbyOffers.slice(0, 3));
 
-  if(currentOffer === null){
+  if(currentOffer === null || id === undefined){
     return <ErrorScreen />
   }
 
@@ -77,7 +77,7 @@ function OfferScreen(): JSX.Element {
 
               {currentOffer !== null && <OfferDetails offer={currentOffer}/>}
 
-              <OfferReviews />
+              <OfferReviews offerId={id}/>
 
             </div>
           </div>

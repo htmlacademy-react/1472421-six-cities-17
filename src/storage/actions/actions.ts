@@ -21,3 +21,5 @@ export const loadOfferById = createAction<OfferTypeById | null>('offers/loadOffe
 export const loadUsersComments = createAction<UserComments[]>('offers/loadUsersComments');
 
 export const loadNearbyOffers = createAction<OfferType[]>('offers/loadNearbyOffers');
+
+export const pushComment = createAction<UserComments>('offers/postComment');

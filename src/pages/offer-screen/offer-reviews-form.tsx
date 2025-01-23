@@ -1,19 +1,24 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { AuthorizationStatus, MAX_CHARACTERS_FOR_COMMENT, MIN_CHARACTERS_FOR_COMMENT } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
+import { getAuthorizationStatus } from '../../storage/selectors';
+import { postComment } from '../../storage/actions/api-actions';
+import { FormDataType } from '../../types/user-type';
 
-type FormDataType = {
-  rating: number | null;
-  textReviews: string;
+type OfferReviewsFormProps = {
+  offerId: string;
 }
 
 const initialState: FormDataType = {
-  rating: null,
-  textReviews: ''
+  rating: 0,
+  comment: ''
 };
 
-function OfferReviewsForm(): JSX.Element {
+function OfferReviewsForm({offerId}: OfferReviewsFormProps): JSX.Element {
 
   const [formData, setFormData] = useState<FormDataType>(initialState);
-  const [isInputSubmitDisabled, setIsInputSubmitDisabled] = useState<boolean>(true);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const dispatch = useAppDispatch();
 
   /* обработчик принимает два аргумента
     1 - объект события с типом changeEvent для инпута или для поля ввода текста
@@ -28,23 +33,26 @@ function OfferReviewsForm(): JSX.Element {
         [inputName]: evt.target.value
       }
     ));
-
-    /* Разблокирует кнопку при тексте отзыва длинной 50 или больше символов */
-    if(formData.textReviews.length >= 49 && formData.textReviews.length < 300){
-      setIsInputSubmitDisabled(false);
-    }
   };
 
+  const isValidForm = formData.comment.length >= MIN_CHARACTERS_FOR_COMMENT
+    &&  formData.comment.length <= MAX_CHARACTERS_FOR_COMMENT
+    && formData.rating
+
   /* При отправке формы очищает её и дизейблит кнопку */
-  const submitFormData = (evt: FormEvent<HTMLFormElement>) => {
+  const submitFormDataHandler = (evt: FormEvent<HTMLFormElement>):void => {
     evt.preventDefault();
-    setFormData(initialState);
-    setIsInputSubmitDisabled(true);
+    const comment = formData.comment;
+    const rating = +formData.rating;
+    if(authorizationStatus === AuthorizationStatus.Auth){
+      dispatch(postComment({id: offerId, rating, comment}))
+        .then((response) => console.log(response.payload));
+    }
   };
 
 
   return(
-    <form onSubmit={submitFormData} className="reviews__form form" action="#" method="post">
+    <form onSubmit={submitFormDataHandler} className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -55,6 +63,7 @@ function OfferReviewsForm(): JSX.Element {
           defaultValue={5}
           id="5-stars"
           type="radio"
+          checked={5 === formData.rating}
           onChange={(evt) => changeFormDataHandler(evt, 'rating')}
         />
         <label
@@ -72,6 +81,7 @@ function OfferReviewsForm(): JSX.Element {
           defaultValue={4}
           id="4-stars"
           type="radio"
+          checked={4 === formData.rating}
           onChange={(evt) => changeFormDataHandler(evt, 'rating')}
         />
         <label
@@ -89,6 +99,7 @@ function OfferReviewsForm(): JSX.Element {
           defaultValue={3}
           id="3-stars"
           type="radio"
+          checked={3 === formData.rating}
           onChange={(evt) => changeFormDataHandler(evt, 'rating')}
         />
         <label
@@ -106,6 +117,7 @@ function OfferReviewsForm(): JSX.Element {
           defaultValue={2}
           id="2-stars"
           type="radio"
+          checked={2 === formData.rating}
           onChange={(evt) => changeFormDataHandler(evt, 'rating')}
         />
         <label
@@ -123,6 +135,7 @@ function OfferReviewsForm(): JSX.Element {
           defaultValue={1}
           id="1-star"
           type="radio"
+          checked={1 === formData.rating}
           onChange={(evt) => changeFormDataHandler(evt, 'rating')}
         />
         <label
@@ -140,8 +153,8 @@ function OfferReviewsForm(): JSX.Element {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={formData.textReviews}
-        onChange={(evt) => changeFormDataHandler(evt, 'textReviews')}
+        value={formData.comment}
+        onChange={(evt) => changeFormDataHandler(evt, 'comment')}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
@@ -153,8 +166,7 @@ function OfferReviewsForm(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={isInputSubmitDisabled}
-
+          disabled={!isValidForm}
         >
           Submit
         </button>

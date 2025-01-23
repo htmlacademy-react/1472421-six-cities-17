@@ -55,7 +55,8 @@ enum APIRoute {
 const URL_MARKER_DEFAULT = '../public/img/pin.svg';
 const URL_MARKER_CURRENT = '../public/img/pin-active.svg';
 const TIMEOUT_SHOW_ERROR = 2000;
-
+const MIN_CHARACTERS_FOR_COMMENT = 50;
+const MAX_CHARACTERS_FOR_COMMENT = 300;
 
 export {
   AppRoute,
@@ -68,5 +69,7 @@ export {
   OFFERS_CLASS,
   SortingParams,
   APIRoute,
-  TIMEOUT_SHOW_ERROR
+  TIMEOUT_SHOW_ERROR,
+  MIN_CHARACTERS_FOR_COMMENT,
+  MAX_CHARACTERS_FOR_COMMENT
 };
