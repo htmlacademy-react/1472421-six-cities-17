@@ -1,14 +1,15 @@
 import { useEffect, useRef } from 'react';
 import { useMap } from '../../hooks/use-map';
-import { CityName, OfferLocation, OfferType } from '../../types/offer-types';
+import { OfferLocation, OfferType } from '../../types/offer-types';
 import { Marker, layerGroup, Icon } from 'leaflet';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { getLocationByCityName } from '../../utils';
+import { getCurrentCity } from '../../storage/selectors';
+import { useAppSelector } from '../../hooks/state/state-hooks';
 
 type MapComponentProps = {
   offersLocation: OfferLocation[];
   selectedOffer?: OfferType | undefined;
-  currentCity: CityName;
   currentOfferLocation?: OfferLocation;
 }
 
@@ -24,8 +25,10 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function MapComponent({offersLocation, selectedOffer, currentCity, currentOfferLocation}: MapComponentProps): JSX.Element {
+function MapComponent({offersLocation, selectedOffer, currentOfferLocation}: MapComponentProps): JSX.Element {
   const refMap = useRef(null);
+
+  const currentCity = useAppSelector(getCurrentCity);
 
   /* Хук возвращает объект map из библиотеки leaflet
   первым параметром принимает ссылку на блок, в котором рендерится карта,

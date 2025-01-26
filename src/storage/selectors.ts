@@ -29,6 +29,8 @@ const getOfferById = (state: State) => state.offerById;
 
 const getUserLogin = (state: State) => state.userLogin;
 
+const getLoadingOfferStatus = (state: State) => state.isLoadingOffer;
+
 export {
   getCurrentCity,
   getOffers,
@@ -39,5 +41,6 @@ export {
   getAuthorizationStatus,
   getNearbyOffers,
   getOfferById,
-  getUserLogin
+  getUserLogin,
+  getLoadingOfferStatus
 };

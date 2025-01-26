@@ -1,29 +1,42 @@
+import { useCallback, useState } from 'react';
 import CardsList from '../../components/card/cards-list';
 import MapComponent from '../../components/map/map';
 import { NameCard } from '../../const';
-import { CityName, OfferType } from '../../types/offer-types';
+import { OfferType } from '../../types/offer-types';
 import { getOffersLocation } from '../../utils';
 import SortOffersForm from './sort-offers-form';
-
-type OfferSectionProps = {
-  offers: OfferType[];
-  currentCity: CityName;
-  onOverOffer: (offerId: string) => void;
-  onOutOffer: () => void;
-  currentOffer: OfferType | undefined;
-}
+import { useAppSelector } from '../../hooks/state/state-hooks';
+import { getCurrentCity, getSortedOffers } from '../../storage/selectors';
 
 
-function OfferSection({offers, currentCity, onOverOffer, onOutOffer, currentOffer}: OfferSectionProps): JSX.Element {
+function OfferSection(): JSX.Element {
+
+  const [currentOffer, setCurrentOffer] = useState<OfferType | undefined>(undefined);
+
+  const sortedOffers = useAppSelector(getSortedOffers);
+
+  const currentCity = useAppSelector(getCurrentCity);
+
+  const onOverOffer = useCallback(
+    (offerId: string | null): void => setCurrentOffer(sortedOffers.find((offer) => offer.id === offerId)),
+    []
+  );
+
+  /* При убирании курсора с карточки offer текущий offer
+  становиться undefinedб для того, что бы убрать выделение маркера на карте */
+  const onOutOffer = useCallback(
+    (): void => setCurrentOffer(undefined),
+    []
+  );
   return(
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{offers.length} places to stay in {currentCity}</b>
+        <b className="places__found">{sortedOffers.length} places to stay in {currentCity}</b>
         <SortOffersForm />
         <div className="cities__places-list places__list tabs__content">
           <CardsList
-            offers={offers}
+            offers={sortedOffers}
             nameCard={NameCard.Cities}
             onOverOffer={onOverOffer}
             onOutOffer={onOutOffer}
@@ -33,9 +46,8 @@ function OfferSection({offers, currentCity, onOverOffer, onOutOffer, currentOffe
       <div className="cities__right-section">
         <section className="cities__map map" >
           <MapComponent
-            offersLocation={getOffersLocation(offers)}
+            offersLocation={getOffersLocation(sortedOffers)}
             selectedOffer={currentOffer}
-            currentCity={currentCity}
           />
         </section>
       </div>

@@ -11,10 +11,11 @@ import { getOffersLocation } from '../../utils';
 import { useEffect } from 'react';
 import CardsList from '../../components/card/cards-list';
 import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
-import { getCurrentCity, getNearbyOffers, getOfferById } from '../../storage/selectors';
+import { getCurrentCity, getLoadingOfferStatus, getNearbyOffers, getOfferById } from '../../storage/selectors';
 import { loadOfferById } from '../../storage/actions/actions';
 import { fetchNearbyCommentAction, fetchOfferByIdAction, fetchUsersCommentsAction } from '../../storage/actions/api-actions';
 import ErrorScreen from '../error-page/error-screen';
+import Preloader from '../../components/preloader/preloader';
 
 
 function OfferScreen(): JSX.Element {
@@ -53,8 +54,12 @@ function OfferScreen(): JSX.Element {
 
   const currentOffer: OfferTypeById | null = useAppSelector(getOfferById);
   const nearbyOffers: OfferType[] = useAppSelector(getNearbyOffers);
+  const isLoadingOffer = useAppSelector(getLoadingOfferStatus);
 
-  if(currentOffer === null || id === undefined){
+  if(id === undefined || currentOffer === null){
+    if(!isLoadingOffer){
+      return <Preloader />
+    }
     return <ErrorScreen />;
   }
 
