@@ -1,7 +1,6 @@
 import { OfferType } from '../../types/offer-types';
 import { NameCard } from '../../const';
 import Card from './card';
-import { memo } from 'react';
 
 type CardsListProps = {
   offers: OfferType[];
@@ -23,7 +22,7 @@ function CardsList({offers, nameCard, onOverOffer, onOutOffer}: CardsListProps):
 
   const mouseOutHandler = (): void => onOutOffer?.();
 
-  console.log('RERENDER!!')
+
   /* Передаем обработчик события в каждую карточку карточки предложения */
 
   return offers.map((offer) => (
@@ -37,4 +36,4 @@ function CardsList({offers, nameCard, onOverOffer, onOutOffer}: CardsListProps):
   );
 }
 
-export default memo(CardsList);
+export default CardsList;

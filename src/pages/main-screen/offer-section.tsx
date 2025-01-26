@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import CardsList from '../../components/card/cards-list';
 import MapComponent from '../../components/map/map';
 import { NameCard } from '../../const';
@@ -17,17 +17,12 @@ function OfferSection(): JSX.Element {
 
   const currentCity = useAppSelector(getCurrentCity);
 
-  const onOverOffer = useCallback(
-    (offerId: string | null): void => setCurrentOffer(sortedOffers.find((offer) => offer.id === offerId)),
-    []
-  );
+  const onOverOffer = (offerId: string | null): void => setCurrentOffer(sortedOffers.find((offer) => offer.id === offerId));
 
   /* При убирании курсора с карточки offer текущий offer
   становиться undefinedб для того, что бы убрать выделение маркера на карте */
-  const onOutOffer = useCallback(
-    (): void => setCurrentOffer(undefined),
-    []
-  );
+  const onOutOffer = (): void => setCurrentOffer(undefined);
+
   return(
     <div className="cities__places-container container">
       <section className="cities__places places">

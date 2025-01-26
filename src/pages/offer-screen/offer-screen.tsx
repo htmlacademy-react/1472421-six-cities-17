@@ -11,7 +11,7 @@ import { getOffersLocation } from '../../utils';
 import { useEffect } from 'react';
 import CardsList from '../../components/card/cards-list';
 import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
-import { getCurrentCity, getLoadingOfferStatus, getNearbyOffers, getOfferById } from '../../storage/selectors';
+import { getLoadingOfferStatus, getNearbyOffers, getOfferById } from '../../storage/selectors';
 import { loadOfferById } from '../../storage/actions/actions';
 import { fetchNearbyCommentAction, fetchOfferByIdAction, fetchUsersCommentsAction } from '../../storage/actions/api-actions';
 import ErrorScreen from '../error-page/error-screen';
@@ -28,8 +28,6 @@ function OfferScreen(): JSX.Element {
   const {id} = useParams<string>();
   const dispatch = useAppDispatch();
 
-
-  const currentCity = useAppSelector(getCurrentCity);
 
   /* При каждом изменении id или dispatch
   будет срабатывать useEffect и если id есть,
@@ -58,7 +56,7 @@ function OfferScreen(): JSX.Element {
 
   if(id === undefined || currentOffer === null){
     if(!isLoadingOffer){
-      return <Preloader />
+      return <Preloader />;
     }
     return <ErrorScreen />;
   }
@@ -90,7 +88,6 @@ function OfferScreen(): JSX.Element {
             {nearbyOffers.length !== 0 ?
               <MapComponent
                 offersLocation={getOffersLocation(nearbyOffers)}
-                currentCity={currentCity}
                 currentOfferLocation={{id: currentOffer.id, location: currentOffer.location}}
               /> : null}
           </section>
