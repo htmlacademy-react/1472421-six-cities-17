@@ -1,7 +1,7 @@
-import { OfferType } from '../../types/offer-types';
+import { OfferTypeById } from '../../types/offer-types';
 
 type OfferDetails = {
-  offer: OfferType;
+  offer: OfferTypeById;
 }
 
 
@@ -44,7 +44,7 @@ function OfferDetails({offer}: OfferDetails): JSX.Element {
       <div className="offer__inside">
         <h2 className="offer__inside-title">What&apos;s inside</h2>
         <ul className="offer__inside-list">
-          {offer.goods.map((good) => <li key={good.id} className="offer__inside-item">{good.name}</li>)}
+          {offer.goods.map((good) => <li key={good} className="offer__inside-item">{good}</li>)}
         </ul>
       </div>
       <div className="offer__host">
@@ -63,9 +63,6 @@ function OfferDetails({offer}: OfferDetails): JSX.Element {
           {offer.host.isPro && <span className="offer__user-status">Pro</span>}
         </div>
         <div className="offer__description">
-          <p className="offer__text">
-            {offer.description}
-          </p>
           <p className="offer__text">
             {offer.description}
           </p>

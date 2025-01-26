@@ -8,17 +8,17 @@ import ErrorScreen from '../pages/error-page/error-screen';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route';
 import { CityType } from '../types/offer-types';
-import { UserComments } from '../types/user-type';
 import Preloader from './preloader/preloader';
 import { useAppSelector } from '../hooks/state/state-hooks';
 import { getLoadingStatus } from '../storage/selectors';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type AppProps = {
   cities: CityType[];
-  userComments: UserComments[];
 }
 
-function App({cities, userComments}: AppProps): JSX.Element {
+function App({cities}: AppProps): JSX.Element {
 
   const isLoading = useAppSelector(getLoadingStatus);
 
@@ -29,14 +29,11 @@ function App({cities, userComments}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
+        <ToastContainer />
         <Routes>
           <Route
             path={AppRoute.Main}
-            element = {
-              <MainScreen
-                cities={cities}
-              />
-            }
+            element = {<MainScreen cities={cities}/>}
           />
           <Route
             path={AppRoute.Login}
@@ -55,9 +52,7 @@ function App({cities, userComments}: AppProps): JSX.Element {
           <Route
             path={AppRoute.Offer}
             element = {
-              <OfferScreen
-                userComments={userComments}
-              />
+              <OfferScreen />
             }
           />
           <Route
@@ -73,5 +68,13 @@ function App({cities, userComments}: AppProps): JSX.Element {
 export default App;
 
 /*
-  - настроить переход в offer-screen из offer-screen для другого offer(под картой)
+  - перейти на createSlice
+  - добавить поля для каждой ошибки в state
+  - при обновлении страницы сбивается state?
+  - добавить отображение добавленных в избранное
+  - отрефакторить названия полей в state
+  - показывать прелоадер при загрузке оффера, при ошибке запроса показывать 404,
+    сделать это в слайсах, обработава состояния reject и fullfield
+  - useMemo для соритровки данных, полученных из state  (пакет reselect).?
+  - browserHistory ?
 */

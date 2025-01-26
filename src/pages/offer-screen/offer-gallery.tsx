@@ -1,8 +1,8 @@
-import { OfferType } from '../../types/offer-types';
+import { OfferTypeById } from '../../types/offer-types';
 import OfferImage from './offer-picture';
 
 type OfferGalleryProps = {
-  offer: OfferType;
+  offer: OfferTypeById;
 }
 
 function OfferGallery({offer}: OfferGalleryProps): JSX.Element {

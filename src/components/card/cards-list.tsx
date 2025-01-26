@@ -16,11 +16,11 @@ function CardsList({offers, nameCard, onOverOffer, onOutOffer}: CardsListProps):
     Функция-обработчик принимает аргуметом offer.id типа string
     и возвращает тип void(спец. тип, обозначающий, что функция не вернет ничего.) */
 
-  const onMouseOverHandler = (offerId: string): void => {
+  const mouseOverHandler = (offerId: string): void => {
     onOverOffer?.(offerId);
   };
 
-  const onMouseOutHandler = (): void => onOutOffer?.();
+  const mouseOutHandler = (): void => onOutOffer?.();
 
 
   /* Передаем обработчик события в каждую карточку карточки предложения */
@@ -29,9 +29,9 @@ function CardsList({offers, nameCard, onOverOffer, onOutOffer}: CardsListProps):
     <Card
       key={offer.id}
       offer={offer}
-      onMouseOverHandler={onMouseOverHandler}
+      onMouseOverHandler={mouseOverHandler}
       currentClass={nameCard}
-      onMouseOutHandler={onMouseOutHandler}
+      onMouseOutHandler={mouseOutHandler}
     />)
   );
 }

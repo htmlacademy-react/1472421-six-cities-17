@@ -18,7 +18,11 @@ function Card({offer, onMouseOverHandler, currentClass, onMouseOutHandler}: Card
   const classSet = getClassSet(currentClass);
 
   return(
-    <article className={`${classSet.card} place-card`} onMouseOver={() => onMouseOverHandler(offer.id)} onMouseOut={onMouseOutHandler}>
+    <article
+      className={`${classSet.card} place-card`}
+      onMouseOver={() => onMouseOverHandler(offer.id)}
+      onMouseOut={onMouseOutHandler}
+    >
       {offer.isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className={`${classSet.image} place-card__image-wrapper`}>
         <Link to={cardOfferURL}>

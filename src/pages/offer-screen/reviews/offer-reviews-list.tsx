@@ -1,4 +1,4 @@
-import { UserComments } from '../../types/user-type';
+import { UserComments } from '../../../types/user-type';
 import OfferReviewsItem from './offer-reviews-item';
 
 type OfferReviewsListProps = {

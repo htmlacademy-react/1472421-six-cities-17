@@ -1,11 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import { CityType, OfferType } from '../../types/offer-types';
-import { useState } from 'react';
-import { useAppSelector } from '../../hooks/state/state-hooks';
+import { CityType } from '../../types/offer-types';
 import CitiesList from './city-name-list';
 import OfferSection from './offer-section';
-import { getCurrentCity, getSortedOffers } from '../../storage/selectors';
 
 
 type MainScreenProps = {
@@ -13,20 +10,6 @@ type MainScreenProps = {
 }
 
 function MainScreen({cities}: MainScreenProps): JSX.Element {
-
-  const [currentOffer, setCurrentOffer] = useState<OfferType | undefined>(undefined);
-
-  const currentCity = useAppSelector(getCurrentCity);
-
-  const sortedOffers = useAppSelector(getSortedOffers);
-
-
-  const onOverOffer = (offerId: string | null): void => setCurrentOffer(sortedOffers.find((offer) => offer.id === offerId));
-
-  /* При убирании курсора с карточки offer текущий offer
-  становиться undefinedб для того, что бы убрать выделение маркера на карте */
-  const onOutOffer = (): void => setCurrentOffer(undefined);
-
 
   return (
     <div className="page page--gray page--main">
@@ -44,13 +27,7 @@ function MainScreen({cities}: MainScreenProps): JSX.Element {
           </section>
         </div>
         <div className="cities">
-          <OfferSection
-            offers={sortedOffers}
-            currentCity={currentCity}
-            onOverOffer={onOverOffer}
-            onOutOffer={onOutOffer}
-            currentOffer={currentOffer}
-          />
+          <OfferSection />
         </div>
       </main>
     </div>

@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app';
-import { userComments } from './mocks/user-comments';
 import { Provider } from 'react-redux';
 import { store } from './storage/index-redux';
 import { CITIES } from './consts/city-location';
 import { checkAuthAction, fetchOffersAction } from './storage/actions/api-actions';
-import ErrorMessage from './components/error-message/error-message';
 
 
 const root = ReactDOM.createRoot(
@@ -19,10 +17,8 @@ store.dispatch(checkAuthAction());
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ErrorMessage />
       <App
         cities = {CITIES}
-        userComments={userComments}
       />
     </Provider>
   </React.StrictMode>

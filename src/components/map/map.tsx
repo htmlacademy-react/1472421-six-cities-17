@@ -1,14 +1,16 @@
 import { useEffect, useRef } from 'react';
 import { useMap } from '../../hooks/use-map';
-import { CityName, OfferLocation, OfferType } from '../../types/offer-types';
+import { OfferLocation, OfferType } from '../../types/offer-types';
 import { Marker, layerGroup, Icon } from 'leaflet';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { getLocationByCityName } from '../../utils';
+import { getCurrentCity } from '../../storage/selectors';
+import { useAppSelector } from '../../hooks/state/state-hooks';
 
 type MapComponentProps = {
   offersLocation: OfferLocation[];
-  selectedOffer: OfferType | undefined;
-  currentCity: CityName;
+  selectedOffer?: OfferType | undefined;
+  currentOfferLocation?: OfferLocation;
 }
 
 const defaultCustomIcon = new Icon({
@@ -23,8 +25,10 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function MapComponent({offersLocation, selectedOffer, currentCity}: MapComponentProps): JSX.Element {
+function MapComponent({offersLocation, selectedOffer, currentOfferLocation}: MapComponentProps): JSX.Element {
   const refMap = useRef(null);
+
+  const currentCity = useAppSelector(getCurrentCity);
 
   /* Хук возвращает объект map из библиотеки leaflet
   первым параметром принимает ссылку на блок, в котором рендерится карта,
@@ -57,12 +61,22 @@ function MapComponent({offersLocation, selectedOffer, currentCity}: MapComponent
         ).addTo(markerLayer);
       });
 
+      if(currentOfferLocation){
+        const currentOfferMarker = new Marker({
+          lat: currentOfferLocation.location.latitude,
+          lng: currentOfferLocation.location.longitude,
+        });
+
+        currentOfferMarker.setIcon(currentCustomIcon).addTo(markerLayer);
+
+      }
+
       /* Описываем отмену эффекта - удаление слоя маркеров */
       return () => {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offersLocation, selectedOffer]);
+  }, [map, offersLocation, selectedOffer, currentOfferLocation]);
 
   return <div style={{height: '100%'}} ref={refMap}></div>;
 }
