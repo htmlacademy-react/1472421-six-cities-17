@@ -7,18 +7,14 @@ import OfferScreen from '../pages/offer-screen/offer-screen';
 import ErrorScreen from '../pages/error-page/error-screen';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route';
-import { CityType } from '../types/offer-types';
 import Preloader from './preloader/preloader';
 import { useAppSelector } from '../hooks/state/state-hooks';
 import { getLoadingStatus } from '../storage/selectors';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-type AppProps = {
-  cities: CityType[];
-}
 
-function App({cities}: AppProps): JSX.Element {
+function App(): JSX.Element {
 
   const isLoading = useAppSelector(getLoadingStatus);
 
@@ -33,7 +29,7 @@ function App({cities}: AppProps): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element = {<MainScreen cities={cities}/>}
+            element = {<MainScreen />}
           />
           <Route
             path={AppRoute.Login}

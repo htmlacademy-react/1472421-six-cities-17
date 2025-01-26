@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useMap } from '../../hooks/use-map';
-import { OfferLocation, OfferType } from '../../types/offer-types';
+import { OfferLocation } from '../../types/offer-types';
 import { Marker, layerGroup, Icon } from 'leaflet';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { getLocationByCityName } from '../../utils';
@@ -8,8 +8,9 @@ import { getCurrentCity } from '../../storage/selectors';
 import { useAppSelector } from '../../hooks/state/state-hooks';
 
 type MapComponentProps = {
+  className: string;
   offersLocation: OfferLocation[];
-  selectedOffer?: OfferType | undefined;
+  selectedOfferId?: string | undefined;
   currentOfferLocation?: OfferLocation;
 }
 
@@ -25,7 +26,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function MapComponent({offersLocation, selectedOffer, currentOfferLocation}: MapComponentProps): JSX.Element {
+function MapComponent({ className, offersLocation, selectedOfferId, currentOfferLocation}: MapComponentProps): JSX.Element {
   const refMap = useRef(null);
 
   const currentCity = useAppSelector(getCurrentCity);
@@ -53,7 +54,7 @@ function MapComponent({offersLocation, selectedOffer, currentOfferLocation}: Map
 
         /* для каждого созданного маркера определяем вид currentCustomIcon или defaultCustomIcon */
         marker.setIcon(
-          selectedOffer !== undefined && offer.id === selectedOffer.id
+          selectedOfferId !== undefined && offer.id === selectedOfferId
             ? currentCustomIcon
             : defaultCustomIcon
 
@@ -76,9 +77,13 @@ function MapComponent({offersLocation, selectedOffer, currentOfferLocation}: Map
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offersLocation, selectedOffer, currentOfferLocation]);
+  }, [map, offersLocation, selectedOfferId, currentOfferLocation]);
 
-  return <div style={{height: '100%'}} ref={refMap}></div>;
+  return (
+    <section className={`${className}__map map`}>
+      <div style={{height: '100%'}} ref={refMap}></div>
+    </section>
+  );
 }
 
 export default MapComponent;

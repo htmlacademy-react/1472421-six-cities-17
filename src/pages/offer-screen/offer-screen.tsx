@@ -84,13 +84,12 @@ function OfferScreen(): JSX.Element {
 
             </div>
           </div>
-          <section className="offer__map map">
-            {nearbyOffers.length !== 0 ?
-              <MapComponent
-                offersLocation={getOffersLocation(nearbyOffers)}
-                currentOfferLocation={{id: currentOffer.id, location: currentOffer.location}}
-              /> : null}
-          </section>
+          {nearbyOffers.length !== 0 ?
+            <MapComponent
+              className='offer'
+              offersLocation={getOffersLocation(nearbyOffers)}
+              currentOfferLocation={{id: currentOffer.id, location: currentOffer.location}}
+            /> : null}
         </section>
         <div className="container">
           <section className="near-places places">

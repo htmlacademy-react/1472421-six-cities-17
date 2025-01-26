@@ -1,39 +1,41 @@
 import { OfferType } from '../../types/offer-types';
 import { NameCard } from '../../const';
 import Card from './card';
+import { memo } from 'react';
 
 type CardsListProps = {
   offers: OfferType[];
   nameCard: NameCard;
-  onOverOffer?: (offerId: string) => void;
-  onOutOffer?: () => void;
+  setCurrentOfferId?: (offerId: string | undefined) => void;
 }
 
 
-function CardsList({offers, nameCard, onOverOffer, onOutOffer}: CardsListProps): JSX.Element[] {
+function CardsList({offers, nameCard, setCurrentOfferId}: CardsListProps): JSX.Element {
 
-  /*Описываем обработчик события наведения курсора на карточку.
-    Функция-обработчик принимает аргуметом offer.id типа string
-    и возвращает тип void(спец. тип, обозначающий, что функция не вернет ничего.) */
-
-  const mouseOverHandler = (offerId: string): void => {
-    onOverOffer?.(offerId);
-  };
-
-  const mouseOutHandler = (): void => onOutOffer?.();
-
-
-  /* Передаем обработчик события в каждую карточку карточки предложения */
-
-  return offers.map((offer) => (
-    <Card
-      key={offer.id}
-      offer={offer}
-      onMouseOverHandler={mouseOverHandler}
-      currentClass={nameCard}
-      onMouseOutHandler={mouseOutHandler}
-    />)
+  return (
+    <div className="cities__places-list places__list tabs__content">
+      {offers.map((offer) => (
+        <Card
+          key={offer.id}
+          offer={offer}
+          setCurrentOfferId={setCurrentOfferId}
+          currentClass={nameCard}
+        />)
+      )}
+    </div>
   );
 }
 
-export default CardsList;
+
+/* Благодаря оборачиванию компонента в React.memo компонент не перерендеривается
+при каждом наведении на карточку offer`а(при каждом срабатывании
+setCurrentOfferId.
+
+React.memo перерендеривает компонент только в том случае, если меняется props.
+Props меняется при изменении offers, nameCard, setCurrentOfferId
+offers - меняется при изменении состава offers в state
+nameCard - при переходе на страницу offers или favorietes
+setCurrentOfferId - функция и меняется только при перерендере offers-section*/
+
+const CardListMemo = memo(CardsList);
+export default CardListMemo;

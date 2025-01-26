@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { SortingParams } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
 import { getSortParam } from '../../storage/selectors';
@@ -50,5 +50,6 @@ function SortOffersForm(): JSX.Element {
   );
 }
 
-export default SortOffersForm;
+const SortOffersFormMemo = memo(SortOffersForm);
+export default SortOffersFormMemo;
 

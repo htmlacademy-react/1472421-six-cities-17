@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app';
 import { Provider } from 'react-redux';
 import { store } from './storage/index-redux';
-import { CITIES } from './consts/city-location';
 import { checkAuthAction, fetchOffersAction } from './storage/actions/api-actions';
 
 
@@ -17,9 +16,7 @@ store.dispatch(checkAuthAction());
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
-        cities = {CITIES}
-      />
+      <App />
     </Provider>
   </React.StrictMode>
 );
