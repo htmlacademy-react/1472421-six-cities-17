@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import OfferDetails from './offer-details';
 import OfferGallery from './offer-gallery';
-import { NEARBY_VIEW_VALUE, NameCard } from '../../const';
+import { NEARBY_VIEW_VALUE, NameCard } from '../../consts/const';
 import { OfferType, OfferTypeById } from '../../types/offer-types';
 import {useParams } from 'react-router-dom';
 import OfferReviews from './reviews/offer-reviews';

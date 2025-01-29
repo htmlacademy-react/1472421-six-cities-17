@@ -1,4 +1,4 @@
-import { AuthorizationStatus } from '../../../const';
+import { AuthorizationStatus } from '../../../consts/const';
 import { useAppSelector } from '../../../hooks/state/state-hooks';
 import { getComments } from '../../../storage/slice/offers-slice-catalog/offers-selectors';
 import { getAuthorizationStatus } from '../../../storage/slice/user-slice-catalog/user-selectors';

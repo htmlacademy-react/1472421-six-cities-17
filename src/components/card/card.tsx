@@ -1,7 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { OfferType } from '../../types/offer-types';
 import { getClassSet } from '../../utils';
-import { NameCard } from '../../const';
+import { AppRoute, AuthorizationStatus, NameCard } from '../../consts/const';
+import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
+import { updateFavoriteOfferStatusAction } from '../../storage/actions/api-actions-slice';
+import { getFavoriteStatus } from '../../storage/slice/offers-slice-catalog/offers-selectors';
+import { getAuthorizationStatus } from '../../storage/slice/user-slice-catalog/user-selectors';
 
 type CardProps = {
   offer: OfferType;
@@ -12,12 +16,28 @@ type CardProps = {
 
 function Card({offer, setCurrentOfferId, currentClass}: CardProps): JSX.Element {
 
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
+
   const cardOfferURL = `/offer/${offer.id}`;
 
   const classSet = getClassSet(currentClass);
 
+  const favoriteStatus = useAppSelector((state) => getFavoriteStatus(state, offer.id));
+
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   const handleOnMouseOver = (): void => setCurrentOfferId?.(offer.id);
   const handleOnMouseOut = (): void => setCurrentOfferId?.(undefined);
+
+  const handleFavoriteButtonClick = (): void => {
+    if(authorizationStatus === AuthorizationStatus.Auth){
+      dispatch(updateFavoriteOfferStatusAction({id: offer.id, status: !favoriteStatus}));
+    }else {
+      navigate(AppRoute.Login);
+    }
+  };
 
   return(
     <article
@@ -44,8 +64,9 @@ function Card({offer, setCurrentOfferId, currentClass}: CardProps): JSX.Element 
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button
-            className="place-card__bookmark-button button"
+            className={`place-card__bookmark-button ${favoriteStatus && 'place-card__bookmark-button--active'} button`}
             type="button"
+            onClick={handleFavoriteButtonClick}
           >
             <svg
               className="place-card__bookmark-icon"

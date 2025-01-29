@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useAppDispatch } from '../../hooks/state/state-hooks';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../consts/const';
 import { useNavigate } from 'react-router-dom';
 import { loginAction } from '../../storage/actions/api-actions-slice';
 

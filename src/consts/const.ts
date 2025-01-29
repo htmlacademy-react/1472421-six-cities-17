@@ -1,4 +1,4 @@
-import { OfferTypeById } from './types/offer-types';
+import { OfferTypeById } from '../types/offer-types';
 
 enum AuthorizationStatus {
   Auth = 'AUTH',

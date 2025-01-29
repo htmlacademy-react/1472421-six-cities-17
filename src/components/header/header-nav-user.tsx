@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../consts/const';
 import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
 import { getUserLogin } from '../../storage/slice/user-slice-catalog/user-selectors';
 import { logoutAction } from '../../storage/actions/api-actions-slice';
+import { getFavoriteOffersCount } from '../../storage/slice/offers-slice-catalog/offers-selectors';
 
 
 type HeaderNavUserProps ={
@@ -15,6 +16,7 @@ function HeaderNavUser({authorizationStatus}: HeaderNavUserProps) {
 
   const dispatch = useAppDispatch();
   const userLogin = useAppSelector(getUserLogin);
+  const favoriteOffersCount = useAppSelector(getFavoriteOffersCount);
 
   const signOutClickHandler = (evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     evt.preventDefault();
@@ -34,7 +36,7 @@ function HeaderNavUser({authorizationStatus}: HeaderNavUserProps) {
             <span className="header__user-name user__name">
               {userLogin}
             </span>
-            <span className="header__favorite-count">3</span>
+            <span className="header__favorite-count">{favoriteOffersCount}</span>
           </Link>
           :
           <Link

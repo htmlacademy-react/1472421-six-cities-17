@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { NameSpace, OFFER_BY_ID_TEMPLATE, SortingParams } from '../../../const';
+import { NameSpace, OFFER_BY_ID_TEMPLATE, SortingParams } from '../../../consts/const';
 import { CityName, OfferType, OfferTypeById } from '../../../types/offer-types';
 import { UserComments } from '../../../types/user-type';
-import { fetchOffersAction, fetchOfferByIdAction, fetchUsersCommentsAction, postComment, fetchNearbyOffersAction } from '../../actions/api-actions-slice';
+import { fetchOffersAction, fetchOfferByIdAction, fetchUsersCommentsAction, postComment, fetchNearbyOffersAction, fetchFavoriteOfferAction, updateFavoriteOfferStatusAction } from '../../actions/api-actions-slice';
 import { toast } from 'react-toastify';
 
 const initialState = {
@@ -19,6 +19,8 @@ const initialState = {
   postCommentPending: false,
   postCommentError: false,
   nearbyOffers: [] as OfferType[],
+  favoriteOffers: [] as OfferType[],
+  isLoadingFavoriteOffers: false
 };
 
 export const offersSlice = createSlice({
@@ -92,6 +94,26 @@ export const offersSlice = createSlice({
         state.postCommentPending = false;
         state.postCommentError = true;
         toast.warning('Не удалось отправить коментарий, возможно вы не поставили оценку или комментарий слишком короткий');
+      })
+      /* Получение списка избранных предложений */
+      .addCase(fetchFavoriteOfferAction.pending, (state) => {
+        state.isLoadingFavoriteOffers = true;
+      })
+      .addCase(fetchFavoriteOfferAction.fulfilled, (state, action: PayloadAction<OfferType[]>) => {
+        state.favoriteOffers = action.payload;
+        state.isLoadingFavoriteOffers = false;
+      })
+      .addCase(fetchFavoriteOfferAction.rejected, (state) => {
+        state.isLoadingFavoriteOffers = false;
+        toast.warning('Не удалось загрузить список избранных предложений');
+      })
+      .addCase(updateFavoriteOfferStatusAction.fulfilled, (state, action: PayloadAction<OfferType>) => {
+        if(action.payload.isFavorite){
+          state.favoriteOffers.push(action.payload);
+        }else{
+          const favoriteIndex = state.favoriteOffers.findIndex((offer) => offer.id === action.payload.id);
+          state.favoriteOffers.splice(favoriteIndex, 1);
+        }
       });
   },
 });

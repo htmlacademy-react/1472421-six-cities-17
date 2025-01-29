@@ -1,5 +1,5 @@
 import { memo, useState } from 'react';
-import { SortingParams } from '../../const';
+import { SortingParams } from '../../consts/const';
 import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
 import { changeSortParam } from '../../storage/slice/offers-slice-catalog/offers-slice';
 import { getSortParam } from '../../storage/slice/offers-slice-catalog/offers-selectors';

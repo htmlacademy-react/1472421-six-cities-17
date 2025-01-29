@@ -1,4 +1,4 @@
-import { AppRoute, AuthorizationStatus } from './const';
+import { AppRoute, AuthorizationStatus } from './consts/const';
 import { Navigate } from 'react-router-dom';
 import { useAppSelector } from './hooks/state/state-hooks';
 import { getAuthorizationStatus } from './storage/slice/user-slice-catalog/user-selectors';

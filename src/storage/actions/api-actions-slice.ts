@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../../types/state';
 import { AxiosInstance } from 'axios';
 import { OfferType, OfferTypeById } from '../../types/offer-types';
-import { APIRoute, AuthorizationStatus } from '../../const';
-import { AuthDataType, PostUserCommentType, User, UserComments } from '../../types/user-type';
+import { APIRoute, AuthorizationStatus } from '../../consts/const';
+import { AuthDataType, FavoriteDataType, PostUserCommentType, User, UserComments } from '../../types/user-type';
 import { dropToken, saveToken } from '../../services/token';
 import { requireAuthorization } from '../slice/user-slice-catalog/user-slice';
 
@@ -33,6 +33,21 @@ export const fetchOfferByIdAction = createAsyncThunk<OfferTypeById, string,{
   async (id, {extra: api}) => {
 
     const {data} = await api.get<OfferTypeById>(`${APIRoute.Offers}/${id}`);
+
+    return data;
+  },
+);
+
+/* Получение избранных предложений */
+export const fetchFavoriteOfferAction = createAsyncThunk<OfferType[], undefined,{
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'offers/fetchFavoriteOfferAction',
+  async (_arg, {extra: api}) => {
+
+    const {data} = await api.get<OfferType[]>(APIRoute.Favorite);
 
     return data;
   },
@@ -70,7 +85,7 @@ export const fetchNearbyOffersAction = createAsyncThunk<OfferType[], string, {
 
 
 /* Проверка авторизации пользователя */
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<User, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -78,10 +93,15 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   'user/checkAuthAction',
   async (_arg, {dispatch, extra: api}) => {
     try{
-      await api.get(APIRoute.Login);
+      const {data} = await api.get<User>(APIRoute.Login);
+
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
+
+      return data;
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+
+      throw Error;
     }
   },
 );
@@ -134,5 +154,24 @@ export const postComment = createAsyncThunk<UserComments, PostUserCommentType, {
     const {data} = await api.post<UserComments>(`${APIRoute.Comments}/${id}`, {rating, comment});
 
     return data;
+  },
+);
+
+export const updateFavoriteOfferStatusAction = createAsyncThunk<OfferType, FavoriteDataType,{
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'offers/updateFavoriteOfferStatusAction',
+  async ({id, status}, {extra: api}) => {
+    try{
+
+      const favoriteStatusInNumber = Number(status);
+      const {data} = await api.post<OfferType>(`${APIRoute.Favorite}/${id}/${favoriteStatusInNumber}`);
+
+      return data;
+    }catch{
+      throw Error;
+    }
   },
 );
