@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import CardsList from '../../components/card/cards-list';
 import MapComponent from '../../components/map/map';
-import { NameCard } from '../../const';
+import { NameCard } from '../../consts/const';
 import { getOffersLocation } from '../../utils';
 import SortOffersForm from './sort-offers-form';
 import { useAppSelector } from '../../hooks/state/state-hooks';

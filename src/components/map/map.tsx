@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useMap } from '../../hooks/use-map';
 import { OfferLocation } from '../../types/offer-types';
 import { Marker, layerGroup, Icon } from 'leaflet';
-import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
+import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../consts/const';
 import { getLocationByCityName } from '../../utils';
 import { useAppSelector } from '../../hooks/state/state-hooks';
 import { getCurrentCity } from '../../storage/slice/offers-slice-catalog/offers-selectors';

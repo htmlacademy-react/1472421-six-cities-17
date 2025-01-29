@@ -1,5 +1,5 @@
 import { OfferType } from '../../types/offer-types';
-import { NameCard } from '../../const';
+import { NameCard } from '../../consts/const';
 import Card from './card';
 import { memo } from 'react';
 

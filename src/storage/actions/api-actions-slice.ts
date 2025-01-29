@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../../types/state';
 import { AxiosInstance } from 'axios';
 import { OfferType, OfferTypeById } from '../../types/offer-types';
-import { APIRoute, AuthorizationStatus } from '../../const';
+import { APIRoute, AuthorizationStatus } from '../../consts/const';
 import { AuthDataType, PostUserCommentType, User, UserComments } from '../../types/user-type';
 import { dropToken, saveToken } from '../../services/token';
 import { requireAuthorization } from '../slice/user-slice-catalog/user-slice';
@@ -33,6 +33,21 @@ export const fetchOfferByIdAction = createAsyncThunk<OfferTypeById, string,{
   async (id, {extra: api}) => {
 
     const {data} = await api.get<OfferTypeById>(`${APIRoute.Offers}/${id}`);
+
+    return data;
+  },
+);
+
+/* Получение избранных предложений */
+export const fetchFavoriteOfferAction = createAsyncThunk<OfferType[], undefined,{
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'offers/fetchFavoriteOfferAction',
+  async (_arg, {extra: api}) => {
+
+    const {data} = await api.get<OfferType[]>(APIRoute.Favorite);
 
     return data;
   },

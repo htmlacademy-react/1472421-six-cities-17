@@ -1,4 +1,4 @@
-import { NameSpace } from '../../../const';
+import { NameSpace } from '../../../consts/const';
 import { State } from '../../../types/state';
 
 const getUserLogin = (state: State) => state[NameSpace.User].userLogin;

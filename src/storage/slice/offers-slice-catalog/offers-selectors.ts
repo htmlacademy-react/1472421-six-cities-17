@@ -1,13 +1,20 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { State } from '../../../types/state';
-import { sortOffers } from '../../../utils';
-import { NameSpace } from '../../../const';
+import { getOffersGroup, sortOffers } from '../../../utils';
+import { NameSpace } from '../../../consts/const';
 
 const getCurrentCity = (state: State) => state[NameSpace.Offers].city;
 
 const getOffers = (state: State) => state[NameSpace.Offers].offers;
 
 const getSortParam = (state: State) => state[NameSpace.Offers].sortParam;
+
+const getFavoriteOffers  = (state: State) => state[NameSpace.Offers].favoriteOffers;
+
+const getFavoriteOffersByGroup = createSelector(
+  getFavoriteOffers,
+  (favoriteOffers) => getOffersGroup(favoriteOffers)
+);
 
 const getOffersByCity = createSelector(
   [getCurrentCity, getOffers],
@@ -19,10 +26,12 @@ const getSortedOffers = createSelector(
   (offersByCity, sortParam) => sortOffers(offersByCity, sortParam)
 );
 
+
+
 const getOffersByCityLength = createSelector(
   getOffersByCity,
   (offersByCity) => offersByCity.length
-)
+);
 
 const getNearbyOffers = (state: State) => state[NameSpace.Offers].nearbyOffers;
 
@@ -60,5 +69,6 @@ export {
   isPostCommentError,
   getLoadingOfferByIdError,
   getOffersByCityLength,
-  getLoadingOffersError
+  getLoadingOffersError,
+  getFavoriteOffersByGroup,
 };

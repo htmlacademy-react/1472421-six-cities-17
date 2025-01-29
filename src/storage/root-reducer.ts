@@ -1,5 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { NameSpace } from '../const';
+import { NameSpace } from '../consts/const';
 import { offersSlice } from './slice/offers-slice-catalog/offers-slice';
 import { userSlice } from './slice/user-slice-catalog/user-slice';
 

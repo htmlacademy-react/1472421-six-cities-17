@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../consts/const';
 import HeaderNavUser from './header-nav-user';
 import { useAppSelector } from '../../hooks/state/state-hooks';
 import { getAuthorizationStatus } from '../../storage/slice/user-slice-catalog/user-selectors';

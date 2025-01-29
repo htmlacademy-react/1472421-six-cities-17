@@ -1,19 +1,18 @@
 import { OfferType } from '../../types/offer-types';
-import { getOffersGroup } from '../../utils';
 import FavoritesLocationItem from './favorites-location-item';
+import { useAppSelector } from '../../hooks/state/state-hooks';
+import { getFavoriteOffersByGroup } from '../../storage/slice/offers-slice-catalog/offers-selectors';
 
-type FavoritesLocationListProps = {
-  offers: OfferType[];
-}
 
-function FavoritesLocationList({offers}: FavoritesLocationListProps): JSX.Element {
 
-  const offersGroup = getOffersGroup(offers);
+function FavoritesLocationList(): JSX.Element {
+
+  const favoriteOffersByGroup = useAppSelector(getFavoriteOffersByGroup);
 
   return (
     <ul className="favorites__list">
-      {Object.keys(offersGroup).map((city) => {
-        const groupByCity: OfferType[] = offersGroup[city];
+      {Object.keys(favoriteOffersByGroup).map((city) => {
+        const groupByCity: OfferType[] = favoriteOffersByGroup[city];
 
         return <FavoritesLocationItem key={city} offers={groupByCity} city={city}/>;
       })}

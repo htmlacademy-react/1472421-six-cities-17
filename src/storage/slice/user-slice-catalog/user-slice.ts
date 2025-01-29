@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { AuthorizationStatus, NameSpace } from '../../../const';
+import { AuthorizationStatus, NameSpace } from '../../../consts/const';
 import { checkAuthAction, loginAction, logoutAction } from '../../actions/api-actions-slice';
 import { toast } from 'react-toastify';
 

@@ -1,4 +1,4 @@
-import { NameCard } from '../../const';
+import { NameCard } from '../../consts/const';
 import { CityName, OfferType } from '../../types/offer-types';
 import CardsList from '../../components/card/cards-list';
 

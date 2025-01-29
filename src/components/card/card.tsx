@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { OfferType } from '../../types/offer-types';
 import { getClassSet } from '../../utils';
-import { NameCard } from '../../const';
+import { NameCard } from '../../consts/const';
 
 type CardProps = {
   offer: OfferType;
