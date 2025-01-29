@@ -15,10 +15,10 @@ enum AppRoute {
 }
 
 enum SortingParams {
-  popular = 'Popular',
-  cheaper = 'Price: low to high',
-  expensively = 'Price: high to low',
-  byRating = 'Top rated first'
+  Popular = 'Popular',
+  Cheaper = 'Price: low to high',
+  Expensively = 'Price: high to low',
+  ByRating = 'Top rated first'
 }
 
 const FAVORITES_CLASS = {
@@ -65,7 +65,7 @@ enum NameSpace {
   Offers = 'offers',
 }
 
-/* const OFFER_BY_ID_TEMPLATE: OfferTypeById = {
+const OFFER_BY_ID_TEMPLATE: OfferTypeById = {
   id: '',
   title: '',
   type: '',
@@ -96,7 +96,9 @@ enum NameSpace {
   },
   images: [''],
   maxAdults: 0,
-} */
+};
+
+const NEARBY_VIEW_VALUE = 3;
 
 export {
   AppRoute,
@@ -113,4 +115,6 @@ export {
   MIN_CHARACTERS_FOR_COMMENT,
   MAX_CHARACTERS_FOR_COMMENT,
   NameSpace,
+  OFFER_BY_ID_TEMPLATE,
+  NEARBY_VIEW_VALUE
 };

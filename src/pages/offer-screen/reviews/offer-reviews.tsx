@@ -1,6 +1,7 @@
 import { AuthorizationStatus } from '../../../const';
 import { useAppSelector } from '../../../hooks/state/state-hooks';
-import { getAuthorizationStatus } from '../../../storage/selectors';
+import { getComments } from '../../../storage/slice/offers-slice-catalog/offers-selectors';
+import { getAuthorizationStatus } from '../../../storage/slice/user-slice-catalog/user-selectors';
 import OfferReviewsForm from './offer-reviews-form';
 import OfferReviewsList from './offer-reviews-list';
 
@@ -11,7 +12,7 @@ type OfferReviewsProps = {
 
 function OfferReviews({offerId}: OfferReviewsProps): JSX.Element {
 
-  const userComments = useAppSelector((state) => state.usersComments);
+  const userComments = useAppSelector(getComments);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return(

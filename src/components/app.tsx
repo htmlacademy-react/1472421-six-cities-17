@@ -9,14 +9,14 @@ import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route';
 import Preloader from './preloader/preloader';
 import { useAppSelector } from '../hooks/state/state-hooks';
-import { getLoadingStatus } from '../storage/selectors';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getLoadingOffersStatus } from '../storage/slice/offers-slice-catalog/offers-selectors';
 
 
 function App(): JSX.Element {
 
-  const isLoading = useAppSelector(getLoadingStatus);
+  const isLoading = useAppSelector(getLoadingOffersStatus);
 
   if(isLoading) {
     return <Preloader />;

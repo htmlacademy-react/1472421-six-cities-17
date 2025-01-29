@@ -3,9 +3,9 @@ import { AppDispatch, State } from '../../types/state';
 import { AxiosInstance } from 'axios';
 import { OfferType, OfferTypeById } from '../../types/offer-types';
 import { APIRoute, AuthorizationStatus } from '../../const';
-import { checkLoading, checkLoadingOffer, loadNearbyOffers, loadOfferById, loadOffers, loadUsersComments, pushComment, requireAuthorization } from './actions';
 import { AuthDataType, PostUserCommentType, User, UserComments } from '../../types/user-type';
 import { dropToken, saveToken } from '../../services/token';
+import { requireAuthorization } from '../slice/user-slice-catalog/user-slice';
 
 
 /* Получение списка предложений */
@@ -49,12 +49,12 @@ export const fetchUsersCommentsAction = createAsyncThunk<UserComments[], string,
 
     const {data} = await api.get<UserComments[]>(`${APIRoute.Comments}/${id}`);
 
-    return data
+    return data;
   }
 );
 
 
-export const fetchNearbyCommentAction = createAsyncThunk<OfferType[], string, {
+export const fetchNearbyOffersAction = createAsyncThunk<OfferType[], string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -64,7 +64,7 @@ export const fetchNearbyCommentAction = createAsyncThunk<OfferType[], string, {
 
     const {data} = await api.get<OfferType[]>(`${APIRoute.Offers}/${id}/${APIRoute.Nearby}`);
 
-    return data
+    return data;
   }
 );
 

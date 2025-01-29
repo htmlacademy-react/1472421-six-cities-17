@@ -1,37 +1,34 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { NameSpace, SortingParams } from '../../../const';
+import { NameSpace, OFFER_BY_ID_TEMPLATE, SortingParams } from '../../../const';
 import { CityName, OfferType, OfferTypeById } from '../../../types/offer-types';
 import { UserComments } from '../../../types/user-type';
-import { fetchOffersAction, fetchOfferByIdAction, fetchUsersCommentsAction, fetchNearbyCommentAction, postComment } from '../../actions/api-actions-slice';
+import { fetchOffersAction, fetchOfferByIdAction, fetchUsersCommentsAction, postComment, fetchNearbyOffersAction } from '../../actions/api-actions-slice';
 import { toast } from 'react-toastify';
 
 const initialState = {
   city: 'Paris' as CityName,
-  sortParam: SortingParams.popular,
+  sortParam: SortingParams.Popular,
   offers: [] as OfferType[],
   isLoadingOffers: false,
   isLoadingOffersError: false,
-  offerById: {} as OfferTypeById,
+  offerById: OFFER_BY_ID_TEMPLATE,
   isLoadingOfferById: false,
   isLoadingOfferByIdError: false,
   comments: [] as UserComments[],
   isLoadingComments: false,
-  isLoadingCommentsError: false,
   postCommentPending: false,
   postCommentError: false,
   nearbyOffers: [] as OfferType[],
-  isLoadingNearbyOffers: false,
-  isLoadingNearbyOffersError: false,
 };
 
 export const offersSlice = createSlice({
   name: NameSpace.Offers,
   initialState,
   reducers: {
-    changeCity: (state, action) => {
+    changeCity: (state, action: PayloadAction<CityName>) => {
       state.city = action.payload;
     },
-    changeSortParam: (state, action) => {
+    changeSortParam: (state, action: PayloadAction<SortingParams>) => {
       state.sortParam = action.payload;
     }
   },
@@ -52,6 +49,7 @@ export const offersSlice = createSlice({
       })
       /* Выбранное предложение */
       .addCase(fetchOfferByIdAction.pending, (state) => {
+        state.isLoadingOfferByIdError = false;
         state.isLoadingOfferById = true;
       })
       .addCase(fetchOfferByIdAction.fulfilled, (state, action: PayloadAction<OfferTypeById>) => {
@@ -73,21 +71,14 @@ export const offersSlice = createSlice({
       })
       .addCase(fetchUsersCommentsAction.rejected, (state) => {
         state.isLoadingComments = false;
-        state.isLoadingCommentsError = true;
         toast.warning('Не удалось загрузить коментарии');
       })
       /* Предложения неподалеку */
-      .addCase(fetchNearbyCommentAction.pending, (state) => {
-        state.isLoadingNearbyOffers = true;
-      })
-      .addCase(fetchNearbyCommentAction.fulfilled, (state, action: PayloadAction<OfferType[]>) => {
+      .addCase(fetchNearbyOffersAction.fulfilled, (state, action: PayloadAction<OfferType[]>) => {
         state.nearbyOffers = action.payload;
-        state.isLoadingNearbyOffers = false;
       })
-      .addCase(fetchNearbyCommentAction.rejected, (state) => {
-        state.isLoadingNearbyOffers = false;
-        state.isLoadingNearbyOffersError = true;
-        toast.warning('Не удалось загрузить коментарии');
+      .addCase(fetchNearbyOffersAction.rejected, () => {
+        toast.warning('Не удалось загрузить предложения неподалеку');
       })
       /*Отправка комментария*/
       .addCase(postComment.pending, (state) => {
@@ -101,9 +92,9 @@ export const offersSlice = createSlice({
         state.postCommentPending = false;
         state.postCommentError = true;
         toast.warning('Не удалось отправить коментарий, возможно вы не поставили оценку или комментарий слишком короткий');
-      })
+      });
   },
-})
+});
 
 export const {changeSortParam, changeCity} = offersSlice.actions;
 

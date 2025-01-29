@@ -1,6 +1,7 @@
 import { MouseEvent } from 'react';
 import { useAppDispatch } from '../../hooks/state/state-hooks';
-import { changeCity } from '../../storage/actions/actions';
+import { changeCity } from '../../storage/slice/offers-slice-catalog/offers-slice';
+
 
 type CityCardProps = {
   cityName: string;

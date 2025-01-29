@@ -1,12 +1,13 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { State } from '../../../types/state';
 import { sortOffers } from '../../../utils';
+import { NameSpace } from '../../../const';
 
-const getCurrentCity = (state: State) => state.city;
+const getCurrentCity = (state: State) => state[NameSpace.Offers].city;
 
-const getOffers = (state: State) => state.offers;
+const getOffers = (state: State) => state[NameSpace.Offers].offers;
 
-const getSortParam = (state: State) => state.sortParam;
+const getSortParam = (state: State) => state[NameSpace.Offers].sortParam;
 
 const getOffersByCity = createSelector(
   [getCurrentCity, getOffers],
@@ -18,23 +19,23 @@ const getSortedOffers = createSelector(
   (offersByCity, sortParam) => sortOffers(offersByCity, sortParam)
 );
 
-const getNearbyOffers = (state: State) => state.nearbyOffers.slice(0,3);
+const getNearbyOffers = (state: State) => state[NameSpace.Offers].nearbyOffers;
 
-const getOfferById = (state: State) => state.offerById;
+const getOfferById = (state: State) => state[NameSpace.Offers].offerById;
 
-const getComments = (state: State) => state.comments;
+const getComments = (state: State) => state[NameSpace.Offers].comments;
 
-const getLoadingOffersStatus = (state: State) => state.isLoadingOffers;
+const getLoadingOffersStatus = (state: State) => state[NameSpace.Offers].isLoadingOffers;
 
-const getLoadingOfferByIdStatus = (state: State) => state.isLoadingOfferById;
+const getLoadingOfferByIdStatus = (state: State) => state[NameSpace.Offers].isLoadingOfferById;
 
-const getLoadingCommentsStatus = (state: State) => state.isLoadingComments;
+const getLoadingOfferByIdError = (state: State) => state[NameSpace.Offers].isLoadingOfferByIdError;
 
-const getLoadingNearbyOffersStatus = (state: State) => state.isLoadingNearbyOffers;
+const getLoadingCommentsStatus = (state: State) => state[NameSpace.Offers].isLoadingComments;
 
-const isPostCommentPending = (state: State) => state.postCommentPending;
+const isPostCommentPending = (state: State) => state[NameSpace.Offers].postCommentPending;
 
-const isPostCommentError = (state: State) => state.postCommentError;
+const isPostCommentError = (state: State) => state[NameSpace.Offers].postCommentError;
 
 export {
   getCurrentCity,
@@ -48,7 +49,7 @@ export {
   getLoadingOffersStatus,
   getLoadingOfferByIdStatus,
   getLoadingCommentsStatus,
-  getLoadingNearbyOffersStatus,
   isPostCommentPending,
-  isPostCommentError
-}
+  isPostCommentError,
+  getLoadingOfferByIdError
+};

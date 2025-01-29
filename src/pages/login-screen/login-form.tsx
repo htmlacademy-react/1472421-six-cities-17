@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useAppDispatch } from '../../hooks/state/state-hooks';
-import { loginAction } from '../../storage/actions/api-actions';
 import { AppRoute } from '../../const';
 import { useNavigate } from 'react-router-dom';
-import { setUserLogin } from '../../storage/actions/actions';
+import { loginAction } from '../../storage/actions/api-actions-slice';
+
 
 function LoginForm(): JSX.Element {
 
@@ -38,7 +38,6 @@ function LoginForm(): JSX.Element {
         .then((response) => {
           if(response.meta.requestStatus === 'fulfilled'){
             navigate(AppRoute.Main);
-            dispatch(setUserLogin(formData.login));
           }
         });
     }

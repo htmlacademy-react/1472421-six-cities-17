@@ -5,7 +5,7 @@ import { NameCard } from '../../const';
 import { getOffersLocation } from '../../utils';
 import SortOffersForm from './sort-offers-form';
 import { useAppSelector } from '../../hooks/state/state-hooks';
-import { getCurrentCity, getSortedOffers } from '../../storage/selectors';
+import { getCurrentCity, getSortedOffers } from '../../storage/slice/offers-slice-catalog/offers-selectors';
 
 
 function OfferSection(): JSX.Element {

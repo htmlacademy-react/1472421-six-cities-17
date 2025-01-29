@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import OfferDetails from './offer-details';
 import OfferGallery from './offer-gallery';
-import { NameCard } from '../../const';
+import { NEARBY_VIEW_VALUE, NameCard } from '../../const';
 import { OfferType, OfferTypeById } from '../../types/offer-types';
 import {useParams } from 'react-router-dom';
 import OfferReviews from './reviews/offer-reviews';
@@ -11,11 +11,10 @@ import { getOffersLocation } from '../../utils';
 import { useEffect } from 'react';
 import CardsList from '../../components/card/cards-list';
 import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
-import { getLoadingOfferStatus, getNearbyOffers, getOfferById } from '../../storage/selectors';
-import { loadOfferById } from '../../storage/actions/actions';
-import { fetchNearbyCommentAction, fetchOfferByIdAction, fetchUsersCommentsAction } from '../../storage/actions/api-actions';
 import ErrorScreen from '../error-page/error-screen';
 import Preloader from '../../components/preloader/preloader';
+import {fetchNearbyOffersAction, fetchOfferByIdAction, fetchUsersCommentsAction } from '../../storage/actions/api-actions-slice';
+import { getLoadingCommentsStatus, getLoadingOfferByIdError, getLoadingOfferByIdStatus, getNearbyOffers, getOfferById } from '../../storage/slice/offers-slice-catalog/offers-selectors';
 
 
 function OfferScreen(): JSX.Element {
@@ -25,14 +24,14 @@ function OfferScreen(): JSX.Element {
   на главном экране, т.к. при клике на карточу с помощью
   служебного компонента Link приложение перенаправит пользователя на вновь сформированный
   адрес offer/id - где id - соответствует полю id конкретного предложения) */
-  const {id} = useParams<string>();
+  const {id} = useParams();
   const dispatch = useAppDispatch();
 
 
   /* При каждом изменении id или dispatch
   будет срабатывать useEffect и если id есть,
   тогда диспатчиться действие, которое вызовет асинх. функцию
-  получения offer`а gпо id, а при успехе
+  получения offer`а по id, а при успехе
   диспатчится действие получения коментариев и offer`ов
   неподалеку */
   useEffect(() => {
@@ -41,24 +40,25 @@ function OfferScreen(): JSX.Element {
         .then((response) => {
           if(response.meta.requestStatus === 'fulfilled'){
             dispatch(fetchUsersCommentsAction(id));
-            dispatch(fetchNearbyCommentAction(id));
+            dispatch(fetchNearbyOffersAction(id));
           }
         });
     }
-    return () => {
-      dispatch(loadOfferById(null));
-    };
   }, [dispatch, id]);
 
-  const currentOffer: OfferTypeById | null = useAppSelector(getOfferById);
-  const nearbyOffers: OfferType[] = useAppSelector(getNearbyOffers);
-  const isLoadingOffer = useAppSelector(getLoadingOfferStatus);
+  const currentOffer: OfferTypeById = useAppSelector(getOfferById);
+  const nearbyOffers: OfferType[] = useAppSelector(getNearbyOffers).slice(0,NEARBY_VIEW_VALUE);
+  const isLoadingOfferById = useAppSelector(getLoadingOfferByIdStatus);
+  const isLoadingOfferByIdError = useAppSelector(getLoadingOfferByIdError);
+  const isLoadingComment = useAppSelector(getLoadingCommentsStatus);
 
-  if(id === undefined || currentOffer === null){
-    if(!isLoadingOffer){
-      return <Preloader />;
-    }
+
+  if(id === undefined || isLoadingOfferByIdError){
     return <ErrorScreen />;
+  }
+
+  if(isLoadingOfferById || isLoadingComment){
+    return <Preloader />;
   }
 
   return (

@@ -1,6 +1,6 @@
 import { CITIES } from '../../consts/city-location.ts';
 import { useAppSelector } from '../../hooks/state/state-hooks.ts';
-import { getCurrentCity } from '../../storage/selectors.ts';
+import { getCurrentCity } from '../../storage/slice/offers-slice-catalog/offers-selectors.ts';
 import CityCard from './city-name.tsx';
 
 

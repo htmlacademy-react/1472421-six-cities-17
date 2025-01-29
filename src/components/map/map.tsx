@@ -4,8 +4,8 @@ import { OfferLocation } from '../../types/offer-types';
 import { Marker, layerGroup, Icon } from 'leaflet';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 import { getLocationByCityName } from '../../utils';
-import { getCurrentCity } from '../../storage/selectors';
 import { useAppSelector } from '../../hooks/state/state-hooks';
+import { getCurrentCity } from '../../storage/slice/offers-slice-catalog/offers-selectors';
 
 type MapComponentProps = {
   className: string;

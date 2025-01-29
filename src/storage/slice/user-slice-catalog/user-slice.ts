@@ -1,8 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, NameSpace } from '../../../const';
-import { checkAuthAction, loginAction, logoutAction, postComment } from '../../actions/api-actions-slice';
+import { checkAuthAction, loginAction, logoutAction } from '../../actions/api-actions-slice';
 import { toast } from 'react-toastify';
-import { UserComments } from '../../../types/user-type';
 
 const initialState = {
   userLogin: '',
@@ -14,7 +13,7 @@ export const userSlice = createSlice({
   name: NameSpace.User,
   initialState,
   reducers: {
-    requireAuthorization: (state, action) => {
+    requireAuthorization: (state, action: PayloadAction<AuthorizationStatus>) => {
       state.authorizationStatus = action.payload;
     }
   },
@@ -55,6 +54,6 @@ export const userSlice = createSlice({
         toast.warning('Не удалось выйти, попробуйте еще раз');
       });
   },
-})
+});
 
 export const {requireAuthorization} = userSlice.actions;
