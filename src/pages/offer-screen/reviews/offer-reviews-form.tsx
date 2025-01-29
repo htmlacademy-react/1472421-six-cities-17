@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { MAX_CHARACTERS_FOR_COMMENT, MIN_CHARACTERS_FOR_COMMENT } from '../../../const';
 import { useAppDispatch } from '../../../hooks/state/state-hooks';
-import { postComment } from '../../../storage/actions/api-actions';
 import { FormDataType } from '../../../types/user-type';
+import { postComment } from '../../../storage/actions/api-actions-slice';
 
 
 type OfferReviewsFormProps = {

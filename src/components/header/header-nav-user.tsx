@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks/state/state-hooks';
-import { logoutAction } from '../../storage/actions/api-actions';
-import { getUserLogin } from '../../storage/selectors';
+import { getUserLogin } from '../../storage/slice/user-slice-catalog/user-selectors';
+import { logoutAction } from '../../storage/actions/api-actions-slice';
+
 
 type HeaderNavUserProps ={
   authorizationStatus: AuthorizationStatus;

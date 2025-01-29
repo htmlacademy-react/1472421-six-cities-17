@@ -75,13 +75,13 @@ const sortOffers = (offers: OfferType[], sortParam: string): OfferType[] => {
   const sortedOffers = [...offers];
 
   switch(sortParam){
-    case SortingParams.popular:
+    case SortingParams.Popular:
       return offers;
-    case SortingParams.expensively:
+    case SortingParams.Expensively:
       return sortedOffers.sort((offerA, offerB) => offerB.price - offerA.price);
-    case SortingParams.cheaper:
+    case SortingParams.Cheaper:
       return sortedOffers.sort((offerA, offerB) => offerA.price - offerB.price);
-    case SortingParams.byRating:
+    case SortingParams.ByRating:
       return sortedOffers.sort((offerA, offerB) => offerB.rating - offerA.rating);
     default:
       return offers;

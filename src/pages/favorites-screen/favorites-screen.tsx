@@ -3,11 +3,12 @@ import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import FavoritesLocationList from './favorites-location-list';
 import { useAppSelector } from '../../hooks/state/state-hooks';
+import { getOffers } from '../../storage/slice/offers-slice-catalog/offers-selectors';
 
 
 function FavoritesScreen(): JSX.Element {
 
-  const offers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector(getOffers);
 
   return (
     <div className="page">
