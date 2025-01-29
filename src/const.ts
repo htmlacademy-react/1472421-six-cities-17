@@ -1,3 +1,5 @@
+import { OfferTypeById } from './types/offer-types';
+
 enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
@@ -58,6 +60,44 @@ const TIMEOUT_SHOW_ERROR = 2000;
 const MIN_CHARACTERS_FOR_COMMENT = 50;
 const MAX_CHARACTERS_FOR_COMMENT = 300;
 
+enum NameSpace {
+  User = 'user',
+  Offers = 'offers',
+}
+
+/* const OFFER_BY_ID_TEMPLATE: OfferTypeById = {
+  id: '',
+  title: '',
+  type: '',
+  price: 0,
+  city: {
+    name: '',
+    location: {
+      latitude: 0,
+      longitude: 0,
+      zoom: 0,
+    }
+  },
+  location: {
+    latitude: 0,
+    longitude: 0,
+    zoom: 0,
+  },
+  isFavorite: false,
+  isPremium: false,
+  rating: 0,
+  description: '',
+  bedrooms: 0,
+  goods: [''],
+  host: {
+    name: '',
+    avatarUrl: '',
+    isPro: false,
+  },
+  images: [''],
+  maxAdults: 0,
+} */
+
 export {
   AppRoute,
   AuthorizationStatus,
@@ -71,5 +111,6 @@ export {
   APIRoute,
   TIMEOUT_SHOW_ERROR,
   MIN_CHARACTERS_FOR_COMMENT,
-  MAX_CHARACTERS_FOR_COMMENT
+  MAX_CHARACTERS_FOR_COMMENT,
+  NameSpace,
 };

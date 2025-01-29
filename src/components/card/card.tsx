@@ -16,11 +16,14 @@ function Card({offer, setCurrentOfferId, currentClass}: CardProps): JSX.Element 
 
   const classSet = getClassSet(currentClass);
 
+  const handleOnMouseOver = (): void => setCurrentOfferId?.(offer.id);
+  const handleOnMouseOut = (): void => setCurrentOfferId?.(undefined);
+
   return(
     <article
       className={`${classSet.card} place-card`}
-      onMouseOver={() => setCurrentOfferId?.(offer.id)}
-      onMouseOut={() => setCurrentOfferId?.(undefined)}
+      onMouseOver={handleOnMouseOver}
+      onMouseOut={handleOnMouseOut}
     >
       {offer.isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className={`${classSet.image} place-card__image-wrapper`}>
