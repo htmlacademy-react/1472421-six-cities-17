@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, NameSpace } from '../../../consts/const';
 import { checkAuthAction, loginAction, logoutAction } from '../../actions/api-actions-slice';
 import { toast } from 'react-toastify';
+import { User } from '../../../types/user-type';
 
 const initialState = {
   userLogin: '',
@@ -23,8 +24,9 @@ export const userSlice = createSlice({
       .addCase(checkAuthAction.pending, (state) => {
         state.authorizationStatus = AuthorizationStatus.Unknown;
       })
-      .addCase(checkAuthAction.fulfilled, (state) => {
+      .addCase(checkAuthAction.fulfilled, (state, action: PayloadAction<User>) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
+        state.userLogin = action.payload.email;
       })
       .addCase(checkAuthAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;

@@ -1,17 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import MainScreen from '../pages/main-screen/main-screen';
-import { AppRoute } from '../consts/const';
-import LoginScreen from '../pages/login-screen/login-screen';
-import FavoritesScreen from '../pages/favorites-screen/favorites-screen';
-import OfferScreen from '../pages/offer-screen/offer-screen';
-import ErrorScreen from '../pages/error-page/error-screen';
+import MainScreen from './pages/main-screen/main-screen';
+import { AppRoute } from './consts/const';
+import LoginScreen from './pages/login-screen/login-screen';
+import FavoritesScreen from './pages/favorites-screen/favorites-screen';
+import OfferScreen from './pages/offer-screen/offer-screen';
+import ErrorScreen from './pages/error-page/error-screen';
 import { HelmetProvider } from 'react-helmet-async';
-import PrivateRoute from '../private-route';
-import Preloader from './preloader/preloader';
-import { useAppSelector } from '../hooks/state/state-hooks';
+import PrivateRoute from './private-route';
+import Preloader from './components/preloader/preloader';
+import { useAppSelector } from './hooks/state/state-hooks';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getLoadingOffersStatus } from '../storage/slice/offers-slice-catalog/offers-selectors';
+import { getLoadingOffersStatus } from './storage/slice/offers-slice-catalog/offers-selectors';
 
 
 function App(): JSX.Element {
