@@ -19,6 +19,11 @@ const getSortedOffers = createSelector(
   (offersByCity, sortParam) => sortOffers(offersByCity, sortParam)
 );
 
+const getOffersByCityLength = createSelector(
+  getOffersByCity,
+  (offersByCity) => offersByCity.length
+)
+
 const getNearbyOffers = (state: State) => state[NameSpace.Offers].nearbyOffers;
 
 const getOfferById = (state: State) => state[NameSpace.Offers].offerById;
@@ -26,6 +31,8 @@ const getOfferById = (state: State) => state[NameSpace.Offers].offerById;
 const getComments = (state: State) => state[NameSpace.Offers].comments;
 
 const getLoadingOffersStatus = (state: State) => state[NameSpace.Offers].isLoadingOffers;
+
+const getLoadingOffersError = (state: State) => state[NameSpace.Offers].isLoadingOffersError;
 
 const getLoadingOfferByIdStatus = (state: State) => state[NameSpace.Offers].isLoadingOfferById;
 
@@ -51,5 +58,7 @@ export {
   getLoadingCommentsStatus,
   isPostCommentPending,
   isPostCommentError,
-  getLoadingOfferByIdError
+  getLoadingOfferByIdError,
+  getOffersByCityLength,
+  getLoadingOffersError
 };
