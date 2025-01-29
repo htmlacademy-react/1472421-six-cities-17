@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { NameSpace, OFFER_BY_ID_TEMPLATE, SortingParams } from '../../../consts/const';
 import { CityName, OfferType, OfferTypeById } from '../../../types/offer-types';
 import { UserComments } from '../../../types/user-type';
-import { fetchOffersAction, fetchOfferByIdAction, fetchUsersCommentsAction, postComment, fetchNearbyOffersAction, fetchFavoriteOfferAction } from '../../actions/api-actions-slice';
+import { fetchOffersAction, fetchOfferByIdAction, fetchUsersCommentsAction, postComment, fetchNearbyOffersAction, fetchFavoriteOfferAction, updateFavoriteOfferStatusAction } from '../../actions/api-actions-slice';
 import { toast } from 'react-toastify';
 
 const initialState = {
@@ -106,6 +106,14 @@ export const offersSlice = createSlice({
       .addCase(fetchFavoriteOfferAction.rejected, (state) => {
         state.isLoadingFavoriteOffers = false;
         toast.warning('Не удалось загрузить список избранных предложений');
+      })
+      .addCase(updateFavoriteOfferStatusAction.fulfilled, (state, action: PayloadAction<OfferType>) => {
+        if(action.payload.isFavorite){
+          state.favoriteOffers.push(action.payload);
+        }else{
+          const favoriteIndex = state.favoriteOffers.findIndex((offer) => offer.id === action.payload.id);
+          state.favoriteOffers.splice(favoriteIndex, 1);
+        }
       });
   },
 });

@@ -3,7 +3,7 @@ import { AppDispatch, State } from '../../types/state';
 import { AxiosInstance } from 'axios';
 import { OfferType, OfferTypeById } from '../../types/offer-types';
 import { APIRoute, AuthorizationStatus } from '../../consts/const';
-import { AuthDataType, PostUserCommentType, User, UserComments } from '../../types/user-type';
+import { AuthDataType, FavoriteDataType, PostUserCommentType, User, UserComments } from '../../types/user-type';
 import { dropToken, saveToken } from '../../services/token';
 import { requireAuthorization } from '../slice/user-slice-catalog/user-slice';
 
@@ -93,7 +93,7 @@ export const checkAuthAction = createAsyncThunk<User, undefined, {
   'user/checkAuthAction',
   async (_arg, {dispatch, extra: api}) => {
     try{
-      const {data} = await api.get(APIRoute.Login);
+      const {data} = await api.get<User>(APIRoute.Login);
 
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
 
@@ -154,5 +154,24 @@ export const postComment = createAsyncThunk<UserComments, PostUserCommentType, {
     const {data} = await api.post<UserComments>(`${APIRoute.Comments}/${id}`, {rating, comment});
 
     return data;
+  },
+);
+
+export const updateFavoriteOfferStatusAction = createAsyncThunk<OfferType, FavoriteDataType,{
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'offers/updateFavoriteOfferStatusAction',
+  async ({id, status}, {extra: api}) => {
+    try{
+
+      const favoriteStatusInNumber = Number(status);
+      const {data} = await api.post<OfferType>(`${APIRoute.Favorite}/${id}/${favoriteStatusInNumber}`);
+
+      return data;
+    }catch{
+      throw Error;
+    }
   },
 );

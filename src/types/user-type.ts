@@ -36,3 +36,8 @@ export type AuthDataType = {
   login: string;
   password: string;
 }
+
+export type FavoriteDataType = {
+  id: string;
+  status: boolean;
+}

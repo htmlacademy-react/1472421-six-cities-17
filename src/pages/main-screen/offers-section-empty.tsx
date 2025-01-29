@@ -11,7 +11,7 @@ function OffersSectionEmpty(): JSX.Element {
         <div className="cities__right-section"></div>
       </div>
     </div>
-  )
+  );
 }
 
 export default OffersSectionEmpty;

@@ -9,7 +9,7 @@ const getOffers = (state: State) => state[NameSpace.Offers].offers;
 
 const getSortParam = (state: State) => state[NameSpace.Offers].sortParam;
 
-const getFavoriteOffers  = (state: State) => state[NameSpace.Offers].favoriteOffers;
+const getFavoriteOffers = (state: State) => state[NameSpace.Offers].favoriteOffers;
 
 const getFavoriteOffersByGroup = createSelector(
   getFavoriteOffers,
@@ -27,11 +27,12 @@ const getSortedOffers = createSelector(
 );
 
 
-
 const getOffersByCityLength = createSelector(
   getOffersByCity,
   (offersByCity) => offersByCity.length
 );
+
+const getFavoriteStatus = (state: State, id: string) => state[NameSpace.Offers].favoriteOffers.findIndex((offer) => offer.id === id) !== -1;
 
 const getNearbyOffers = (state: State) => state[NameSpace.Offers].nearbyOffers;
 
@@ -53,6 +54,8 @@ const isPostCommentPending = (state: State) => state[NameSpace.Offers].postComme
 
 const isPostCommentError = (state: State) => state[NameSpace.Offers].postCommentError;
 
+const getFavoriteOffersCount = (state: State) => state[NameSpace.Offers].favoriteOffers.length;
+
 export {
   getCurrentCity,
   getOffers,
@@ -71,4 +74,7 @@ export {
   getOffersByCityLength,
   getLoadingOffersError,
   getFavoriteOffersByGroup,
+  getFavoriteOffers,
+  getFavoriteStatus,
+  getFavoriteOffersCount
 };
